@@ -4,7 +4,7 @@ var velocity = Vector2()
 export var move_speed = 300
 export var jump_speed = 500
 export var grav = 1000
-export var max_speed = 100
+export var max_speed = 500
 
 var accel = 3.0
 var deaccel = 6.0
@@ -30,18 +30,13 @@ func _physics_process(delta):
 		velocity.y = -jump_speed
 	
 	var target_vel = (int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")))
-	print(target_vel)
-	
-	if abs(velocity.x) < max_speed:
 		
-		
-		velocity.x = velocity.x + target_vel * max_speed / accel
-		if abs(velocity.x) > max_speed:
-			velocity.x = sign(velocity.x) * max_speed
+	var new_velocity = velocity.x + target_vel * max_speed / accel
+	if abs(new_velocity) < max_speed:
+		velocity.x = new_velocity
 	
 	# Deaccel
 	if not bool(target_vel) or abs(velocity.x) > max_speed:
-		print("Deaccel")
 		var v_sign = sign(velocity.x)
 		if v_sign != 0:
 			velocity.x = velocity.x - v_sign * max_speed / deaccel
@@ -49,7 +44,6 @@ func _physics_process(delta):
 				velocity.x = 0
 	
 	dash_input()
-	
 	
 	#Animation
 	if Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_right"):
@@ -63,4 +57,4 @@ func _physics_process(delta):
 
 func dash_input():
 	if Input.is_action_just_pressed("dash"):
-		velocity.x += sign(velocity.x) * 200
+		velocity.x += sign(velocity.x) * 1000
