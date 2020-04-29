@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/sprites/environment/neon tiles/Purple.tres" type="TileSet" id=1]
+[ext_resource path="res://assets/sprites/environment/neon tiles/Orange.tres" type="TileSet" id=2]
+[ext_resource path="res://assets/sprites/environment/neon tiles/Blue.tres" type="TileSet" id=3]
+
+[node name="TileMaps" type="Node2D"]
+
+[node name="Orangebox" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+
+[node name="Purplebox" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+
+[node name="Bluebox" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+format = 1
