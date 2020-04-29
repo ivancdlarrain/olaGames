@@ -20,13 +20,21 @@ func _state_logic(delta):
 	parent._apply_gravity(delta)
 	parent._apply_friction()
 	parent._apply_movement()
-	print(parent.velocity.x)
+	print(parent.double_jump)
 	
 
 func _input(event):
 	if [states.idle, states.run].has(state):
 		if event.is_action_pressed('WASD_up'):
 			parent.velocity.y = -parent.jump_speed
+	
+	if [states2.orange].has(state2):
+		if event.is_action_pressed('WASD_up'):
+			if [states.jump, states.fall, states.glide].has(state):
+				if parent.double_jump:
+					parent.velocity.y = -parent.jump_speed
+					parent.double_jump = false
+	
 	if event.is_action_pressed("special"):
 		if [states2.blue].has(state2):
 			if [states.run].has(state):
@@ -35,13 +43,14 @@ func _input(event):
 				else:
 					parent.velocity.x = -parent.max_speed * 3
 		elif [states2.orange].has(state2):
+			pass
+					
+		else:
 			if [states.jump].has(state):
 				parent.velocity.y = 0
 				parent.grav = parent.glide_grav
 			if [states.fall].has(state):
 				parent.grav = parent.glide_grav
-		else:
-			pass # mecánica purple
 	
 	#Change if needed for another color
 	if event.is_action_released("special"):
@@ -70,6 +79,7 @@ func _get_transition(delta):
 				return states.dash
 		states.jump:
 			if on_floor:
+				parent.double_jump = true
 				if parent.velocity.x == 0: 
 					return states.idle
 				else: 
@@ -82,6 +92,7 @@ func _get_transition(delta):
 					return states.glide
 		states.fall:
 			if on_floor:
+				parent.double_jump = true
 				parent.grav = parent.default_grav
 				if parent.velocity.x == 0: 
 					return states.idle

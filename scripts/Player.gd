@@ -10,6 +10,7 @@ export var max_speed = 500
 const UP = Vector2(0, -1)
 var move_direction = 0
 var colour_switch = 0
+var double_jump = true
 
 var accel = 3.0
 var deaccel = 6.0
