@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var velocity = Vector2()
 export var move_speed = 300
-export var jump_speed = 500
+export var jump_speed = 400
 export var grav = 1000
 export var glide_grav = 300
 export var default_grav = 1000

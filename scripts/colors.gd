@@ -20,7 +20,7 @@ func _state_logic(delta):
 	parent._apply_gravity(delta)
 	parent._apply_friction()
 	parent._apply_movement()
-	print(parent.grav)
+	print(parent.velocity.x)
 	
 
 func _input(event):
@@ -77,6 +77,9 @@ func _get_transition(delta):
 			else:
 				if parent.velocity.y > 0: 
 					return states.fall
+				
+				if parent.grav == parent.glide_grav:
+					return states.glide
 		states.fall:
 			if on_floor:
 				parent.grav = parent.default_grav
@@ -87,6 +90,9 @@ func _get_transition(delta):
 			else:
 				if parent.velocity.y < 0: 
 					return states.jump
+				
+				if parent.grav == parent.glide_grav:
+					return states.glide
 		states.dash:
 			if !on_floor:
 				if parent.velocity.y < 0:
