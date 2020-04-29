@@ -42,6 +42,8 @@ func _input(event):
 				parent.grav = parent.glide_grav
 		else:
 			pass # mecánica purple
+	
+	#Change if needed for another color
 	if event.is_action_released("special"):
 		parent.grav = parent.default_grav	
 
