@@ -6,6 +6,7 @@ func _ready():
 	add_state('jump')
 	add_state('fall')
 	add_state('dash')
+	add_state('glide')
 	call_deferred('set_state', states.idle)
 	add_state2('blue')
 	add_state2('orange')
@@ -93,6 +94,16 @@ func _get_transition(delta):
 			elif parent.velocity.x != 0:
 					return states.run
 		
+		states.glide:
+			if !on_floor:
+				if parent.grav == parent.default_grav:
+					return states.fall
+			else:
+				if parent.velocity.x == 0:
+					return states.idle
+				else:
+					return states.run
+			
 		
 	return null
 
