@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/environment/tileset.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/sprites/environment/neon tiles/Orange.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/sprites/environment/neon tiles/Purple.tres" type="TileSet" id=5]
 [ext_resource path="res://assets/sprites/environment/neon tiles/Blue.tres" type="TileSet" id=6]
+[ext_resource path="res://scripts/test01.gd" type="Script" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 96, 128, 0, 128, 0, 32, 96, 32 )
@@ -76,6 +77,7 @@ points = PoolVector2Array( 96, 128, 0, 128, 0, 32, 96, 32 )
 3/z_index = 0
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 7 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
 position = Vector2( 106.713, 114.837 )
