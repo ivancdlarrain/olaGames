@@ -16,6 +16,10 @@ func _physics_process(delta):
 		var transition = _get_transition(delta)
 		if transition != null:
 			set_state(transition)
+	var transition2 = _get_transition2(delta)
+	if transition2 != null:
+		set_state2(transition2)
+			
 
 # warning-ignore:unused_argument
 func _state_logic(delta):
@@ -33,7 +37,6 @@ func _get_transition(delta):
 func _get_transition2(delta):
 	return null
 	
-# warning-ignore:unused_argument
 # warning-ignore:unused_argument
 func _enter_state(new_state, old_state):
 	pass
@@ -54,7 +57,7 @@ func _exit_state2(old_state, new_state):
 	pass
 	
 func set_state(new_state):
-	previous_state = state
+	previous_state = states
 	state = new_state
 	
 	if previous_state != null:
@@ -67,15 +70,15 @@ func set_state2(new_state):
 	state2 = new_state
 	
 	if previous_state2 != null:
-		_exit_state(previous_state2, new_state)
+		_exit_state2(previous_state2, new_state)
 	if new_state != null:
-		_enter_state(new_state, previous_state2)
+		_enter_state2(new_state, previous_state2)
 	
 func add_state(state_name):
-	states[state_name] = state_name
+	states[state_name] = states.size()
 	
 func add_state2(state_name):
-	states2[state_name] = state_name
+	states2[state_name] = states2.size()
 
 
 
