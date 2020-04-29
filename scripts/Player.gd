@@ -4,6 +4,8 @@ var velocity = Vector2()
 export var move_speed = 300
 export var jump_speed = 500
 export var grav = 1000
+export var glide_grav = 300
+export var default_grav = 1000
 export var max_speed = 500
 const UP = Vector2(0, -1)
 var move_direction = 0
@@ -42,7 +44,7 @@ func _handle_move_input():
 		
 func _handle_color_input():
 	colour_switch += -int(Input.is_action_just_pressed("switch_left")) + int(Input.is_action_just_pressed("switch_right"))
-	print(colour_switch)
+	#print(colour_switch)
 
 
 func _apply_friction():

@@ -19,6 +19,7 @@ func _state_logic(delta):
 	parent._apply_gravity(delta)
 	parent._apply_friction()
 	parent._apply_movement()
+	print(parent.grav)
 	
 
 func _input(event):
@@ -33,9 +34,15 @@ func _input(event):
 				else:
 					parent.velocity.x = -parent.max_speed * 3
 		elif [states2.orange].has(state2):
-			pass # mecánica orange
+			if [states.jump].has(state):
+				parent.velocity.y = 0
+				parent.grav = parent.glide_grav
+			if [states.fall].has(state):
+				parent.grav = parent.glide_grav
 		else:
 			pass # mecánica purple
+	if event.is_action_released("special"):
+		parent.grav = parent.default_grav	
 
 func _get_transition(delta):
 	var on_floor = parent.is_on_floor()
@@ -69,6 +76,7 @@ func _get_transition(delta):
 					return states.fall
 		states.fall:
 			if on_floor:
+				parent.grav = parent.default_grav
 				if parent.velocity.x == 0: 
 					return states.idle
 				else: 
@@ -84,6 +92,8 @@ func _get_transition(delta):
 					return states.fall
 			elif parent.velocity.x != 0:
 					return states.run
+		
+		
 	return null
 
 
