@@ -7,6 +7,7 @@ func _ready():
 	add_state('fall')
 	add_state('dash')
 	add_state('glide')
+	add_state('wall_slide')
 	call_deferred('set_state', states.idle)
 	add_state2('blue')
 	add_state2('orange')
@@ -20,7 +21,8 @@ func _state_logic(delta):
 	parent._apply_gravity(delta)
 	parent._apply_friction()
 	parent._apply_movement()
-	
+	print(states.keys()[state])
+	print(parent.grav)
 
 func _input(event):
 	if [states.idle, states.run].has(state):
@@ -33,7 +35,9 @@ func _input(event):
 				if parent.double_jump:
 					parent.velocity.y = -parent.jump_speed
 					parent.double_jump = false
-	
+	if [states.wall_slide].has(state):
+		if event.is_action_pressed('WASD_up'):
+			print('wall slide jump')
 	if event.is_action_pressed("special"):
 		if [states2.blue].has(state2):
 			if [states.run].has(state):
@@ -52,11 +56,14 @@ func _input(event):
 				parent.grav = parent.glide_grav
 	
 	#Change if needed for another color
-	if event.is_action_released("special"):
+	if event.is_action_released("special") or parent.is_on_floor():
 		parent.grav = parent.default_grav	
+	
+	
 
 func _get_transition(delta):
 	var on_floor = parent.is_on_floor()
+	var on_wall = parent.is_on_wall()
 	match state:
 		states.idle:
 			if !on_floor:
@@ -83,6 +90,9 @@ func _get_transition(delta):
 					return states.idle
 				else: 
 					return states.run
+			elif on_wall:
+				return states.wall_slide
+				
 			else:
 				if parent.velocity.y > 0: 
 					return states.fall
@@ -97,6 +107,8 @@ func _get_transition(delta):
 					return states.idle
 				else: 
 					return states.run
+			elif on_wall:
+				return states.wall_slide
 			else:
 				if parent.velocity.y < 0: 
 					return states.jump
@@ -116,11 +128,21 @@ func _get_transition(delta):
 			if !on_floor:
 				if parent.grav == parent.default_grav:
 					return states.fall
-			else:
+			if on_wall:
+				states.wall_slide
+			if on_floor:
 				if parent.velocity.x == 0:
 					return states.idle
 				else:
 					return states.run
+		
+		states.wall_slide:
+			if on_floor:
+				return states.idle
+			
+			if !on_wall:
+				return states.fall
+				 
 			
 		
 	return null
@@ -154,7 +176,7 @@ func _get_transition2(delta):
 	
 func _enter_state(new_state, old_state):
 	pass
-	
+			
 func _enter_state2(new_state, old_state):
 	match new_state:
 		states2.blue:

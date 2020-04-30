@@ -20,6 +20,8 @@ func _physics_process(delta):
 	if transition2 != null:
 		set_state2(transition2)
 			
+	
+	
 
 # warning-ignore:unused_argument
 func _state_logic(delta):

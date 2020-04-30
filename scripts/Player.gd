@@ -36,7 +36,6 @@ func _handle_move_input():
 		velocity.x = new_velocity
 	else: 
 		velocity.x = sign(velocity.x)*max_speed
-	print(velocity.x)
 		
 	# Facing:
 	if Input.is_action_pressed("WASD_left") and not Input.is_action_pressed("WASD_right"):
