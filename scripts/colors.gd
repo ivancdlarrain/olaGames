@@ -20,7 +20,6 @@ func _state_logic(delta):
 	parent._apply_gravity(delta)
 	parent._apply_friction()
 	parent._apply_movement()
-	print(parent.double_jump)
 	
 
 func _input(event):
