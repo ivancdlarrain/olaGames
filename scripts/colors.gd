@@ -18,6 +18,8 @@ func _ready():
 func _state_logic(delta):
 	parent._handle_move_input()
 	parent._handle_color_input()
+	
+	#Apply a cap to the fall speed if the player is wall-sliding
 	if [states.wall_slide].has(state):
 		parent._cap_gravity(delta)
 	else:
@@ -63,6 +65,11 @@ func _input(event):
 	#Change if needed for another color
 	if event.is_action_released("special") or parent.is_on_floor():
 		parent.grav = parent.default_grav	
+	
+	#Make jump height dependant on how much key is pressed:
+	if event.is_action_released("WASD_up"):
+		if [states.jump].has(state):
+			parent.velocity.y = parent.velocity.y * 0.5
 	
 	
 
