@@ -38,6 +38,7 @@ func _input(event):
 	if [states.wall_slide].has(state):
 		if event.is_action_pressed('WASD_up'):
 			print('wall slide jump')
+			parent._wall_jump()
 	if event.is_action_pressed("special"):
 		if [states2.blue].has(state2):
 			if [states.run].has(state):

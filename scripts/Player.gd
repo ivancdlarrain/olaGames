@@ -10,6 +10,7 @@ const UP = Vector2(0, -1)
 var move_direction = 0
 var colour_switch = 0
 var double_jump = true
+var double_jump_direction = Vector2()
 
 var accel = 3.0
 var deaccel = 6.0
@@ -60,3 +61,10 @@ func _apply_friction():
 			if sign(velocity.x) != v_sign:
 				velocity.x = 0
 				
+func _wall_jump():
+	if facing_right:
+		double_jump_direction = Vector2(-1500, -400 )
+	else:
+		double_jump_direction = Vector2(1500, -400)
+	
+	velocity = double_jump_direction
