@@ -25,6 +25,10 @@ func _apply_movement():
 	
 func _apply_gravity(delta):
 	velocity.y += delta * grav
+
+func _cap_gravity(delta):
+	velocity.y += delta * grav
+	velocity.y = min(velocity.y, 130)
 	
 func _handle_move_input():
 	var new_velocity 

@@ -18,7 +18,11 @@ func _ready():
 func _state_logic(delta):
 	parent._handle_move_input()
 	parent._handle_color_input()
-	parent._apply_gravity(delta)
+	if [states.wall_slide].has(state):
+		parent._cap_gravity(delta)
+	else:
+		parent._apply_gravity(delta)
+	
 	parent._apply_friction()
 	parent._apply_movement()
 	print(states.keys()[state])
