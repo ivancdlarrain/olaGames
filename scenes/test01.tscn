@@ -3,13 +3,13 @@
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/environment/tileset.png" type="Texture" id=2]
 [ext_resource path="res://scenes/menus/Pause_menu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/sprites/environment/neon tiles/Orange.tres" type="TileSet" id=4]
-[ext_resource path="res://assets/sprites/environment/neon tiles/Purple.tres" type="TileSet" id=5]
-[ext_resource path="res://assets/sprites/environment/neon tiles/Blue.tres" type="TileSet" id=6]
+[ext_resource path="res://assets/tilemaps/RegularTiles/PurpleTiles.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/tilemaps/RegularTiles/OrangeTiles.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/tilemaps/RegularTiles/BlueTiles.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scripts/test01.gd" type="Script" id=7]
-[ext_resource path="res://assets/tilesets/spikes/blue_spikes.tres" type="TileSet" id=8]
-[ext_resource path="res://assets/tilesets/spikes/purple_spikes.tres" type="TileSet" id=9]
-[ext_resource path="res://assets/tilesets/spikes/orange_spikes.tres" type="TileSet" id=10]
+[ext_resource path="res://assets/tilemaps/OrangeSpikes.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/tilemaps/PurpleSpikes.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/tilemaps/BlueSpikes.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 96, 128, 0, 128, 0, 32, 96, 32 )
@@ -91,40 +91,14 @@ format = 1
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 3 )]
 
-[node name="BlueTiles" type="TileMap" parent="."]
-tile_set = ExtResource( 6 )
-cell_size = Vector2( 32, 32 )
-format = 1
-tile_data = PoolIntArray( 851970, 0, 0, 851971, 0, 2, 851972, 0, 2, 851973, 0, 2, 851974, 0, 2, 851975, 0, 2, 851976, 0, 2, 851977, 0, 2, 851978, 0, 2, 851979, 0, 2, 851980, 0, 2, 851981, 0, 2, 851982, 0, 2, 851983, 0, 2, 851984, 0, 2, 851985, 0, 2, 851986, 0, 2, 851987, 0, 2, 851988, 0, 2, 851989, 0, 2, 851990, 0, 2, 851991, 0, 2, 851992, 0, 4, 917506, 0, 262144, 917507, 0, 262146, 917508, 0, 262146, 917509, 0, 262146, 917510, 0, 262146, 917511, 0, 262146, 917512, 0, 262146, 917513, 0, 262146, 917514, 0, 262146, 917515, 0, 262146, 917516, 0, 262146, 917517, 0, 262146, 917518, 0, 262146, 917519, 0, 262146, 917520, 0, 262146, 917521, 0, 262146, 917522, 0, 262146, 917523, 0, 262146, 917524, 0, 262146, 917525, 0, 262146, 917526, 0, 262146, 917527, 0, 262146, 917528, 0, 262148 )
+[node name="BlueTiles" parent="." instance=ExtResource( 6 )]
 
-[node name="OrangeTiles" type="TileMap" parent="."]
-tile_set = ExtResource( 4 )
-cell_size = Vector2( 32, 32 )
-compatibility_mode = true
-collision_layer = 2
-collision_mask = 2
-format = 1
-tile_data = PoolIntArray( 262154, 0, 0, 262155, 0, 4, 327690, 0, 131072, 327691, 0, 131076, 393226, 0, 131072, 393227, 0, 131076, 458762, 0, 131072, 458763, 0, 131076, 524298, 0, 131072, 524299, 0, 131076, 589834, 0, 131072, 589835, 0, 131076, 589841, 0, 0, 589842, 0, 2, 589843, 0, 2, 589844, 0, 4, 655370, 0, 131072, 655371, 0, 131076, 655377, 0, 131072, 655378, 0, 131078, 655379, 0, 262146, 655380, 0, 262148, 720906, 0, 131072, 720907, 0, 131076, 720913, 0, 131072, 720914, 0, 131076, 786442, 0, 131072, 786443, 0, 131076, 786449, 0, 131072, 786450, 0, 131076, 851972, 0, 0, 851973, 0, 2, 851974, 0, 2, 851975, 0, 2, 851976, 0, 2, 851977, 0, 2, 851978, 0, 393222, 851979, 0, 6, 851980, 0, 2, 851981, 0, 2, 851982, 0, 2, 851983, 0, 2, 851984, 0, 2, 851985, 0, 393222, 851986, 0, 6, 851987, 0, 2, 851988, 0, 2, 851989, 0, 2, 851990, 0, 4, 917508, 0, 262144, 917509, 0, 262146, 917510, 0, 262146, 917511, 0, 262146, 917512, 0, 262146, 917513, 0, 262146, 917514, 0, 262146, 917515, 0, 262146, 917516, 0, 262146, 917517, 0, 262146, 917518, 0, 262146, 917519, 0, 262146, 917520, 0, 262146, 917521, 0, 262146, 917522, 0, 262146, 917523, 0, 262146, 917524, 0, 262146, 917525, 0, 262146, 917526, 0, 262148 )
+[node name="OrangeTiles" parent="." instance=ExtResource( 5 )]
 
-[node name="PurpleTiles" type="TileMap" parent="."]
-tile_set = ExtResource( 5 )
-cell_size = Vector2( 32, 32 )
-collision_layer = 4
-collision_mask = 4
-format = 1
+[node name="PurpleTiles" parent="." instance=ExtResource( 4 )]
 
-[node name="BlueSpikes" type="TileMap" parent="."]
-tile_set = ExtResource( 8 )
-cell_size = Vector2( 32, 32 )
-format = 1
+[node name="BlueSpikes" parent="." instance=ExtResource( 10 )]
 
-[node name="OrangeSpikes" type="TileMap" parent="."]
-tile_set = ExtResource( 10 )
-cell_size = Vector2( 32, 32 )
-format = 1
-tile_data = PoolIntArray( 786438, 3, 0, 786439, 3, 0, 786440, 3, 0 )
+[node name="OrangeSpikes" parent="." instance=ExtResource( 8 )]
 
-[node name="PurpleSpikes" type="TileMap" parent="."]
-tile_set = ExtResource( 9 )
-cell_size = Vector2( 32, 32 )
-format = 1
+[node name="PurpleSpikes" parent="." instance=ExtResource( 9 )]

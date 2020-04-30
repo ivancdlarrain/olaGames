@@ -7,7 +7,6 @@
 [ext_resource path="res://assets/tilesets/spikes/blue_spikes.tres" type="TileSet" id=5]
 [ext_resource path="res://assets/tilesets/spikes/orange_spikes.tres" type="TileSet" id=6]
 
-
 [node name="TileMaps" type="Node2D"]
 
 [node name="Orangebox" type="TileMap" parent="."]
