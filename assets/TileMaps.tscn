@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/sprites/environment/neon tiles/Purple.tres" type="TileSet" id=1]
-[ext_resource path="res://assets/sprites/environment/neon tiles/Orange.tres" type="TileSet" id=2]
+[ext_resource path="res://assets/tilemaps/RegularTiles/Orange.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/sprites/environment/neon tiles/Blue.tres" type="TileSet" id=3]
 [ext_resource path="res://assets/tilesets/spikes/purple_spikes.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/tilesets/spikes/blue_spikes.tres" type="TileSet" id=5]
