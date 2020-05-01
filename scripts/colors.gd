@@ -29,14 +29,15 @@ func _state_logic(delta):
 	parent._apply_movement()
 	parent._tile_detection()
 	#print(states.keys()[state])
-	print(parent.jump_pressed)
-
+	#print(parent.jump_pressed)
+	print(parent.is_on_floor())
+	
 func _input(event):
 	if event.is_action_pressed('WASD_up'):
 		parent.jump_pressed = true
 		parent.remember_jump()
 	
-	if [states.idle, states.run].has(state):
+	if [states.idle, states.run, states.pre_fall].has(state):
 		if parent.jump_pressed:
 			parent.velocity.y = -parent.jump_speed
 				

@@ -54,6 +54,7 @@ tile_data = PoolIntArray( 262154, 0, 0, 262155, 0, 4, 327690, 0, 131072, 327691,
 [node name="PurpleTiles" parent="." instance=ExtResource( 4 )]
 
 [node name="BlueSpikes" parent="." instance=ExtResource( 10 )]
+tile_data = PoolIntArray( 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 786439, 0, 0, 786440, 0, 0 )
 
 [node name="OrangeSpikes" parent="." instance=ExtResource( 8 )]
 tile_data = PoolIntArray(  )
