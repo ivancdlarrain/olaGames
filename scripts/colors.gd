@@ -14,10 +14,9 @@ func _ready():
 	add_state2('orange')
 	add_state2('purple')
 	call_deferred('set_state2', states2.blue)
-
+	
 
 func _state_logic(delta):
-	
 	parent._handle_move_input()
 	parent._handle_color_input()
 	
@@ -30,11 +29,18 @@ func _state_logic(delta):
 	parent._apply_movement()
 	parent._tile_detection()
 	#print(states.keys()[state])
+	print(parent.jump_pressed)
 
 func _input(event):
-	if [states.run, states.idle, states.pre_fall].has(state):	
-		if event.is_action_pressed('WASD_up'):
-				parent.velocity.y = -parent.jump_speed
+	if event.is_action_pressed('WASD_up'):
+		parent.jump_pressed = true
+		parent.remember_jump()
+	
+	if [states.idle, states.run].has(state):
+		if parent.jump_pressed:
+			parent.velocity.y = -parent.jump_speed
+				
+		
 	if [states2.orange].has(state2):
 		if event.is_action_pressed('WASD_up'):
 			if [states.jump, states.fall, states.glide].has(state):

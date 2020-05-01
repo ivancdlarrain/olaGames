@@ -33,3 +33,7 @@ one_shot = true
 
 [node name="DashCooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="JumpWindow" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true

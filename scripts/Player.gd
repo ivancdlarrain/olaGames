@@ -16,11 +16,14 @@ var accel = 3.0
 var deaccel = 6.0
 var facing_right = true
 var dashing = false
+var jump_pressed = false
+
 
 
 
 onready var dash_cd = $DashCooldown
 onready var c_timer = $CoyoteTimer
+onready var j_timer = $JumpWindow
 var was_on_floor = is_on_floor()
 
 func _ready():
@@ -80,6 +83,11 @@ func _wall_jump():
 	
 	velocity = double_jump_direction
 
+func remember_jump():
+	yield(get_tree().create_timer(.1), "timeout")
+	jump_pressed = false
+	pass
+
 # Game logic for tile detection:
 
 export var tile_map_path : NodePath
@@ -89,4 +97,5 @@ func _tile_detection():
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
 		var cell = tile_map.get_cellv(tile_map.world_to_map(collision.position))
-		print(cell)
+		if cell == 0:
+			print('death')
