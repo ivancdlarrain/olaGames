@@ -17,6 +17,7 @@ func _ready():
 
 
 func _state_logic(delta):
+	
 	parent._handle_move_input()
 	parent._handle_color_input()
 	
@@ -27,8 +28,7 @@ func _state_logic(delta):
 		parent._apply_gravity(delta)
 	parent._apply_friction()
 	parent._apply_movement()
-	
-	print(parent.velocity.x)
+	parent._tile_detection()
 	#print(states.keys()[state])
 
 func _input(event):
