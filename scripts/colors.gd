@@ -1,5 +1,7 @@
 extends DobleStateMachine
 
+signal color_changed
+
 func _ready():
 	add_state('idle')
 	add_state('run')
@@ -14,6 +16,7 @@ func _ready():
 	add_state2('orange')
 	add_state2('purple')
 	call_deferred('set_state2', states2.blue)
+	call_deferred("emit_signal", "color_changed", "blue")
 	
 
 func _state_logic(delta):
@@ -28,9 +31,11 @@ func _state_logic(delta):
 	parent._apply_friction()
 	parent._apply_movement()
 	parent._tile_detection()
+	
+	parent._handle_animation()
 	#print(states.keys()[state])
 	#print(parent.jump_pressed)
-	print(parent.is_on_floor())
+#	print(parent.on_floor)
 	
 func _input(event):
 	if event.is_action_pressed('WASD_up'):
@@ -175,23 +180,29 @@ func _get_transition2(delta):
 		states2.blue:
 			if parent.colour_switch == 1:
 				parent.colour_switch = 0
+				emit_signal("color_changed", "orange")
 				return states2.orange
 			elif parent.colour_switch == -1:
 				parent.colour_switch = 0
+				emit_signal("color_changed", "purple")
 				return states2.purple
 		states2.orange:
 			if parent.colour_switch == 1:
 				parent.colour_switch = 0
+				emit_signal("color_changed", "purple")
 				return states2.purple
 			elif parent.colour_switch == -1:
 				parent.colour_switch = 0
+				emit_signal("color_changed", "blue")
 				return states2.blue
 		states2.purple:
 			if parent.colour_switch == 1:
 				parent.colour_switch = 0
+				emit_signal("color_changed", "blue")
 				return states2.blue
 			elif parent.colour_switch == -1:
 				parent.colour_switch = 0
+				emit_signal("color_changed", "orange")
 				return states2.orange
 	return null
 	

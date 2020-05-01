@@ -17,6 +17,11 @@ var deaccel = 6.0
 var facing_right = true
 var dashing = false
 var jump_pressed = false
+var on_floor = false
+var no_input = true
+
+onready var playback = $AnimationTree.get("parameters/playback")
+
 
 
 
@@ -24,13 +29,19 @@ var jump_pressed = false
 onready var dash_cd = $DashCooldown
 onready var c_timer = $CoyoteTimer
 onready var j_timer = $JumpWindow
-var was_on_floor = is_on_floor()
+var was_on_floor = false
 
 func _ready():
-	pass
+	$PlayerState.connect("color_changed", self, "on_color_changed")
+
+func on_color_changed(new_color: String):
+	$Sprite.modulate = ColorN(new_color)
+
+
 
 func _apply_movement():
 	velocity = move_and_slide(velocity, UP)
+	on_floor = is_on_floor()
 	
 func _apply_gravity(delta):
 	velocity.y += delta * grav
@@ -42,7 +53,8 @@ func _cap_gravity(delta):
 func _handle_move_input():
 	var new_velocity 
 	move_direction = -int(Input.is_action_pressed("WASD_left")) + int(Input.is_action_pressed("WASD_right"))
-	if is_on_floor():
+	no_input = move_direction == 0
+	if on_floor:
 		new_velocity = velocity.x + move_direction * max_speed / accel
 	else:
 		new_velocity = velocity.x + move_direction * max_speed / (accel * 1.5)
@@ -62,6 +74,18 @@ func _handle_move_input():
 			scale.x *= -1
 		facing_right = true
 
+func _handle_animation():
+	if on_floor:
+		if abs(velocity.x) > 10.0 or not no_input:
+			playback.travel("run")
+#			$AnimationTree.set("parameters/run/TimeScale/scale", 2 * abs(linear_vel.x)/speed)
+		else:
+			playback.travel("idle")
+	else:
+		if velocity.y > 0:
+			playback.travel("fall")
+		else:
+			playback.travel("jump")
 		
 func _handle_color_input():
 	colour_switch += -int(Input.is_action_just_pressed("switch_left")) + int(Input.is_action_just_pressed("switch_right"))
@@ -90,12 +114,30 @@ func remember_jump():
 
 # Game logic for tile detection:
 
-export var tile_map_path : NodePath
-onready var tile_map = get_node(tile_map_path) as TileMap
+export var blue_tile_map_path : NodePath
+onready var blue_tile_map = get_node(blue_tile_map_path) as TileMap
+
+export var orange_tile_map_path : NodePath
+onready var orange_tile_map = get_node(orange_tile_map_path) as TileMap
+
+export var purple_tile_map_path : NodePath
+onready var purple_tile_map = get_node(purple_tile_map_path) as TileMap
+
+var counter = 0
 
 func _tile_detection():	
+#	print(get_slide_count())
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
-		var cell = tile_map.get_cellv(tile_map.world_to_map(collision.position))
-		if cell == 0:
-			print('death')
+		
+#		var death = check_death(collision.position)
+		var death = check_death(collision, Vector2(-1, -1)) \
+		or check_death(collision,  Vector2(-1, 1)) \
+		or check_death(collision, Vector2(1, -1)) \
+		or	check_death(collision, Vector2(1, 1))
+		if death:
+			print('death ', counter)
+			counter += 1
+
+func check_death(collision, delta):
+	return (collision.collider as TileMap).get_cellv(blue_tile_map.world_to_map(collision.position + delta)) == 1

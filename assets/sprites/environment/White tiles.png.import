@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/jump-3.png-c77815f880afd1378f5d59cbf9ec5aaf.stex"
+path="res://.import/White tiles.png-29c7eb62b25a665f8e3459b70161bb84.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/jump/jump-3.png"
-dest_files=[ "res://.import/jump-3.png-c77815f880afd1378f5d59cbf9ec5aaf.stex" ]
+source_file="res://assets/sprites/environment/White tiles.png"
+dest_files=[ "res://.import/White tiles.png-29c7eb62b25a665f8e3459b70161bb84.stex" ]
 
 [params]
 
