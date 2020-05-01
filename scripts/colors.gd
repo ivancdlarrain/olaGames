@@ -32,9 +32,6 @@ func _state_logic(delta):
 	#print(states.keys()[state])
 
 func _input(event):
-	
-	if event.is_action_pressed("ui_left"):
-		parent.scale.x = -1
 	if [states.run, states.idle, states.pre_fall].has(state):	
 		if event.is_action_pressed('WASD_up'):
 				parent.velocity.y = -parent.jump_speed
