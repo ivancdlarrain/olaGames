@@ -11,11 +11,15 @@ var move_direction = 0
 var colour_switch = 0
 var double_jump = true
 var double_jump_direction = Vector2()
-
+var can_jump = true
 var accel = 3.0
 var deaccel = 6.0
-
 var facing_right = true
+var dashing = false
+
+onready var dash_cd = $DashCooldown
+onready var c_timer = $CoyoteTimer
+var was_on_floor = is_on_floor()
 
 func _ready():
 	pass
@@ -40,7 +44,8 @@ func _handle_move_input():
 	if abs(new_velocity) < max_speed:
 		velocity.x = new_velocity
 	else: 
-		velocity.x = sign(velocity.x)*max_speed
+		if [$PlayerState.states.run].has($PlayerState.state):
+			velocity.x = sign(velocity.x)*max_speed
 		
 	# Facing:
 	if Input.is_action_pressed("WASD_left") and not Input.is_action_pressed("WASD_right"):
@@ -67,8 +72,9 @@ func _apply_friction():
 				
 func _wall_jump():
 	if facing_right:
-		double_jump_direction = Vector2(-1500, -400 )
+		double_jump_direction = Vector2(-400, -400 )
 	else:
-		double_jump_direction = Vector2(1500, -400)
+		double_jump_direction = Vector2(400, -400)
 	
 	velocity = double_jump_direction
+

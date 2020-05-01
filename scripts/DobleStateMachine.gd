@@ -59,7 +59,7 @@ func _exit_state2(old_state, new_state):
 	pass
 	
 func set_state(new_state):
-	previous_state = states
+	previous_state = state
 	state = new_state
 	
 	if previous_state != null:

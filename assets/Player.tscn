@@ -24,3 +24,10 @@ script = ExtResource( 3 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 4 )]
 current = true
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.07
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="."]
+one_shot = true
