@@ -8,6 +8,7 @@ func _ready():
 	add_state('dash')
 	add_state('glide')
 	add_state('wall_slide')
+	add_state('pre_fall')
 	call_deferred('set_state', states.idle)
 	add_state2('blue')
 	add_state2('orange')
@@ -24,17 +25,16 @@ func _state_logic(delta):
 		parent._cap_gravity(delta)
 	else:
 		parent._apply_gravity(delta)
-	
 	parent._apply_friction()
 	parent._apply_movement()
-	print(states.keys()[state])
-	print(parent.grav)
+	
+	print(parent.velocity.x)
+	#print(states.keys()[state])
 
 func _input(event):
-	if [states.idle, states.run].has(state):
+	if [states.run, states.idle, states.pre_fall].has(state):	
 		if event.is_action_pressed('WASD_up'):
-			parent.velocity.y = -parent.jump_speed
-	
+				parent.velocity.y = -parent.jump_speed
 	if [states2.orange].has(state2):
 		if event.is_action_pressed('WASD_up'):
 			if [states.jump, states.fall, states.glide].has(state):
@@ -43,15 +43,12 @@ func _input(event):
 					parent.double_jump = false
 	if [states.wall_slide].has(state):
 		if event.is_action_pressed('WASD_up'):
-			print('wall slide jump')
+			
 			parent._wall_jump()
 	if event.is_action_pressed("special"):
 		if [states2.blue].has(state2):
-			if [states.run].has(state):
-				if parent.facing_right:
-					parent.velocity.x = parent.max_speed * 3
-				else:
-					parent.velocity.x = -parent.max_speed * 3
+			if [states.run].has(state) and parent.dash_cd.is_stopped():
+				parent.dashing  = true
 		elif [states2.orange].has(state2):
 			pass
 					
@@ -90,10 +87,10 @@ func _get_transition(delta):
 				if parent.velocity.y < 0:
 					return states.jump
 				elif parent.velocity.y > 0:
-					return states.fall
+					return states.pre_fall
 			if parent.velocity.x == 0:
 				return states.idle
-			elif parent.velocity.x > parent.max_speed:
+			elif parent.dashing:
 				return states.dash
 		states.jump:
 			if on_floor:
@@ -133,7 +130,7 @@ func _get_transition(delta):
 					return states.jump
 				elif parent.velocity.y > 0:
 					return states.fall
-			elif parent.velocity.x != 0:
+			elif abs(parent.velocity.x) <= parent.max_speed:
 					return states.run
 		
 		states.glide:
@@ -155,7 +152,12 @@ func _get_transition(delta):
 			if !on_wall:
 				return states.fall
 				 
-			
+		states.pre_fall:
+			if !parent.c_timer.is_stopped():
+				if parent.velocity.y < 0:
+					return states.jump
+			else:
+				return states.fall
 		
 	return null
 
@@ -187,7 +189,16 @@ func _get_transition2(delta):
 	return null
 	
 func _enter_state(new_state, old_state):
-	pass
+	match new_state:
+		states.pre_fall:
+			parent.grav = 0
+			parent.c_timer.start()
+		states.dash:
+			if parent.facing_right:
+					parent.velocity.x = parent.max_speed * 3
+			else:
+					parent.velocity.x = -parent.max_speed * 3
+			
 			
 func _enter_state2(new_state, old_state):
 	match new_state:
@@ -202,7 +213,12 @@ func _enter_state2(new_state, old_state):
 			parent.set_collision_mask_bit(2, true)
 
 func _exit_state(old_state, new_state):
-	pass
+	match old_state:
+		states.pre_fall:
+			parent.grav = parent.default_grav
+		states.dash:
+			parent.dashing = false
+			parent.dash_cd.start()
 	
 func _exit_state2(old_state, new_state):
 	match old_state:
