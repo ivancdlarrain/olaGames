@@ -75,6 +75,8 @@ position = Vector2( -40, 448 )
 tile_map_path = NodePath("../TileMap")
 
 [node name="TileMap" parent="." instance=ExtResource( 13 )]
-modulate = Color( 0, 1, 0.976471, 1 )
+modulate = Color( 0, 1, 0.984314, 1 )
 position = Vector2( -2, 0 )
+collision_layer = 0
+collision_mask = 0
 tile_data = PoolIntArray( 917498, 0, 0, 917499, 0, 1, 917500, 0, 2, 983034, 0, 131072, 983035, 0, 131073, 983036, 0, 131074 )

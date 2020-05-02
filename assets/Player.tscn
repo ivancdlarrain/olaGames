@@ -141,7 +141,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 1.336, 1.336 )
-texture = ExtResource( 9 )
+texture = ExtResource( 7 )
 
 [node name="PlayerState" type="Node" parent="."]
 script = ExtResource( 3 )
