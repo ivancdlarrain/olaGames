@@ -24,7 +24,7 @@ func _state_logic(delta):
 	parent._handle_color_input()
 	
 	#Apply a cap to the fall speed if the player is wall-sliding
-	if [states.wall_slide].has(state):
+	if [states.wall_slide, states.glide].has(state):
 		parent._cap_gravity(delta)
 	else:
 		parent._apply_gravity(delta)
@@ -59,7 +59,7 @@ func _input(event):
 			parent._wall_jump()
 	if event.is_action_pressed("special"):
 		if [states2.blue].has(state2):
-			if [states.run].has(state) and parent.dash_cd.is_stopped():
+			if [states.run, states.fall, states.jump].has(state) and parent.dash_cd.is_stopped():
 				parent.dashing  = true
 		elif [states2.orange].has(state2):
 			pass
@@ -113,6 +113,9 @@ func _get_transition(delta):
 					return states.run
 			elif on_wall:
 				return states.wall_slide
+			
+			elif parent.dashing:
+				return states.dash
 				
 			else:
 				if parent.velocity.y > 0: 
@@ -130,6 +133,8 @@ func _get_transition(delta):
 					return states.run
 			elif on_wall:
 				return states.wall_slide
+			elif parent.dashing:
+				return states.dash
 			else:
 				if parent.velocity.y < 0: 
 					return states.jump
@@ -212,6 +217,8 @@ func _enter_state(new_state, old_state):
 			parent.grav = 0
 			parent.c_timer.start()
 		states.dash:
+			parent.grav = 0
+			parent.velocity.y = 0
 			if parent.facing_right:
 					parent.velocity.x = parent.max_speed * 3
 			else:
@@ -235,6 +242,7 @@ func _exit_state(old_state, new_state):
 		states.pre_fall:
 			parent.grav = parent.default_grav
 		states.dash:
+			parent.grav = parent.default_grav
 			parent.dashing = false
 			parent.dash_cd.start()
 	
