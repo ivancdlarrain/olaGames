@@ -138,7 +138,7 @@ func _tile_detection():
 			or check_death(collision, Vector2(1, -1)) \
 			or	check_death(collision, Vector2(1, 1))
 			if death:
-				get_tree().reload_current_scene()
+				_die()
 #		
 		
 
@@ -149,3 +149,6 @@ func check_death(collision, delta):
 
 func _on_Area2D_body_entered(body):
 	velocity.y = -1000
+
+func _die():
+	get_tree().reload_current_scene()

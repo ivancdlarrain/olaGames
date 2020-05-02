@@ -70,8 +70,6 @@ tile_data = PoolIntArray( 65562, 0, 0, 65563, 0, 1, 65564, 0, 1, 65565, 0, 1, 65
 [node name="Trampolin" parent="." instance=ExtResource( 5 )]
 modulate = Color( 0, 1, 0.984314, 1 )
 position = Vector2( 16, 448 )
-collision_layer = 2
-collision_mask = 2
 
 [node name="Button" parent="." instance=ExtResource( 4 )]
 modulate = Color( 0, 1, 0.984314, 1 )
