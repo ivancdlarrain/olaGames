@@ -16,6 +16,8 @@ func set_transparency(condition):
 		tile_map.modulate.a = transparency2
 
 func _ready():
+	$Area2D.set_collision_layer(get_collision_layer())
+	$Area2D.set_collision_mask(get_collision_mask())
 	tile_map.set_collision_layer_bit(layer_bit, default_state)
 	tile_map.set_collision_mask_bit(layer_bit, default_state)
 	set_transparency(default_state)
