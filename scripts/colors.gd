@@ -226,6 +226,8 @@ func _enter_state(new_state, old_state):
 					parent.velocity.x = -parent.max_speed * 3
 		states.glide:
 			parent.grav = parent.glide_grav	
+			if parent.velocity.y < 0:
+				parent.velocity.y = 0
 			
 func _enter_state2(new_state, old_state):
 	match new_state:
