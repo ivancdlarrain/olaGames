@@ -16,6 +16,7 @@ var accel = 3.0
 var deaccel = 6.0
 var facing_right = true
 var dashing = false
+var gliding = false
 var jump_pressed = false
 var on_floor = false
 var no_input = true
@@ -128,17 +129,27 @@ var counter = 0
 func _tile_detection():	
 #	print(get_slide_count())
 	for index in get_slide_count():
-		var collision = get_slide_collision(index)
 		
-#		var death = check_death(collision.position)
-		var death = check_death(collision, Vector2(-1, -1)) \
-		or check_death(collision,  Vector2(-1, 1)) \
-		or check_death(collision, Vector2(1, -1)) \
-		or	check_death(collision, Vector2(1, 1))
-		if death:
-			print('death ', counter)
-			counter += 1
+		var collision = get_slide_collision(index)
+		var collider = collision.collider
+		if collider is TileMap:
+			var death = check_death(collision, Vector2(-1, -1)) \
+			or check_death(collision,  Vector2(-1, 1)) \
+			or check_death(collision, Vector2(1, -1)) \
+			or	check_death(collision, Vector2(1, 1))
+			if death:
+				get_tree().reload_current_scene()
+#		
+		
 
 func check_death(collision, delta):
 	var tile_map = collision.collider as TileMap
 	return tile_map.get_cellv(tile_map.world_to_map(collision.position + delta)) == 1
+
+
+func _on_Area2D_body_entered(body):
+	velocity.y = -1000
+
+
+func _on_Area2D_mouse_entered():
+	velocity.y = -1000
