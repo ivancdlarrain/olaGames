@@ -149,7 +149,3 @@ func check_death(collision, delta):
 
 func _on_Area2D_body_entered(body):
 	velocity.y = -1000
-
-
-func _on_Area2D_mouse_entered():
-	velocity.y = -1000
