@@ -1,12 +1,18 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/environment/background/far-buildings.png" type="Texture" id=2]
 [ext_resource path="res://scenes/menus/Pause_menu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://scripts/test01.gd" type="Script" id=7]
 [ext_resource path="res://assets/sprites/environment/background/back-buildings.png" type="Texture" id=11]
 [ext_resource path="res://assets/Area2D scenes/Portal.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/TileMap.tscn" type="PackedScene" id=13]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 28.4198, 13.7833 )
+
+[sub_resource type="RectangleShape2D" id=2]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 7 )
@@ -36,7 +42,7 @@ layer = -99
 motion_scale = Vector2( 0.3, 0.3 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D/ParallaxBackground2/ParallaxLayer"]
-position = Vector2( 113.813, 139.722 )
+position = Vector2( 111.292, 138.461 )
 scale = Vector2( 7.12294, 5.73257 )
 texture = ExtResource( 11 )
 
@@ -64,3 +70,28 @@ position = Vector2( 0, 0 )
 collision_layer = 4
 collision_mask = 4
 tile_data = PoolIntArray( 65562, 0, 0, 65563, 0, 1, 65564, 0, 1, 65565, 0, 1, 65566, 0, 2, 65569, 0, 0, 65570, 0, 2, 131098, 0, 131072, 131099, 0, 131073, 131100, 0, 131073, 131101, 0, 131073, 131102, 0, 131074, 131105, 0, 65536, 131106, 0, 65538, 196641, 0, 65536, 196642, 0, 65538, 262177, 0, 65536, 262178, 0, 65538, 327713, 0, 65536, 327714, 0, 65538, 393249, 0, 65536, 393250, 0, 65538, 458783, 0, 0, 458784, 0, 1, 458785, 0, 65540, 458786, 0, 65538, 524319, 0, 131072, 524320, 0, 131073, 524321, 0, 131073, 524322, 0, 131074 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 414.995, 316.358 )
+collision_layer = 8
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 1230.58, 68.0093 )
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2( 2, 2 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+position = Vector2( -0.179209, 0.358485 )
+scale = Vector2( 0.62471, 0.607906 )
+texture = ExtResource( 4 )
+[connection signal="body_entered" from="Area2D" to="KinematicBody2D" method="_on_Area2D_body_entered"]
+[connection signal="mouse_entered" from="Area2D" to="KinematicBody2D" method="_on_Area2D_mouse_entered"]
