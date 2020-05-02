@@ -68,7 +68,7 @@ func _input(event):
 			if [states.jump, states.fall].has(state):
 				parent.gliding = true
 	#Change if needed for another color
-	if event.is_action_released("special") or parent.on_floor or parent.is_on_wall():
+	if event.is_action_released("special") or parent.on_floor or parent.is_on_wall() or ![states2.purple].has(state2):
 		parent.gliding = false	
 	
 	#Make jump height dependant on how much key is pressed:
