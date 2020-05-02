@@ -33,7 +33,7 @@ func _state_logic(delta):
 	parent._tile_detection()
 	
 	parent._handle_animation()
-	#print(states.keys()[state])
+	print(states.keys()[state])
 	#print(parent.jump_pressed)
 #	print(parent.on_floor)
 	
@@ -65,15 +65,11 @@ func _input(event):
 			pass
 					
 		else:
-			if [states.jump].has(state):
-				parent.velocity.y = 0
-				parent.grav = parent.glide_grav
-			if [states.fall].has(state):
-				parent.grav = parent.glide_grav
-	
+			if [states.jump, states.fall].has(state):
+				parent.gliding = true
 	#Change if needed for another color
-	if event.is_action_released("special") or parent.is_on_floor():
-		parent.grav = parent.default_grav	
+	if event.is_action_released("special") or parent.on_floor or parent.is_on_wall():
+		parent.gliding = false	
 	
 	#Make jump height dependant on how much key is pressed:
 	if event.is_action_released("WASD_up"):
@@ -116,6 +112,9 @@ func _get_transition(delta):
 			
 			elif parent.dashing:
 				return states.dash
+			
+			elif parent.gliding:
+				return states.glide
 				
 			else:
 				if parent.velocity.y > 0: 
@@ -135,6 +134,8 @@ func _get_transition(delta):
 				return states.wall_slide
 			elif parent.dashing:
 				return states.dash
+			elif parent.gliding:
+				return states.glide
 			else:
 				if parent.velocity.y < 0: 
 					return states.jump
@@ -145,14 +146,14 @@ func _get_transition(delta):
 			if !on_floor:
 				if parent.velocity.y < 0:
 					return states.jump
-				elif parent.velocity.y > 0:
+				elif abs(parent.velocity.x) <= parent.max_speed:
 					return states.fall
 			elif abs(parent.velocity.x) <= parent.max_speed:
 					return states.run
 		
 		states.glide:
 			if !on_floor:
-				if parent.grav == parent.default_grav:
+				if !parent.gliding:
 					return states.fall
 			if on_wall:
 				states.wall_slide
@@ -223,7 +224,8 @@ func _enter_state(new_state, old_state):
 					parent.velocity.x = parent.max_speed * 3
 			else:
 					parent.velocity.x = -parent.max_speed * 3
-			
+		states.glide:
+			parent.grav = parent.glide_grav	
 			
 func _enter_state2(new_state, old_state):
 	match new_state:
@@ -245,6 +247,8 @@ func _exit_state(old_state, new_state):
 			parent.grav = parent.default_grav
 			parent.dashing = false
 			parent.dash_cd.start()
+		states.glide:
+			parent.grav = parent.default_grav
 	
 func _exit_state2(old_state, new_state):
 	match old_state:

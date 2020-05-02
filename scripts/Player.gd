@@ -16,6 +16,7 @@ var accel = 3.0
 var deaccel = 6.0
 var facing_right = true
 var dashing = false
+var gliding = false
 var jump_pressed = false
 var on_floor = false
 var no_input = true
