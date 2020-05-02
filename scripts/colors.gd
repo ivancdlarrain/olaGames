@@ -33,7 +33,7 @@ func _state_logic(delta):
 	parent._tile_detection()
 	
 	parent._handle_animation()
-	print(states.keys()[state])
+#	print(states.keys()[state])
 	#print(parent.jump_pressed)
 #	print(parent.on_floor)
 	

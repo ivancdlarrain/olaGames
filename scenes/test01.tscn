@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/environment/background/far-buildings.png" type="Texture" id=2]
 [ext_resource path="res://scenes/menus/Pause_menu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/ruletiles/Button.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/ruletiles/Trampolin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/test01.gd" type="Script" id=7]
 [ext_resource path="res://assets/sprites/environment/background/back-buildings.png" type="Texture" id=11]
@@ -68,3 +69,12 @@ tile_data = PoolIntArray( 65562, 0, 0, 65563, 0, 1, 65564, 0, 1, 65565, 0, 1, 65
 
 [node name="Trampolin" parent="." instance=ExtResource( 5 )]
 position = Vector2( 16, 448 )
+
+[node name="Button" parent="." instance=ExtResource( 4 )]
+position = Vector2( -40, 448 )
+tile_map_path = NodePath("../TileMap")
+
+[node name="TileMap" parent="." instance=ExtResource( 13 )]
+modulate = Color( 0, 1, 0.976471, 1 )
+position = Vector2( -2, 0 )
+tile_data = PoolIntArray( 917498, 0, 0, 917499, 0, 1, 917500, 0, 2, 983034, 0, 131072, 983035, 0, 131073, 983036, 0, 131074 )
