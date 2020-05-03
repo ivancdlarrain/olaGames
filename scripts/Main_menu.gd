@@ -4,7 +4,7 @@ func _ready():
 	pass
 
 func _on_NewGame_pressed():
-	get_tree().change_scene("res://scenes/test01.tscn")
+	get_tree().change_scene("res://scenes/Tutorials/Tutorial 1.tscn")
 
 
 func _on_NewGame2_pressed():

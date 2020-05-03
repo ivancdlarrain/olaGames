@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/sprites/hud/keys2 separadas.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/hud/space.png" type="Texture" id=7]
 [ext_resource path="res://assets/Area2D scenes/Portal.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/menus/Pause_menu.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 26
@@ -134,3 +135,5 @@ __meta__ = {
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 499.76, 157.517 )
 current = true
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 9 )]
