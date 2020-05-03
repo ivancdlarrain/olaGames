@@ -21,7 +21,7 @@ func _ready():
 
 func _state_logic(delta):
 	parent._handle_move_input()
-	parent._handle_color_input()
+	parent._handle_color_input_arrkeys()
 	
 	#Apply a cap to the fall speed if the player is wall-sliding
 	if [states.wall_slide, states.glide].has(state):
@@ -180,7 +180,7 @@ func _get_transition(delta):
 	return null
 
 
-func _get_transition2(delta):
+func _get_transition2_old(delta):
 	var colour = parent.colour_switch
 	match state2:
 		states2.blue:
@@ -211,7 +211,18 @@ func _get_transition2(delta):
 				emit_signal("color_changed", "orange")
 				return states2.orange
 	return null
-	
+func _get_transition2(delta):
+	var colour = parent.colour_switch
+	match colour:
+		0:
+			emit_signal("color_changed", "blue")
+			return states2.blue
+		1:
+			emit_signal("color_changed", "orange")
+			return states2.orange
+		2:
+			emit_signal("color_changed","purple")
+			return states2.purple
 func _enter_state(new_state, old_state):
 	match new_state:
 		states.pre_fall:

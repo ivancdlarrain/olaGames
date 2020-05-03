@@ -91,6 +91,14 @@ func _handle_animation():
 func _handle_color_input():
 	colour_switch += -int(Input.is_action_just_pressed("switch_left")) + int(Input.is_action_just_pressed("switch_right"))
 
+func _handle_color_input_arrkeys():
+	if Input.is_action_just_pressed("ui_left"):
+		colour_switch = 0
+	elif Input.is_action_just_pressed("ui_down"):
+		colour_switch = 1
+	elif Input.is_action_just_pressed("ui_right"):
+		colour_switch = 2
+		
 
 func _apply_friction():
 	if not bool(move_direction) or abs(velocity.x) > max_speed:    # Si no está apretando para moverse o pasó el límite
