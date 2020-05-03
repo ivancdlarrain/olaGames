@@ -34,6 +34,7 @@ func _state_logic(delta):
 	
 	parent._handle_animation()
 #	print(states.keys()[state])
+#	print(states.keys()[state])
 	#print(parent.jump_pressed)
 #	print(parent.on_floor)
 	
@@ -199,12 +200,12 @@ func _get_transition2_old(delta):
 				return states2.purple
 			elif parent.colour_switch == -1:
 				parent.colour_switch = 0
-				emit_signal("color_changed", "blue")
+				emit_signal("color_changed", "green")
 				return states2.blue
 		states2.purple:
 			if parent.colour_switch == 1:
 				parent.colour_switch = 0
-				emit_signal("color_changed", "blue")
+				emit_signal("color_changed", "green")
 				return states2.blue
 			elif parent.colour_switch == -1:
 				parent.colour_switch = 0
