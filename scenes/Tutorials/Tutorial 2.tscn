@@ -252,6 +252,7 @@ position = Vector2( 8, -24 )
 
 [node name="Portal" parent="RuleTiles" instance=ExtResource( 10 )]
 position = Vector2( 5856, 64 )
+world_scene = "res://scenes/demo1.tscn"
 
 [node name="Button" parent="RuleTiles" instance=ExtResource( 9 )]
 modulate = Color( 0.85098, 0, 1, 1 )
