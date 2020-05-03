@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/TileMap.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/ruletiles/Trampolin.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/ruletiles/Button.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/Area2D scenes/Portal.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/hud/switchhud.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -263,5 +264,11 @@ layer_bit = 2
 [node name="Trampolin" parent="RuleTiles" instance=ExtResource( 8 )]
 modulate = Color( 0, 0.972549, 1, 1 )
 position = Vector2( 5120.23, 508.185 )
-[connection signal="body_entered" from="TriggerAreas/Area2D" to="WallJump Instruction/up" method="_on_Area2D_body_entered"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" parent="CanvasLayer" instance=ExtResource( 11 )]
+position = Vector2( 776, 512 )
+scale = Vector2( 2, 2 )
 [connection signal="body_entered" from="TriggerAreas/Area2D" to="WallJump Instruction" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="TriggerAreas/Area2D" to="WallJump Instruction/up" method="_on_Area2D_body_entered"]
