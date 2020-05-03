@@ -138,17 +138,16 @@ func _tile_detection():
 			or check_death(collision, Vector2(1, -1)) \
 			or	check_death(collision, Vector2(1, 1))
 			if death:
+				
 				_die()
 #		
 		
 
 func check_death(collision, delta):
 	var tile_map = collision.collider as TileMap
+	print(tile_map.get_cellv(tile_map.world_to_map(collision.position + delta)))
 	return tile_map.get_cellv(tile_map.world_to_map(collision.position + delta)) == 1
 
-
-func _on_Area2D_body_entered(body):
-	velocity.y = -1000
 
 func _die():
 	get_tree().reload_current_scene()
