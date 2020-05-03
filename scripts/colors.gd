@@ -200,12 +200,12 @@ func _get_transition2_old(delta):
 				return states2.purple
 			elif parent.colour_switch == -1:
 				parent.colour_switch = 0
-				emit_signal("color_changed", "green")
+				emit_signal("color_changed", "blue")
 				return states2.blue
 		states2.purple:
 			if parent.colour_switch == 1:
 				parent.colour_switch = 0
-				emit_signal("color_changed", "green")
+				emit_signal("color_changed", "blue")
 				return states2.blue
 			elif parent.colour_switch == -1:
 				parent.colour_switch = 0
@@ -216,13 +216,13 @@ func _get_transition2(delta):
 	var colour = parent.colour_switch
 	match colour:
 		0:
-			emit_signal("color_changed", "blue")
+			emit_signal("color_changed", Color(0, 0.972549, 1))
 			return states2.blue
 		1:
-			emit_signal("color_changed", "orange")
+			emit_signal("color_changed", Color(1, 0.529412, 0))
 			return states2.orange
 		2:
-			emit_signal("color_changed","purple")
+			emit_signal("color_changed",Color(0.85098, 0, 1))
 			return states2.purple
 func _enter_state(new_state, old_state):
 	match new_state:

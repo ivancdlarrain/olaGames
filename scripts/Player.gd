@@ -35,8 +35,8 @@ var was_on_floor = false
 func _ready():
 	$PlayerState.connect("color_changed", self, "on_color_changed")
 
-func on_color_changed(new_color: String):
-	$Sprite.modulate = ColorN(new_color)
+func on_color_changed(new_color):
+	$Sprite.modulate = new_color
 
 
 
