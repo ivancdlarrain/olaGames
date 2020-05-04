@@ -153,7 +153,7 @@ func _tile_detection():
 
 func check_death(collision, delta):
 	var tile_map = collision.collider as TileMap
-	print(tile_map.get_cellv(tile_map.world_to_map(collision.position + delta)))
+	#print(tile_map.get_cellv(tile_map.world_to_map(collision.position + delta)))
 	return tile_map.get_cellv(tile_map.world_to_map(collision.position + delta)) == 1
 
 
