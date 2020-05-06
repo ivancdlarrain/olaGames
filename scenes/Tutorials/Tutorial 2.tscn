@@ -204,6 +204,7 @@ purple_tile_map_path = NodePath("../TileMaps/Purple")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( 0, -79.6482 )
 current = true
+process_mode = 0
 limit_left = 15
 limit_top = -43
 limit_right = 6100
@@ -270,5 +271,5 @@ position = Vector2( 5120.23, 508.185 )
 [node name="CenterContainer" parent="CanvasLayer" instance=ExtResource( 11 )]
 position = Vector2( 776, 512 )
 scale = Vector2( 2, 2 )
-[connection signal="body_entered" from="TriggerAreas/Area2D" to="WallJump Instruction/up" method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="TriggerAreas/Area2D" to="WallJump Instruction" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="TriggerAreas/Area2D" to="WallJump Instruction/up" method="_on_Area2D_body_entered"]
