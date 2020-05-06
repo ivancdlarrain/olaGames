@@ -36,6 +36,7 @@ func _ready():
 	$PlayerState.connect("color_changed", self, "on_color_changed")
 	$PlayerState.connect("layer_entered", self, "on_layer_entered")
 	$PlayerState.connect("layer_exited", self, "on_layer_exited")
+	$PlayerState.connect("use_ground_collision", self, "on_ground_collision")
 
 func on_color_changed(new_color):
 	$Sprite.modulate = new_color
@@ -47,6 +48,10 @@ func on_layer_entered(layer):
 func on_layer_exited(layer):
 	self.set_collision_layer_bit(layer, false)
 	self.set_collision_mask_bit(layer, false)
+	
+func on_ground_collision(boolean):
+	$GroundCollisionShape.disabled = !boolean
+	$AirCollisionShape.disabled = boolean
 
 func _apply_movement():
 	velocity = move_and_slide(velocity, UP)

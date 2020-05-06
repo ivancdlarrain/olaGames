@@ -3,6 +3,7 @@ extends DobleStateMachine
 signal color_changed
 signal layer_entered
 signal layer_exited
+signal use_ground_collision
 
 func _ready():
 	add_state('idle')
@@ -192,10 +193,16 @@ func _get_transition2(delta):
 			return states2.purple
 func _enter_state(new_state, old_state):
 	match new_state:
-		states.pre_fall:
-			parent.grav = 0
-			parent.c_timer.start()
+		states.idle:
+			emit_signal("use_ground_collision", true)
+		states.run:
+			emit_signal("use_ground_collision", true)
+		states.jump:
+			emit_signal("use_ground_collision", false)
+		states.fall:
+			emit_signal("use_ground_collision", false)
 		states.dash:
+			emit_signal("use_ground_collision", true)
 			parent.grav = 0
 			parent.velocity.y = 0
 			if parent.facing_right:
@@ -203,9 +210,16 @@ func _enter_state(new_state, old_state):
 			else:
 					parent.velocity.x = -parent.max_speed * 3
 		states.glide:
+			emit_signal("use_ground_collision", false)
 			parent.grav = parent.glide_grav	
 			if parent.velocity.y < 0:
 				parent.velocity.y = 0
+		states.wall_slide:
+			emit_signal("use_ground_collision", false)
+		states.pre_fall:
+			emit_signal("use_ground_collision", true)
+			parent.grav = 0
+			parent.c_timer.start()
 			
 func _enter_state2(new_state, old_state):
 	# This function sets the player on the corresponding collision layer and changes its color 
