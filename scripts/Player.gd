@@ -34,11 +34,19 @@ var was_on_floor = false
 
 func _ready():
 	$PlayerState.connect("color_changed", self, "on_color_changed")
+	$PlayerState.connect("layer_entered", self, "on_layer_entered")
+	$PlayerState.connect("layer_exited", self, "on_layer_exited")
 
 func on_color_changed(new_color):
 	$Sprite.modulate = new_color
-
-
+	
+func on_layer_entered(layer):
+	self.set_collision_layer_bit(layer, true)
+	self.set_collision_mask_bit(layer, true)
+	
+func on_layer_exited(layer):
+	self.set_collision_layer_bit(layer, false)
+	self.set_collision_mask_bit(layer, false)
 
 func _apply_movement():
 	velocity = move_and_slide(velocity, UP)

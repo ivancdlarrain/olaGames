@@ -1,6 +1,8 @@
 extends DobleStateMachine
 
 signal color_changed
+signal layer_entered
+signal layer_exited
 
 func _ready():
 	add_state('idle')
@@ -180,49 +182,14 @@ func _get_transition(delta):
 		
 	return null
 
-
-func _get_transition2_old(delta):
-	var colour = parent.colour_switch
-	match state2:
-		states2.blue:
-			if parent.colour_switch == 1:
-				parent.colour_switch = 0
-				emit_signal("color_changed", "orange")
-				return states2.orange
-			elif parent.colour_switch == -1:
-				parent.colour_switch = 0
-				emit_signal("color_changed", "purple")
-				return states2.purple
-		states2.orange:
-			if parent.colour_switch == 1:
-				parent.colour_switch = 0
-				emit_signal("color_changed", "purple")
-				return states2.purple
-			elif parent.colour_switch == -1:
-				parent.colour_switch = 0
-				emit_signal("color_changed", "blue")
-				return states2.blue
-		states2.purple:
-			if parent.colour_switch == 1:
-				parent.colour_switch = 0
-				emit_signal("color_changed", "blue")
-				return states2.blue
-			elif parent.colour_switch == -1:
-				parent.colour_switch = 0
-				emit_signal("color_changed", "orange")
-				return states2.orange
-	return null
 func _get_transition2(delta):
 	var colour = parent.colour_switch
 	match colour:
 		0:
-			emit_signal("color_changed", Color(0, 0.972549, 1))
 			return states2.blue
 		1:
-			emit_signal("color_changed", Color(1, 0.529412, 0))
 			return states2.orange
 		2:
-			emit_signal("color_changed",Color(0.85098, 0, 1))
 			return states2.purple
 func _enter_state(new_state, old_state):
 	match new_state:
@@ -244,14 +211,14 @@ func _enter_state(new_state, old_state):
 func _enter_state2(new_state, old_state):
 	match new_state:
 		states2.blue:
-			parent.set_collision_layer_bit(0, true)
-			parent.set_collision_mask_bit(0, true)
+			emit_signal("color_changed", Color(0, 0.972549, 1))
+			emit_signal("layer_entered", 0)
 		states2.orange:
-			parent.set_collision_layer_bit(1, true)
-			parent.set_collision_mask_bit(1, true)
+			emit_signal("color_changed", Color(1, 0.529412, 0))
+			emit_signal("layer_entered", 1)
 		states2.purple:
-			parent.set_collision_layer_bit(2, true)
-			parent.set_collision_mask_bit(2, true)
+			emit_signal("color_changed",Color(0.85098, 0, 1))
+			emit_signal("layer_entered", 2)
 
 func _exit_state(old_state, new_state):
 	match old_state:
@@ -267,12 +234,9 @@ func _exit_state(old_state, new_state):
 func _exit_state2(old_state, new_state):
 	match old_state:
 		states2.blue:
-			parent.set_collision_layer_bit(0, false)
-			parent.set_collision_mask_bit(0, false)
+			emit_signal("layer_exited", 0)
 		states2.orange:
-			parent.set_collision_layer_bit(1, false)
-			parent.set_collision_mask_bit(1, false)
+			emit_signal("layer_exited", 1)
 		states2.purple:
-			parent.set_collision_layer_bit(2, false)
-			parent.set_collision_mask_bit(2, false)
+			emit_signal("layer_exited", 2)
 		
