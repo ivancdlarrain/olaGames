@@ -18,7 +18,6 @@ func _ready():
 	add_state2('orange')
 	add_state2('purple')
 	call_deferred('set_state2', states2.blue)
-	call_deferred("emit_signal", "color_changed", "blue")
 	
 
 func _state_logic(delta):
@@ -209,6 +208,8 @@ func _enter_state(new_state, old_state):
 				parent.velocity.y = 0
 			
 func _enter_state2(new_state, old_state):
+	# This function sets the player on the corresponding collision layer and changes its color 
+	# by using signals connected to Player.gd
 	match new_state:
 		states2.blue:
 			emit_signal("color_changed", Color(0, 0.972549, 1))
@@ -232,6 +233,8 @@ func _exit_state(old_state, new_state):
 			parent.grav = parent.default_grav
 	
 func _exit_state2(old_state, new_state):
+	# This function removes the player from the corresponding collision layer 
+	# by using signals connected to Player.gd
 	match old_state:
 		states2.blue:
 			emit_signal("layer_exited", 0)
