@@ -21,6 +21,7 @@ var jump_pressed = false
 var on_floor = false
 var no_input = true
 
+
 onready var playback = $AnimationTree.get("parameters/playback")
 
 
@@ -38,9 +39,13 @@ func _ready():
 	$PlayerState.connect("layer_exited", self, "on_layer_exited")
 	$PlayerState.connect("use_ground_collision", self, "on_ground_collision")
 
+# interpreting PlayerState signals:
+
+	# color signal
 func on_color_changed(new_color):
 	$Sprite.modulate = new_color
 	
+	# layer signals
 func on_layer_entered(layer):
 	self.set_collision_layer_bit(layer, true)
 	self.set_collision_mask_bit(layer, true)
@@ -48,10 +53,14 @@ func on_layer_entered(layer):
 func on_layer_exited(layer):
 	self.set_collision_layer_bit(layer, false)
 	self.set_collision_mask_bit(layer, false)
-	
+
+	# collision signals
 func on_ground_collision(boolean):
 	$GroundCollisionShape.disabled = !boolean
 	$AirCollisionShape.disabled = boolean
+
+
+# Movement code:
 
 func _apply_movement():
 	velocity = move_and_slide(velocity, UP)
@@ -89,17 +98,17 @@ func _handle_move_input():
 		facing_right = true
 
 func _handle_animation():
-	if on_floor:
-		if abs(velocity.x) > 10.0 or not no_input:
-			playback.travel("run")
-#			$AnimationTree.set("parameters/run/TimeScale/scale", 2 * abs(linear_vel.x)/speed)
-		else:
-			playback.travel("idle")
-	else:
-		if velocity.y > 0:
-			playback.travel("fall")
-		else:
-			playback.travel("jump")
+	print($PlayerState.state)
+	if [$PlayerState.states.run, $PlayerState.states.dash, $PlayerState.states.pre_fall].has($PlayerState.state):
+		playback.travel("run")
+#		$AnimationTree.set("parameters/run/TimeScale/scale", 2 * abs(linear_vel.x)/speed)
+	elif [$PlayerState.states.idle].has($PlayerState.state):
+		playback.travel("idle")
+	elif [$PlayerState.states.fall, $PlayerState.states.glide, $PlayerState.states.wall_slide].has($PlayerState.state):
+		playback.travel('fall')
+	elif [$PlayerState.states.jump].has($PlayerState.state):
+		playback.travel('jump')
+			
 		
 func _handle_color_input():
 	colour_switch += -int(Input.is_action_just_pressed("switch_left")) + int(Input.is_action_just_pressed("switch_right"))

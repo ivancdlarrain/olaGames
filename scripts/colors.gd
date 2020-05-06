@@ -146,13 +146,8 @@ func _get_transition(delta):
 				if parent.grav == parent.glide_grav:
 					return states.glide
 		states.dash:
-			if !on_floor:
-				if parent.velocity.y < 0:
-					return states.jump
-				elif abs(parent.velocity.x) <= parent.max_speed:
-					return states.fall
-			elif abs(parent.velocity.x) <= parent.max_speed:
-					return states.run
+			if abs(parent.velocity.x) <= parent.max_speed:
+				return states.run
 		
 		states.glide:
 			if !on_floor:
