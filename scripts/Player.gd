@@ -96,19 +96,6 @@ func _handle_move_input():
 		if not facing_right:
 			scale.x *= -1
 		facing_right = true
-
-func _handle_animation():
-	print($PlayerState.state)
-	if [$PlayerState.states.run, $PlayerState.states.dash, $PlayerState.states.pre_fall].has($PlayerState.state):
-		playback.travel("run")
-#		$AnimationTree.set("parameters/run/TimeScale/scale", 2 * abs(linear_vel.x)/speed)
-	elif [$PlayerState.states.idle].has($PlayerState.state):
-		playback.travel("idle")
-	elif [$PlayerState.states.fall, $PlayerState.states.glide, $PlayerState.states.wall_slide].has($PlayerState.state):
-		playback.travel('fall')
-	elif [$PlayerState.states.jump].has($PlayerState.state):
-		playback.travel('jump')
-			
 		
 func _handle_color_input():
 	colour_switch += -int(Input.is_action_just_pressed("switch_left")) + int(Input.is_action_just_pressed("switch_right"))

@@ -34,7 +34,6 @@ func _state_logic(delta):
 	parent._apply_movement()
 	parent._tile_detection()
 	
-	parent._handle_animation()
 #	print(states.keys()[state])
 #	print(states.keys()[state])
 	#print(parent.jump_pressed)
@@ -143,8 +142,6 @@ func _get_transition(delta):
 				if parent.velocity.y < 0: 
 					return states.jump
 				
-				if parent.grav == parent.glide_grav:
-					return states.glide
 		states.dash:
 			if abs(parent.velocity.x) <= parent.max_speed:
 				return states.run
@@ -190,14 +187,19 @@ func _enter_state(new_state, old_state):
 	match new_state:
 		states.idle:
 			emit_signal("use_ground_collision", true)
+			parent.playback.travel("idle")
 		states.run:
 			emit_signal("use_ground_collision", true)
+			parent.playback.travel("run")
 		states.jump:
 			emit_signal("use_ground_collision", false)
+			parent.playback.travel("jump")
 		states.fall:
 			emit_signal("use_ground_collision", false)
+			parent.playback.travel("fall")
 		states.dash:
 			emit_signal("use_ground_collision", true)
+			parent.playback.travel("run")
 			parent.grav = 0
 			parent.velocity.y = 0
 			if parent.facing_right:
@@ -206,13 +208,16 @@ func _enter_state(new_state, old_state):
 					parent.velocity.x = -parent.max_speed * 3
 		states.glide:
 			emit_signal("use_ground_collision", false)
+			parent.playback.travel("fall")
 			parent.grav = parent.glide_grav	
 			if parent.velocity.y < 0:
 				parent.velocity.y = 0
 		states.wall_slide:
 			emit_signal("use_ground_collision", false)
+			parent.playback.travel("fall")
 		states.pre_fall:
 			emit_signal("use_ground_collision", true)
+			parent.playback.travel("run")
 			parent.grav = 0
 			parent.c_timer.start()
 			
