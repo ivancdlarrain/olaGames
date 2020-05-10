@@ -8,7 +8,6 @@ export var default_grav = 1000
 export var max_speed = 300
 const UP = Vector2(0, -1)
 var move_direction = 0
-var colour_switch = 0
 var double_jump = true
 var double_jump_direction = Vector2()
 var can_jump = true
@@ -32,6 +31,7 @@ func _ready():
 	$MovementState.connect("use_ground_collision", self, "on_ground_collision")
 
 # interpreting PlayerState signals:
+
 
 	# collision signals
 func on_ground_collision(boolean):

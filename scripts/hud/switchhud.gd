@@ -5,10 +5,10 @@ onready var dkey = $down
 onready var rkey = $right
 
 func _hold_key(key):
-	key.frame += 1
+	key.frame = 1
 	
 func _release_key(key):
-	key.frame -= 1
+	key.frame = 0
 
 func _physics_process(delta):
 	#Pressing key
