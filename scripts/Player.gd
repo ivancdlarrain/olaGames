@@ -23,21 +23,16 @@ var no_input = true
 
 
 onready var playback = $AnimationTree.get("parameters/playback")
-
-
-
-
-
 onready var dash_cd = $DashCooldown
 onready var c_timer = $CoyoteTimer
 onready var j_timer = $JumpWindow
 var was_on_floor = false
 
 func _ready():
-	$PlayerState.connect("color_changed", self, "on_color_changed")
-	$PlayerState.connect("layer_entered", self, "on_layer_entered")
-	$PlayerState.connect("layer_exited", self, "on_layer_exited")
-	$PlayerState.connect("use_ground_collision", self, "on_ground_collision")
+	$ColorState.connect("color_changed", self, "on_color_changed")
+	$ColorState.connect("layer_entered", self, "on_layer_entered")
+	$ColorState.connect("layer_exited", self, "on_layer_exited")
+	$MovementState.connect("use_ground_collision", self, "on_ground_collision")
 
 # interpreting PlayerState signals:
 
@@ -84,7 +79,7 @@ func _handle_move_input():
 	if abs(new_velocity) < max_speed:
 		velocity.x = new_velocity
 	else: 
-		if [$PlayerState.states.run].has($PlayerState.state):
+		if [$MovementState.states.run].has($MovementState.state):
 			velocity.x = sign(velocity.x)*max_speed
 		
 	# Facing:

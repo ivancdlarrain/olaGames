@@ -1,8 +1,9 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://assets/sprites/player/idle/idle-1.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
-[ext_resource path="res://scripts/colors.gd" type="Script" id=3]
+[ext_resource path="res://scripts/state_machines/ColorState.gd" type="Script" id=3]
+[ext_resource path="res://scripts/state_machines/MovementState.gd" type="Script" id=4]
 [ext_resource path="res://assets/sprites/player/jump/jump-1.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/player/jump/jump-3.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/player/idle/idle-3.png" type="Texture" id=7]
@@ -134,6 +135,12 @@ collision_layer = 9
 collision_mask = 9
 script = ExtResource( 2 )
 
+[node name="MovementState" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="ColorState" type="Node" parent="."]
+script = ExtResource( 3 )
+
 [node name="GroundCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2( 1.90542, 11.1626 )
 shape = SubResource( 1 )
@@ -145,10 +152,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 1.336, 1.336 )
-texture = ExtResource( 13 )
-
-[node name="PlayerState" type="Node" parent="."]
-script = ExtResource( 3 )
+texture = ExtResource( 7 )
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.05
