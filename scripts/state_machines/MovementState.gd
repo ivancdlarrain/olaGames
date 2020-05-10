@@ -1,7 +1,7 @@
 extends StateMachine
 
 signal use_ground_collision
-onready var color = parent.get_child(1)
+onready var color = parent.get_node('ColorState')
 
 func _ready():
 	add_state('idle')

@@ -29,25 +29,9 @@ onready var j_timer = $JumpWindow
 var was_on_floor = false
 
 func _ready():
-	$ColorState.connect("color_changed", self, "on_color_changed")
-	$ColorState.connect("layer_entered", self, "on_layer_entered")
-	$ColorState.connect("layer_exited", self, "on_layer_exited")
 	$MovementState.connect("use_ground_collision", self, "on_ground_collision")
 
 # interpreting PlayerState signals:
-
-	# color signal
-func on_color_changed(new_color):
-	$Sprite.modulate = new_color
-	
-	# layer signals
-func on_layer_entered(layer):
-	self.set_collision_layer_bit(layer, true)
-	self.set_collision_mask_bit(layer, true)
-	
-func on_layer_exited(layer):
-	self.set_collision_layer_bit(layer, false)
-	self.set_collision_mask_bit(layer, false)
 
 	# collision signals
 func on_ground_collision(boolean):
@@ -60,14 +44,17 @@ func on_ground_collision(boolean):
 func _apply_movement():
 	velocity = move_and_slide(velocity, UP)
 	on_floor = is_on_floor()
-	
+
+
 func _apply_gravity(delta):
 	velocity.y += delta * grav
+
 
 func _cap_gravity(delta):
 	velocity.y += delta * grav
 	velocity.y = min(velocity.y, 130)
-	
+
+
 func _handle_move_input():
 	var new_velocity 
 	move_direction = -int(Input.is_action_pressed("WASD_left")) + int(Input.is_action_pressed("WASD_right"))
@@ -91,18 +78,7 @@ func _handle_move_input():
 		if not facing_right:
 			scale.x *= -1
 		facing_right = true
-		
-func _handle_color_input():
-	colour_switch += -int(Input.is_action_just_pressed("switch_left")) + int(Input.is_action_just_pressed("switch_right"))
 
-func _handle_color_input_arrkeys():
-	if Input.is_action_just_pressed("ui_left"):
-		colour_switch = 0
-	elif Input.is_action_just_pressed("ui_down"):
-		colour_switch = 1
-	elif Input.is_action_just_pressed("ui_right"):
-		colour_switch = 2
-		
 
 func _apply_friction():
 	if not bool(move_direction) or abs(velocity.x) > max_speed:    # Si no está apretando para moverse o pasó el límite
@@ -111,7 +87,8 @@ func _apply_friction():
 			velocity.x = velocity.x - v_sign * max_speed / deaccel
 			if sign(velocity.x) != v_sign:
 				velocity.x = 0
-				
+
+
 func _wall_jump():
 	if facing_right:
 		double_jump_direction = Vector2(-400, -400 )
@@ -119,6 +96,7 @@ func _wall_jump():
 		double_jump_direction = Vector2(400, -400)
 	
 	velocity = double_jump_direction
+
 
 func remember_jump():
 	yield(get_tree().create_timer(.1), "timeout")
@@ -159,3 +137,5 @@ func check_death(collision, delta):
 
 func _die():
 	get_tree().reload_current_scene()
+	
+var n = get_child(1)

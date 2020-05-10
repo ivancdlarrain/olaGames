@@ -1,8 +1,20 @@
 extends StateMachine
 
-signal color_changed
-signal layer_entered
-signal layer_exited
+var color_switch = 0
+
+
+func change_color(new_color):
+	parent.get_node('Sprite').modulate = new_color
+
+
+func enter_layer(layer):
+	parent.set_collision_layer_bit(layer, true)
+	parent.set_collision_mask_bit(layer, true)
+
+
+func exit_layer(layer):
+	parent.set_collision_layer_bit(layer, false)
+	parent.set_collision_mask_bit(layer, false)
 
 
 func _ready():
@@ -13,12 +25,16 @@ func _ready():
 
 
 func _state_logic(delta):
-	parent._handle_color_input_arrkeys()   # Future update: move that code to this script.
+	if Input.is_action_just_pressed("ui_left"):
+		color_switch = 0
+	elif Input.is_action_just_pressed("ui_down"):
+		color_switch = 1
+	elif Input.is_action_just_pressed("ui_right"):
+		color_switch = 2
 
 
 func _get_transition(delta):
-	var colour = parent.colour_switch
-	match colour:
+	match color_switch:
 		0:
 			return states.blue
 		1:
@@ -30,23 +46,21 @@ func _get_transition(delta):
 func _enter_state(new_state, old_state):
 	match new_state:
 		states.blue:
-			emit_signal("color_changed", Color(0, 0.972549, 1))
-			emit_signal("layer_entered", 0)
+			change_color(Color(0, 0.972549, 1))
+			enter_layer(0)
 		states.orange:
-			emit_signal("color_changed", Color(1, 0.529412, 0))
-			emit_signal("layer_entered", 1)
+			change_color(Color(1, 0.529412, 0))
+			enter_layer(1)
 		states.purple:
-			emit_signal("color_changed",Color(0.85098, 0, 1))
-			emit_signal("layer_entered", 2)
+			change_color(Color(0.85098, 0, 1))
+			enter_layer(2)
 
 
 func _exit_state(old_state, new_state):
-	# This function removes the player from the corresponding collision layer 
-	# by using signals connected to Player.gd
 	match old_state:
 		states.blue:
-			emit_signal("layer_exited", 0)
+			exit_layer(0)
 		states.orange:
-			emit_signal("layer_exited", 1)
+			exit_layer(1)
 		states.purple:
-			emit_signal("layer_exited", 2)
+			exit_layer(2)
