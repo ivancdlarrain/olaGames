@@ -1,0 +1,21 @@
+[gd_scene format=2]
+
+[node name="StateMachine" type="Node2D"]
+
+[node name="idle" type="Node2D" parent="."]
+
+[node name="Fall" type="Node2D" parent="."]
+
+[node name="Dash" type="Node2D" parent="."]
+
+[node name="Move" type="Node2D" parent="."]
+
+[node name="Run" type="Node2D" parent="Move"]
+
+[node name="Jump" type="Node2D" parent="Move"]
+
+[node name="Wall_slide" type="Node2D" parent="Move"]
+
+[node name="Pre_fall" type="Node2D" parent="Move"]
+
+[node name="Glide" type="Node2D" parent="Move"]
