@@ -1,18 +1,19 @@
-extends "res://scripts/states/motion/on_ground/on_ground.gd"
+extends "res://scripts/states/motion/motion.gd"
+
+var grav = 1000
+var fall_vel = Vector2()
 
 
 func enter():
-#	$AnimationTree.playback.travel("run")
-	pass
-
-func handle_input(event):
-	return .handle_input(event)
+	fall_vel = velocity
+	#Play fall anim
 	
 func update(delta):
 	var input_dir = get_input_direction()
-	if not input_dir:
-		emit_signal("finished", "Idle")
 	update_facing()
+	
+	
+	fall_vel.y -= grav * delta
 	
 	var new_velocity = velocity.x + input_dir * max_speed / accel
 	if abs(new_velocity) < max_speed:
@@ -28,9 +29,10 @@ func update(delta):
 			velocity.x = velocity.x - v_sign * max_speed / deaccel
 			if sign(velocity.x) != v_sign:
 				velocity.x = 0
-	print(on_floor)
+	
 	_apply_movement()
-
+	
 func _apply_movement():
 	velocity = owner.move_and_slide(velocity, Vector2.UP)
-	on_floor = owner.is_on_floor()
+	on_floor = owner.is_on_floor()	
+	

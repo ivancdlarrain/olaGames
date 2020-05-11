@@ -5,9 +5,13 @@ var on_floor = false
 var accel = 3.0
 var deaccel = 6.0
 var max_speed = 300
+
+var velocity = Vector2()
+
+
 func get_input_direction():
-	var input_direction = Vector2()
-	input_direction.x = int(Input.is_action_pressed("WASD_right")) - int(Input.is_action_pressed("WASD_left"))
+	var input_direction = 0
+	input_direction = int(Input.is_action_pressed("WASD_right")) - int(Input.is_action_pressed("WASD_left"))
 	return input_direction
 
 func update_facing():
@@ -19,3 +23,11 @@ func update_facing():
 		if not facing_right:
 			owner.scale.x *= -1
 		facing_right = true
+
+func apply_friction(input_dir):
+	if not bool(input_dir) or abs(velocity.x) > max_speed:    # Si no está apretando para moverse o pasó el límite
+		var v_sign = sign(velocity.x)
+		if v_sign != 0:                                        # Si se está moviendo:
+			velocity.x = velocity.x - v_sign * max_speed / deaccel
+			if sign(velocity.x) != v_sign:
+				velocity.x = 0
