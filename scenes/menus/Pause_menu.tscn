@@ -77,5 +77,10 @@ margin_right = 400.0
 margin_bottom = 161.0
 custom_fonts/font = SubResource( 2 )
 text = "Main Menu"
+
+[node name="Save" type="Button" parent="Pause/CanvasLayer/VBoxContainer"]
+margin_right = 12.0
+margin_bottom = 20.0
 [connection signal="pressed" from="Pause/CanvasLayer/VBoxContainer/Resume" to="Pause" method="_on_Resume_pressed"]
 [connection signal="pressed" from="Pause/CanvasLayer/VBoxContainer/Main Menu" to="Pause" method="_on_Main_Menu_pressed"]
+[connection signal="pressed" from="Pause/CanvasLayer/VBoxContainer/Save" to="Pause" method="_on_Save_pressed"]

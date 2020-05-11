@@ -24,6 +24,10 @@ config/name="olaGames"
 run/main_scene="res://scenes/menus/Main_menu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Save="*res://scripts/save.gd"
+
 [display]
 
 window/size/height=576

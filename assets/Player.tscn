@@ -130,7 +130,9 @@ graph_offset = Vector2( -145, 35 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=18]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"saveable",
+]]
 collision_layer = 9
 collision_mask = 9
 script = ExtResource( 2 )
@@ -152,7 +154,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 1.336, 1.336 )
-texture = ExtResource( 14 )
+texture = ExtResource( 7 )
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.05

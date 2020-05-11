@@ -139,3 +139,16 @@ func _die():
 	get_tree().reload_current_scene()
 	
 var n = get_child(1)
+
+
+#Save Game
+
+func save():
+	var save_dict = {
+		pos = {
+			x = get_position().x, 
+			y = get_position().y
+		},
+		scene_path = get_owner().get_path()
+	}
+	return save_dict
