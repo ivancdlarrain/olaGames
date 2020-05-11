@@ -35,8 +35,12 @@ func _ready():
 
 	# collision signals
 func on_ground_collision(boolean):
-	$GroundCollisionShape.disabled = !boolean
-	$AirCollisionShape.disabled = boolean
+	if boolean:
+		$GroundCollisionShape.disabled = false
+		$AirCollisionShape.disabled = true
+	else:
+		$AirCollisionShape.disabled = false
+		$GroundCollisionShape.disabled = true
 
 
 # Movement code:
