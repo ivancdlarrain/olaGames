@@ -1,10 +1,8 @@
 extends "res://scripts/states/motion/on_ground/on_ground.gd"
 
-export var max_speed = 300
-
 
 func enter():
-	$AnimationTree.playback.travel("idle")
+	$AnimationTree.playback.travel("run")
 
 func handle_input(event):
 	return .handle_input(event)

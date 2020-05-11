@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://scripts/state_machines/StateMachine.gd"
+}, {
+"base": "Node",
+"class": "on_ground",
+"language": "GDScript",
+"path": "res://scripts/states/motion/on_ground/on_ground.gd"
 } ]
 _global_script_class_icons={
-"StateMachine": ""
+"StateMachine": "",
+"on_ground": ""
 }
 
 [application]

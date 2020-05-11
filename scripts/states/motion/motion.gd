@@ -1,11 +1,10 @@
 extends "res://state_machine/state.gd"
 
-
 var facing_right = true
 var on_floor = false
-export var accel = 3.0
-export var deaccel = 6.0
-
+var accel = 3.0
+var deaccel = 6.0
+var max_speed = 300
 func get_input_direction():
 	var input_direction = Vector2()
 	input_direction.x = int(Input.is_action_pressed("WASD_right")) - int(Input.is_action_pressed("WASD_left"))
