@@ -12,14 +12,14 @@
 [ext_resource path="res://assets/Area2D scenes/Portal.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/TileMap.tscn" type="PackedScene" id=13]
 
-[node name="Node2D" type="Node2D"]
+[node name="Demo1" type="Node2D"]
 script = ExtResource( 7 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
 position = Vector2( 168, 64 )
-blue_tile_map_path = NodePath("../Blue")
-orange_tile_map_path = NodePath("../Orange")
-purple_tile_map_path = NodePath("../Purple")
+blue_tile_map_path = NodePath("../../Demo1/Blue")
+orange_tile_map_path = NodePath("../../Demo1/Orange")
+purple_tile_map_path = NodePath("../../Demo1/Purple")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="KinematicBody2D"]
 
@@ -101,7 +101,7 @@ scale = Vector2( 2, 2 )
 [node name="Button" parent="." instance=ExtResource( 4 )]
 modulate = Color( 0, 0.972549, 1, 1 )
 position = Vector2( 1680, 176 )
-tile_map_path = NodePath("../BlueAppear")
+tile_map_path = NodePath("../../Demo1/BlueAppear")
 
 [node name="Trampolin" parent="." instance=ExtResource( 5 )]
 modulate = Color( 1, 0.529412, 0, 1 )
@@ -114,7 +114,7 @@ modulate = Color( 1, 0.529412, 0, 1 )
 position = Vector2( 2888, 168 )
 collision_layer = 2
 collision_mask = 2
-tile_map_path = NodePath("../OrangeAppear")
+tile_map_path = NodePath("../../Demo1/OrangeAppear")
 layer_bit = 1
 
 [node name="Portal" parent="." instance=ExtResource( 12 )]
