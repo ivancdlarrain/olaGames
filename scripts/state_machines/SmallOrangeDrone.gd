@@ -1,7 +1,5 @@
 extends Drone
 
-# For animation:
-onready var animation_player = parent.get_node("AnimationPlayer") as AnimationPlayer
 
 func _ready():
 	add_state('idle')
@@ -34,9 +32,9 @@ func _get_transition(delta):
 func _enter_state(new_state, old_state):
 	match new_state:
 		states.idle:
-			animation_player.play("idle")
+			parent.playback.travel('idle')
 		states.agro:
-			animation_player.play("charge")
+			parent.playback.travel('agro')
 		states.jump:
 			pass
 
