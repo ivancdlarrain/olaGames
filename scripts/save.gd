@@ -32,6 +32,7 @@ func load_game():
 	for node_path in save_data.keys():
 		for attribute in save_data[node_path]:
 			if attribute == "scene_path":
+# warning-ignore:return_value_discarded
 				get_tree().change_scene(save_data[node_path]["scene_path"])
 				
 				#LEAVE THIS AS IS, NEEDS FIXING

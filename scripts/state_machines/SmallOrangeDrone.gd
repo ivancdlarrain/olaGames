@@ -1,10 +1,6 @@
 extends Drone
 
 
-var ready = false
-var timer = parent.get_node("Timer")
-
-
 func _ready():
 	add_state('idle')
 	add_state('agro')
@@ -28,6 +24,8 @@ func _get_transition(delta):
 		states.agro:
 			if !found:
 				return states.idle
+			if parent.ready and parent.is_timer_ready:
+				return states.jump
 		states.jump:
 			pass
 	return null
@@ -39,8 +37,12 @@ func _enter_state(new_state, old_state):
 			parent.playback.travel('idle')
 		states.agro:
 			parent.playback.travel('agro')
+			parent.is_timer_ready = false
+			parent.ready_timer.start()
+			print('Timer Started')
 		states.jump:
 			parent.playback.travel('jump')
+			parent._supra_jump(ray_direction)
 
 
 func _exit_state(old_state, new_state):
@@ -51,7 +53,3 @@ func _exit_state(old_state, new_state):
 			pass
 		states.jump:
 			pass
-
-
-func _on_Timer_timeout():
-	ready = true

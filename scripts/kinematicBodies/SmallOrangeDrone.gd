@@ -4,7 +4,10 @@ extends KinematicBody2D
 const gravity = 1000
 var velocity = Vector2()
 const deaccel = 200
+var ready = false
 onready var playback = $AnimationTree.get("parameters/playback")
+var is_timer_ready = false
+onready var ready_timer = get_node('ReadyTimer') as Timer
 
 
 func _ready():
@@ -28,3 +31,20 @@ func _apply_movement():
 func _supra_jump(direction):
 	velocity = direction * 1000
 	velocity = move_and_slide(velocity, Vector2.UP)
+
+
+func _on_ActivationArea_body_entered(body):
+	if body.name == "Player":        # This will be changed for "in group player"
+		ready = true
+
+
+func _on_ActivationArea_body_exited(body):
+	if body.name == "Player":
+		ready = false
+
+
+func _on_ReadyTimer_timeout():
+	print('Timer ended')
+	is_timer_ready = true
+	ready_timer.stop()
+	
