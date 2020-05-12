@@ -8,14 +8,13 @@
 radius = 40.0
 height = 0.0
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=2]
 radius = 1058.0
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CircleShape2D" id=3]
 radius = 209.195
 
-[sub_resource type="Animation" id=2]
-resource_name = "charge"
+[sub_resource type="Animation" id=4]
 length = 0.4
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Sprite:frame")
@@ -28,8 +27,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 )
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "discharge"
+[sub_resource type="Animation" id=5]
 length = 0.5
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Sprite:frame")
@@ -42,8 +40,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 )
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "idle"
+[sub_resource type="Animation" id=6]
 length = 0.4
 loop = true
 tracks/0/type = "bezier"
@@ -57,8 +54,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3 )
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "jump"
+[sub_resource type="Animation" id=7]
 length = 0.4
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Sprite:frame")
@@ -94,21 +90,21 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2( 1.47021, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="ActivationArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationArea"]
-shape = SubResource( 7 )
+shape = SubResource( 3 )
 
 [node name="DetectionRay" type="RayCast2D" parent="."]
 enabled = true
 collision_mask = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/charge = SubResource( 2 )
-anims/discharge = SubResource( 3 )
-anims/idle = SubResource( 4 )
-anims/jump = SubResource( 5 )
+anims/charge = SubResource( 4 )
+anims/discharge = SubResource( 5 )
+anims/idle = SubResource( 6 )
+anims/jump = SubResource( 7 )

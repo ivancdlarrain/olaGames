@@ -20,8 +20,26 @@ func save_game():
 	savefile.close()
 
 func load_game():
-	#Load Game
+	var savefile = File.new()
+	if not savefile.file_exists(SAVE_PATH):
+		return
+	
+	savefile.open(SAVE_PATH, File.READ)
+	var save_data = {}
+	save_data = JSON.parse(savefile.get_as_text()).result
+	
+	for node_path in save_data.keys():
+		for attribute in save_data[node_path]:
+			if attribute == "scene_path":
+				get_tree().change_scene(save_data[node_path]["scene_path"])
+				
+				#LEAVE THIS AS IS, NEEDS FIXING
+#			if attribute == "pos":
+#				node.set_position(Vector2(save_data[node_path]["pos"]["x"], save_data[node_path]["pos"]["y"]))
+			
+	savefile.close()
 	pass
+	
 	
 	
 

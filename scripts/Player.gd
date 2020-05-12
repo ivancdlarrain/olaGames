@@ -144,10 +144,13 @@ var n = get_child(1)
 
 func save():
 	var save_dict = {
-		pos = {
-			x = get_position().x, 
-			y = get_position().y
-		},
-		scene_path = get_owner().get_path()
+		scene_path = get_owner().filename
+		
+		#LEAVE THIS AS IS, NEEDS FIXING
+#		pos = {
+#			x = get_position().x, 
+#			y = get_position().y
+#		},
+		
 	}
 	return save_dict

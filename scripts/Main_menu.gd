@@ -9,3 +9,7 @@ func _on_NewGame_pressed():
 
 func _on_NewGame2_pressed():
 	get_tree().quit()
+
+
+func _on_Load_Game_pressed():
+	Save.load_game()

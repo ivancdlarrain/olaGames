@@ -24,3 +24,10 @@ func _on_Main_Menu_pressed():
 
 func _on_Save_pressed():
 	Save.save_game()
+
+
+func _on_Load_pressed():
+	Save.load_game()
+	get_tree().paused = false
+	visible = false
+	$CanvasLayer/VBoxContainer.visible = false

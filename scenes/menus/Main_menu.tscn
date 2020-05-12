@@ -63,11 +63,19 @@ margin_bottom = 111.0
 custom_fonts/font = SubResource( 2 )
 text = "New Game"
 
-[node name="NewGame2" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="Load Game" type="Button" parent="CanvasLayer/VBoxContainer"]
 margin_top = 115.0
 margin_right = 400.0
 margin_bottom = 161.0
 custom_fonts/font = SubResource( 2 )
+text = "Load Game"
+
+[node name="NewGame2" type="Button" parent="CanvasLayer/VBoxContainer"]
+margin_top = 165.0
+margin_right = 400.0
+margin_bottom = 211.0
+custom_fonts/font = SubResource( 2 )
 text = "Quit"
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Load Game" to="." method="_on_Load_Game_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/NewGame2" to="." method="_on_NewGame2_pressed"]
