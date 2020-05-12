@@ -98,6 +98,7 @@ func _wall_jump():
 
 
 func remember_jump():
+	jump_pressed = true
 	yield(get_tree().create_timer(.1), "timeout")
 	jump_pressed = false
 	pass

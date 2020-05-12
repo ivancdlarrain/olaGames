@@ -23,4 +23,8 @@ func _apply_friction():
 
 func _apply_movement():
 	velocity = move_and_slide(velocity, Vector2.UP)
-	
+
+
+func _supra_jump(direction):
+	velocity = direction * 1000
+	velocity = move_and_slide(velocity, Vector2.UP)

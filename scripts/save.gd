@@ -14,7 +14,7 @@ func save_game():
 		pass
 	
 	var savefile = File.new()
-	savefile.open(SAVE_PATH, File.WRITE)
+	savefile.open(SAVE_PATH, File.READ)
 	
 	savefile.store_line(to_json(save_dict))
 	savefile.close()
