@@ -12,4 +12,5 @@ func _on_NewGame2_pressed():
 
 
 func _on_Load_Game_pressed():
+
 	Save.load_game()

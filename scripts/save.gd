@@ -4,7 +4,7 @@ const SAVE_PATH = "res://data/savegames/savegame.json"
 var _settings = {}
 
 func _ready():
-	load_game()
+	pass
 
 func save_game():
 	var save_dict = {}
@@ -20,6 +20,7 @@ func save_game():
 	savefile.close()
 
 func load_game():
+	print("Loading Game")
 	var savefile = File.new()
 	if not savefile.file_exists(SAVE_PATH):
 		return
@@ -38,7 +39,7 @@ func load_game():
 #				node.set_position(Vector2(save_data[node_path]["pos"]["x"], save_data[node_path]["pos"]["y"]))
 			
 	savefile.close()
-	pass
+	
 	
 	
 	
