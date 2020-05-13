@@ -19,9 +19,10 @@ func _apply_gravity(delta):
 
 
 func _apply_friction():
-	var s = sign(velocity.x)
-	velocity.x -= sign(velocity.x) * deaccel
-	if sign(velocity.x) != s: velocity.x = 0
+#	var s = sign(velocity.x)
+#	velocity.x -= sign(velocity.x) * deaccel
+#	if sign(velocity.x) != s: velocity.x = 0
+	pass
 
 
 func _apply_movement():
@@ -29,7 +30,7 @@ func _apply_movement():
 
 
 func _supra_jump(direction):
-	velocity = direction * 1000
+	velocity = direction * 600
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 

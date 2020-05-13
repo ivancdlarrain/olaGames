@@ -53,3 +53,9 @@ func _exit_state(old_state, new_state):
 			pass
 		states.jump:
 			pass
+
+
+func _on_DestructionArea_body_entered(body):
+	if state == states.jump:
+		print('pal lobby')
+		parent.queue_free()

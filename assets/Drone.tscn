@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/state_machines/SmallOrangeDrone.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/hostile mobs/SmallOrangeDrone.png" type="Texture" id=2]
@@ -117,7 +117,7 @@ states/discharge/position = Vector2( 643, 136 )
 states/idle/node = SubResource( 10 )
 states/idle/position = Vector2( 439, 83 )
 states/jump/node = SubResource( 11 )
-states/jump/position = Vector2( 1050, 83 )
+states/jump/position = Vector2( 1053, 83 )
 transitions = [ "idle", "charge", SubResource( 12 ), "agro", "discharge", SubResource( 13 ), "agro", "jump", SubResource( 14 ), "charge", "agro", SubResource( 15 ), "discharge", "idle", SubResource( 16 ) ]
 start_node = "idle"
 end_node = "jump"
@@ -129,7 +129,10 @@ graph_offset = Vector2( -120.193, 0 )
 radius = 1058.0
 
 [sub_resource type="CircleShape2D" id=20]
-radius = 209.195
+radius = 272.0
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 48, 38.9511 )
 
 [node name="SmallOrangeDrone" type="KinematicBody2D"]
 scale = Vector2( 0.5, 0.5 )
@@ -147,7 +150,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 vframes = 5
 hframes = 3
-frame = 2
+frame = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/agro = SubResource( 2 )
@@ -185,6 +188,14 @@ collision_mask = 2
 
 [node name="ReadyTimer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="DestructionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestructionArea"]
+shape = SubResource( 21 )
 [connection signal="body_entered" from="ActivationArea" to="." method="_on_ActivationArea_body_entered"]
 [connection signal="body_exited" from="ActivationArea" to="." method="_on_ActivationArea_body_exited"]
 [connection signal="timeout" from="ReadyTimer" to="." method="_on_ReadyTimer_timeout"]
+[connection signal="body_entered" from="DestructionArea" to="DroneState" method="_on_DestructionArea_body_entered"]
