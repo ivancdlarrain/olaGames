@@ -25,14 +25,14 @@ func _ready():
 
 
 func on_body_entered(body: Node):
-	if body.name == "Player":
+	if body in get_tree().get_nodes_in_group("drone_target"):
 #		print("Player entered")
 		player = body
 		looking_for_player = true
 
 
 func on_body_exited(body: Node):
-	if body.name == "Player":
+	if body in get_tree().get_nodes_in_group("drone_target"):
 #		print("Player exited")
 		looking_for_player = false
 
@@ -46,7 +46,7 @@ func _get_ray_direction(body):
 func look_for_player():
 	_get_ray_direction(player)
 	raycast.cast_to = detection_range * ray_direction
-	if raycast.is_colliding() and raycast.get_collider().name == "Player":
+	if raycast.is_colliding() and raycast.get_collider() in get_tree().get_nodes_in_group('drone_target'):
 		found = true
 	else:
 		found = false

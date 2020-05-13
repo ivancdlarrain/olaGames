@@ -26,11 +26,22 @@ func _ready():
 
 func _state_logic(delta):
 	if Input.is_action_just_pressed("ui_left"):
-		color_switch = 0
-	elif Input.is_action_just_pressed("ui_down"):
-		color_switch = 1
-	elif Input.is_action_just_pressed("ui_right"):
-		color_switch = 2
+		if state != 0:
+			color_switch = 0
+		else:
+			pass     # Here we could put our cool function
+	elif Input.is_action_just_pressed("ui_down") and state != 1:
+		if state != 1:
+			color_switch = 1
+		else:
+			pass     # Here we could put our cool function
+	elif Input.is_action_just_pressed("ui_right") and state != 2:
+		if state != 2:
+			color_switch = 2
+		else:
+			pass     # Here we could put our cool function
+	else:
+		color_switch = -1
 
 
 func _get_transition(delta):
@@ -41,6 +52,7 @@ func _get_transition(delta):
 			return states.orange
 		2:
 			return states.purple
+	return null
 
 
 func _enter_state(new_state, old_state):
