@@ -121,13 +121,8 @@ func _tile_detection():
 		var collision = get_slide_collision(index)
 		var collider = collision.collider
 		if collider is TileMap:
-			var death = check_death(collision, Vector2(-1, -1)) \
-			or check_death(collision,  Vector2(-1, 1)) \
-			or check_death(collision, Vector2(1, -1)) \
-			or	check_death(collision, Vector2(1, 1))
-			if death:
+			if collider in get_tree().get_nodes_in_group("deadly"):
 				_die()
-		
 
 func check_death(collision, delta):
 	var tile_map = collision.collider as TileMap
