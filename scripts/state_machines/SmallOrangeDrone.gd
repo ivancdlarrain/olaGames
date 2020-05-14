@@ -3,7 +3,7 @@ extends Drone
 
 func _ready():
 	add_state('idle')
-	add_state('agro')
+	add_state('aggro')
 	add_state('jump')
 	call_deferred('set_state', states.idle)
 	._ready()
@@ -20,8 +20,8 @@ func _get_transition(delta):
 	match state:
 		states.idle:
 			if found:
-				return states.agro
-		states.agro:
+				return states.aggro
+		states.aggro:
 			if !found:
 				return states.idle
 			if parent.ready and parent.is_timer_ready:
@@ -35,8 +35,8 @@ func _enter_state(new_state, old_state):
 	match new_state:
 		states.idle:
 			parent.playback.travel('idle')
-		states.agro:
-			parent.playback.travel('agro')
+		states.aggro:
+			parent.playback.travel('aggro')
 			parent.is_timer_ready = false
 			parent.ready_timer.start()
 			print('Timer Started')
@@ -49,7 +49,7 @@ func _exit_state(old_state, new_state):
 	match old_state:
 		states.idle:
 			pass
-		states.agro:
+		states.aggro:
 			pass
 		states.jump:
 			pass

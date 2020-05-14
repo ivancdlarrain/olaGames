@@ -1,31 +1,46 @@
 extends KinematicBody2D
 
+# Script for player character. Handles basic movement, with complex interactions handled by the MovementState
+# and ColorState state machines.
+
+#------- Variables for character movement -------#
+
+const UP = Vector2(0, -1)
 var velocity = Vector2()
 export var jump_speed = 400
 export var grav = 1000
 export var glide_grav = 300
 export var default_grav = 1000
 export var max_speed = 300
-const UP = Vector2(0, -1)
+
 var move_direction = 0
-var double_jump = true
 var double_jump_direction = Vector2()
-var can_jump = true
+var facing_right = true
 var accel = 3.0
 var deaccel = 6.0
-var facing_right = true
+
+
+#------- Bool values for state logic -------#
+
 var dashing = false
 var gliding = false
 var jump_pressed = false
 var on_floor = false
 var no_input = true
+var double_jump = true
+var can_jump = true
 
+#------- Timers -------#
 
-onready var playback = $AnimationTree.get("parameters/playback")
 onready var dash_cd = $DashCooldown
 onready var c_timer = $CoyoteTimer
 onready var j_timer = $JumpWindow
+
+#------- Animation -------#
+onready var playback = $AnimationTree.get("parameters/playback")
+
 var was_on_floor = false
+
 
 func _ready():
 	$MovementState.connect("use_ground_collision", self, "on_ground_collision")
@@ -138,7 +153,6 @@ func check_death(collision, delta):
 func _die():
 	get_tree().reload_current_scene()
 	
-var n = get_child(1)
 
 
 #Save Game
@@ -147,7 +161,8 @@ func save():
 	var save_dict = {
 		scene_path = get_owner().filename
 		
-		#LEAVE THIS AS IS, NEEDS FIXING
+		#FIXME: We need to find a way to make sure the JSON file generated reads the position AFTER the scene.
+		#The way Godot converts to JSON doesn't assure the dictionary stays in order
 #		pos = {
 #			x = get_position().x, 
 #			y = get_position().y
