@@ -12,6 +12,7 @@ var deaccel = 2
 # Animation
 onready var playback = $AnimationTree.get("parameters/playback")
 var color_layer = 0
+var exp_transform = 1
 
 
 func _ready():
@@ -41,9 +42,14 @@ func _die():
 	var explosion = EXPLOSION_SCENE.instance() as Area2D
 	explosion.position = position
 	explosion.set_layer(color_layer)
+	explosion.scale = Vector2(exp_transform, exp_transform)
 	get_parent().add_child(explosion)
 	queue_free()
 
 
 func set_color_layer(n):
 	color_layer = n
+
+
+func set_exp_transform(n):
+	exp_transform = n
