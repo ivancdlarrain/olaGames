@@ -52,7 +52,7 @@ func look_for_player():
 		found = false
 
 
-func _state_logic(delta):
+func _state_logic(_delta):
 	if looking_for_player:
 		look_for_player()
 	else:

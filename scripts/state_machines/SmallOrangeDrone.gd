@@ -16,7 +16,7 @@ func _state_logic(delta):
 	._state_logic(delta)
 
 
-func _get_transition(delta):
+func _get_transition(_delta):
 	match state:
 		states.idle:
 			if found:
@@ -39,8 +39,8 @@ func _enter_state(new_state, old_state):
 			parent.playback.travel('aggro')
 			parent.is_timer_ready = false
 			parent.ready_timer.start()
-			print('Timer Started')
 		states.jump:
+			print('jump')
 			parent.playback.travel('jump')
 			parent._supra_jump(ray_direction)
 
@@ -55,7 +55,6 @@ func _exit_state(old_state, new_state):
 			pass
 
 
-func _on_DestructionArea_body_entered(body):
+func _on_DestructionArea_body_entered(_body):
 	if state == states.jump:
-		print('pal lobby')
-		parent.queue_free()
+		parent._die()

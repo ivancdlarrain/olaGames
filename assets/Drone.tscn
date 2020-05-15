@@ -8,7 +8,7 @@
 extents = Vector2( 16, 13.054 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "agro"
+resource_name = "aggro"
 length = 0.2
 loop = true
 tracks/0/type = "bezier"
@@ -80,8 +80,8 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=7]
-animation = "agro"
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "aggro"
 
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "charge"
@@ -97,19 +97,19 @@ animation = "jump"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
-switch_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
 [sub_resource type="AnimationNodeStateMachine" id=17]
-states/agro/node = SubResource( 7 )
-states/agro/position = Vector2( 846, 83 )
+states/aggro/node = SubResource( 22 )
+states/aggro/position = Vector2( 856.807, 83 )
 states/charge/node = SubResource( 8 )
 states/charge/position = Vector2( 643, 34 )
 states/discharge/node = SubResource( 9 )
@@ -118,7 +118,7 @@ states/idle/node = SubResource( 10 )
 states/idle/position = Vector2( 439, 83 )
 states/jump/node = SubResource( 11 )
 states/jump/position = Vector2( 1053, 83 )
-transitions = [ "idle", "charge", SubResource( 12 ), "agro", "discharge", SubResource( 13 ), "agro", "jump", SubResource( 14 ), "charge", "agro", SubResource( 15 ), "discharge", "idle", SubResource( 16 ) ]
+transitions = [ "idle", "charge", SubResource( 12 ), "discharge", "idle", SubResource( 16 ), "charge", "aggro", SubResource( 23 ), "aggro", "discharge", SubResource( 24 ), "aggro", "jump", SubResource( 25 ) ]
 start_node = "idle"
 end_node = "jump"
 graph_offset = Vector2( -120.193, 0 )
@@ -126,15 +126,17 @@ graph_offset = Vector2( -120.193, 0 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=18]
 
 [sub_resource type="CircleShape2D" id=19]
-radius = 1058.0
+radius = 483.249
 
 [sub_resource type="CircleShape2D" id=20]
-radius = 272.0
+radius = 192.556
 
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 16.3031, 13.368 )
 
-[node name="SmallOrangeDrone" type="KinematicBody2D"]
+[node name="SmallOrangeDrone" type="KinematicBody2D" groups=[
+"alive",
+]]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 3 )
@@ -143,16 +145,16 @@ script = ExtResource( 3 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 vframes = 5
 hframes = 3
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/agro = SubResource( 2 )
+anims/aggro = SubResource( 2 )
 anims/charge = SubResource( 3 )
 anims/discharge = SubResource( 4 )
 anims/idle = SubResource( 5 )
@@ -170,7 +172,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2( 1.47021, 0 )
+position = Vector2( 1.47021, 3.09082 )
 shape = SubResource( 19 )
 
 [node name="ActivationArea" type="Area2D" parent="."]
@@ -182,6 +184,7 @@ collision_mask = 2
 shape = SubResource( 20 )
 
 [node name="DetectionRay" type="RayCast2D" parent="."]
+visible = false
 enabled = true
 collision_mask = 2
 
@@ -189,6 +192,7 @@ collision_mask = 2
 wait_time = 0.5
 
 [node name="DestructionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 2
 

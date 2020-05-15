@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 
+const EXPLOSION_SCENE = preload("res://assets/Area2D scenes/RegularExplosion.tscn")
 const gravity = 1000
 var velocity = Vector2()
 const deaccel = 2
@@ -48,4 +49,15 @@ func _on_ReadyTimer_timeout():
 	print('Timer ended')
 	is_timer_ready = true
 	ready_timer.stop()
+
+
+func take_damage():
+	_die()
+
+
+func _die():
+	var explosion = EXPLOSION_SCENE.instance() as Area2D
+	explosion.position = position
+	get_parent().add_child(explosion)
+	queue_free()
 	

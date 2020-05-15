@@ -124,7 +124,11 @@ func _tile_detection():
 		var collider = collision.collider
 		if collider is TileMap:
 			if collider in get_tree().get_nodes_in_group("deadly"):
-				_die()
+				take_damage()
+
+
+func take_damage():
+	_die()
 
 
 func _die():
