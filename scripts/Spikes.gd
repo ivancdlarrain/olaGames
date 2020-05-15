@@ -5,6 +5,7 @@ var tween_values = [1.0, 0.5]
 
 
 func _ready():
+# warning-ignore:return_value_discarded
 	$Tween.connect("tween_all_completed", self, "on_tween_all_completed")
 	on_tween_all_completed()
 	

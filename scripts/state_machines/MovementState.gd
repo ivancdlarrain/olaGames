@@ -67,7 +67,7 @@ func _input(event):
 			parent.velocity.y = parent.velocity.y * 0.5
 
 
-func _get_transition(delta):
+func _get_transition(_delta):
 	var on_floor = parent.is_on_floor()
 	var on_wall = parent.is_on_wall()
 	match state:
@@ -138,7 +138,7 @@ func _get_transition(delta):
 				if !parent.gliding:
 					return states.fall
 			if on_wall:
-				states.wall_slide
+				return states.wall_slide
 			if on_floor:
 				if parent.velocity.x == 0:
 					return states.idle
@@ -162,7 +162,7 @@ func _get_transition(delta):
 	return null
 
 
-func _enter_state(new_state, old_state):
+func _enter_state(new_state, _old_state):
 	match new_state:
 		states.idle:
 			emit_signal("use_ground_collision", true)
@@ -201,7 +201,7 @@ func _enter_state(new_state, old_state):
 			parent.c_timer.start()
 
 
-func _exit_state(old_state, new_state):
+func _exit_state(old_state, _new_state):
 	match old_state:
 		states.pre_fall:
 			parent.grav = parent.default_grav

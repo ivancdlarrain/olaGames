@@ -10,7 +10,7 @@ func _hold_key(key):
 func _release_key(key):
 	key.frame = 0
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	#Pressing key
 	if Input.is_action_just_pressed("ui_left"):
 		_hold_key(lkey)

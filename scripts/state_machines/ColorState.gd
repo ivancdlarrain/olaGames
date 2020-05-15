@@ -24,7 +24,7 @@ func _ready():
 	call_deferred('set_state', states.blue)
 
 
-func _state_logic(delta):
+func _state_logic(_delta):
 	if Input.is_action_just_pressed("ui_left"):
 		if state != 0:
 			color_switch = 0
@@ -44,7 +44,7 @@ func _state_logic(delta):
 		color_switch = -1
 
 
-func _get_transition(delta):
+func _get_transition(_delta):
 	match color_switch:
 		0:
 			return states.blue
@@ -55,7 +55,7 @@ func _get_transition(delta):
 	return null
 
 
-func _enter_state(new_state, old_state):
+func _enter_state(new_state, _old_state):
 	match new_state:
 		states.blue:
 			change_color(Color(0, 0.972549, 1))
@@ -68,7 +68,7 @@ func _enter_state(new_state, old_state):
 			enter_layer(2)
 
 
-func _exit_state(old_state, new_state):
+func _exit_state(old_state, _new_state):
 	match old_state:
 		states.blue:
 			exit_layer(0)

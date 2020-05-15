@@ -23,14 +23,13 @@ func _ready():
 	set_transparency(default_state)
 	
 	
-func _on_Area2D_body_entered(body):
+func _on_Area2D_body_entered(_body):
 	$AnimationPlayer.play("starting")
 	
 
-func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(_anim_name):
 	if len($Area2D.get_overlapping_bodies()) > 0:
 		var new_state = !bool(tile_map.get_collision_layer_bit(layer_bit))
-		print(new_state)
 		set_transparency(new_state)
 		tile_map.set_collision_layer_bit(layer_bit, new_state)
 		tile_map.set_collision_mask_bit(layer_bit, new_state)

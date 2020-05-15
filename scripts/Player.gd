@@ -43,9 +43,8 @@ var was_on_floor = false
 
 
 func _ready():
+# warning-ignore:return_value_discarded
 	$MovementState.connect("use_ground_collision", self, "on_ground_collision")
-
-# interpreting PlayerState signals:
 
 
 	# collision signals
@@ -53,8 +52,8 @@ func on_ground_collision(boolean):
 		$GroundCollisionShape.disabled = !boolean
 		$AirCollisionShape.disabled = boolean
 
-# Movement code:
 
+	# Movement code:
 func _apply_movement():
 	velocity = move_and_slide(velocity, UP)
 	on_floor = is_on_floor()
@@ -80,7 +79,7 @@ func _handle_move_input():
 	if abs(new_velocity) < max_speed:
 		velocity.x = new_velocity
 	else: 
-		if [$MovementState.states.run].has($MovementState.state):
+		if $MovementState.states.run == $MovementState.state:
 			velocity.x = sign(velocity.x)*max_speed
 		
 	# Facing:
@@ -118,41 +117,26 @@ func remember_jump():
 	jump_pressed = false
 	pass
 
-# Game logic for tile detection:
-
-export var blue_tile_map_path : NodePath
-onready var blue_tile_map = get_node(blue_tile_map_path) as TileMap
-
-export var orange_tile_map_path : NodePath
-onready var orange_tile_map = get_node(orange_tile_map_path) as TileMap
-
-export var purple_tile_map_path : NodePath
-onready var purple_tile_map = get_node(purple_tile_map_path) as TileMap
 
 func _tile_detection():	
-#	print(get_slide_count())
 	for index in get_slide_count():
-		
 		var collision = get_slide_collision(index)
 		var collider = collision.collider
 		if collider is TileMap:
 			if collider in get_tree().get_nodes_in_group("deadly"):
 				_die()
 
-func check_death(collision, delta):
-	var tile_map = collision.collider as TileMap
-#	print(tile_map.get_cellv(tile_map.world_to_map(collision.position + delta - tile_map.position)))
-	return tile_map.get_cellv(tile_map.world_to_map(collision.position + delta - tile_map.position)) == 1
-
 
 func _die():
-	get_tree().reload_current_scene()
-	
+# warning-ignore:return_value_discarded
+	get_tree().reload_current_scene()	
 
 
 #Save Game
 
 func save():
+	#NEW NOTE: Maybe it's a better idea to just save the current scene and NOT the progress in that scene. AUTO-SAVE
+	# when entered a new scene could be nice.
 	var save_dict = {
 		scene_path = get_owner().filename
 		

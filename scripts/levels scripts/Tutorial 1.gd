@@ -16,7 +16,7 @@ func _hold_key(key):
 func _release_key(key):
 	key.frame -= 1
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Holding keys
 	if Input.is_action_just_pressed("WASD_up"):
 		_hold_key(W)

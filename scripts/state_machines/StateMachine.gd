@@ -16,20 +16,27 @@ func _physics_process(delta):
 			set_state(transition)
 
 
+# warning-ignore:unused_argument
 func _state_logic(delta):
 	pass
 
 
+# warning-ignore:unused_argument
 func _get_transition(delta):
 	return null
 
 
+# warning-ignore:unused_argument
+# warning-ignore:unused_argument
 func _enter_state(new_state, old_state):
 	pass
 
 
+# warning-ignore:unused_argument
+# warning-ignore:unused_argument
 func _exit_state(old_state, new_state):
 	pass
+
 
 func set_state(new_state):
 	previous_state = state
