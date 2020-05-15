@@ -9,8 +9,13 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "StateMachine",
+"base": "KinematicBody2D",
 "class": "Drone",
+"language": "GDScript",
+"path": "res://scripts/kinematicBodies/Drone.gd"
+}, {
+"base": "StateMachine",
+"class": "DroneStateMachine",
 "language": "GDScript",
 "path": "res://scripts/state_machines/DroneStateMachine.gd"
 }, {
@@ -21,6 +26,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Drone": "",
+"DroneStateMachine": "",
 "StateMachine": ""
 }
 

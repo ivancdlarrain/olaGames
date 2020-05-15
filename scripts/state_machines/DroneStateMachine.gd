@@ -1,5 +1,5 @@
 extends StateMachine
-class_name Drone
+class_name DroneStateMachine
 
 
 # These following arguments will be used to detect the player  

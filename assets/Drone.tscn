@@ -80,7 +80,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "aggro"
 
 [sub_resource type="AnimationNodeAnimation" id=8]
@@ -97,18 +97,18 @@ animation = "jump"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=16]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
 
 [sub_resource type="AnimationNodeStateMachine" id=17]
-states/aggro/node = SubResource( 22 )
+states/aggro/node = SubResource( 7 )
 states/aggro/position = Vector2( 856.807, 83 )
 states/charge/node = SubResource( 8 )
 states/charge/position = Vector2( 643, 34 )
@@ -118,7 +118,7 @@ states/idle/node = SubResource( 10 )
 states/idle/position = Vector2( 439, 83 )
 states/jump/node = SubResource( 11 )
 states/jump/position = Vector2( 1053, 83 )
-transitions = [ "idle", "charge", SubResource( 12 ), "discharge", "idle", SubResource( 16 ), "charge", "aggro", SubResource( 23 ), "aggro", "discharge", SubResource( 24 ), "aggro", "jump", SubResource( 25 ) ]
+transitions = [ "idle", "charge", SubResource( 12 ), "discharge", "idle", SubResource( 13 ), "charge", "aggro", SubResource( 14 ), "aggro", "discharge", SubResource( 15 ), "aggro", "jump", SubResource( 16 ) ]
 start_node = "idle"
 end_node = "jump"
 graph_offset = Vector2( -120.193, 0 )

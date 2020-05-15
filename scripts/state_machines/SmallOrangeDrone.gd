@@ -1,4 +1,4 @@
-extends Drone
+extends DroneStateMachine
 
 
 func _ready():
@@ -40,7 +40,6 @@ func _enter_state(new_state, old_state):
 			parent.is_timer_ready = false
 			parent.ready_timer.start()
 		states.jump:
-			print('jump')
 			parent.playback.travel('jump')
 			parent._supra_jump(ray_direction)
 
