@@ -10,7 +10,7 @@ func _ready():
 
 
 func _state_logic(delta):
-	if states.aggro == state and parent.activated:
+	if states.aggro == state and parent.playback.get_current_node() == 'aggro':
 		parent.apply_movement(ray_direction)
 	elif states.idle == state:
 		parent.apply_deaccel()
@@ -40,6 +40,8 @@ func _enter_state(new_state, _old_state):
 			parent.playback.travel('aggro')
 		states.explosion:
 			parent.playback.travel('explosion')
+			yield(get_tree().create_timer(.6), "timeout")
+			parent._die()
 
 
 func _exit_state(old_state, _new_state):

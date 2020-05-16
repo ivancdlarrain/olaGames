@@ -15,7 +15,7 @@ var activated = false
 
 func _ready():
 	set_color_layer(2)
-	set_exp_transform(2)
+	set_exp_transform(5)
 
 
 # for movement:
@@ -51,17 +51,3 @@ func _on_ActivationArea_body_entered(body):
 	if body in get_tree().get_nodes_in_group("drone_target"):
 		enemy_in_range = true
 
-
-
-#FIXME: this function is never used, therefore, the drone will never move or explode. :c
-func _on_AnimationPlayer_animation_finished(anim_name):
-	print("IT'S BEING USED!")
-	print('anim_name')
-	match anim_name:
-		"activation":
-			activated = true
-		"deactivation":
-			activated = false
-		"explosion":
-			_die()
-	
