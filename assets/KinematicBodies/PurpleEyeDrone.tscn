@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scripts/kinematicBodies/PurpleEyeDrone.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/hostile mobs/PurpleEyeDrone.png" type="Texture" id=2]
@@ -53,7 +53,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 )
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=5]
 resource_name = "explosion"
 length = 0.6
 tracks/0/type = "bezier"
@@ -67,7 +67,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 )
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.8
 loop = true
 step = 0.05
@@ -82,59 +82,67 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "activation"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
-animation = "aggro"
-
 [sub_resource type="AnimationNodeAnimation" id=8]
-animation = "deactivation"
-
-[sub_resource type="AnimationNodeAnimation" id=20]
-animation = "explosion"
+animation = "activation"
 
 [sub_resource type="AnimationNodeAnimation" id=9]
-animation = "idle"
+animation = "aggro"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
-switch_mode = 2
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "deactivation"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "explosion"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id=14]
-states/activation/node = SubResource( 6 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=20]
+states/activation/node = SubResource( 8 )
 states/activation/position = Vector2( 573, 180 )
-states/aggro/node = SubResource( 19 )
+"states/activation 2/node" = SubResource( 7 )
+"states/activation 2/position" = Vector2( 573, 271 )
+states/aggro/node = SubResource( 9 )
 states/aggro/position = Vector2( 782, 108 )
-states/deactivation/node = SubResource( 8 )
+states/deactivation/node = SubResource( 10 )
 states/deactivation/position = Vector2( 602, 43 )
-states/explosion/node = SubResource( 20 )
+states/explosion/node = SubResource( 11 )
 states/explosion/position = Vector2( 875, 192 )
-states/idle/node = SubResource( 9 )
+states/idle/node = SubResource( 12 )
 states/idle/position = Vector2( 399, 108 )
-transitions = [ "idle", "activation", SubResource( 10 ), "deactivation", "idle", SubResource( 13 ), "activation", "aggro", SubResource( 21 ), "aggro", "deactivation", SubResource( 22 ), "aggro", "explosion", SubResource( 23 ), "activation", "explosion", SubResource( 24 ) ]
+transitions = [ "idle", "activation", SubResource( 13 ), "deactivation", "idle", SubResource( 14 ), "activation", "aggro", SubResource( 15 ), "aggro", "deactivation", SubResource( 16 ), "aggro", "explosion", SubResource( 17 ), "idle", "activation 2", SubResource( 18 ), "activation 2", "explosion", SubResource( 19 ) ]
 start_node = "idle"
 end_node = "explosion"
+graph_offset = Vector2( -16, 113 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
 
-[sub_resource type="CircleShape2D" id=16]
+[sub_resource type="CircleShape2D" id=22]
 radius = 240.0
 
-[sub_resource type="CircleShape2D" id=17]
+[sub_resource type="CircleShape2D" id=23]
 radius = 48.0
 
 [node name="PurpleEyeDrone" type="KinematicBody2D"]
@@ -152,27 +160,27 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 6
-frame = 37
+frame = 14
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/activation = SubResource( 2 )
 anims/aggro = SubResource( 3 )
 anims/deactivation = SubResource( 4 )
-anims/explosion = SubResource( 18 )
-anims/idle = SubResource( 5 )
+anims/explosion = SubResource( 5 )
+anims/idle = SubResource( 6 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 14 )
+tree_root = SubResource( 20 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 15 )
+parameters/playback = SubResource( 21 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-shape = SubResource( 16 )
+shape = SubResource( 22 )
 
 [node name="DetectionRay" type="RayCast2D" parent="."]
 enabled = true
@@ -183,6 +191,6 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationArea"]
-shape = SubResource( 17 )
+shape = SubResource( 23 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="ActivationArea" to="." method="_on_ActivationArea_body_entered"]

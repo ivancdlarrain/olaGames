@@ -14,6 +14,9 @@ func _state_logic(delta):
 		parent.apply_movement(ray_direction)
 	elif states.idle == state:
 		parent.apply_deaccel()
+	elif states.explosion == state and parent.playback.get_current_node() == 'explosion':
+		yield(get_tree().create_timer(.6), "timeout")
+		parent._die()
 	._state_logic(delta)
 
 
@@ -40,8 +43,6 @@ func _enter_state(new_state, _old_state):
 			parent.playback.travel('aggro')
 		states.explosion:
 			parent.playback.travel('explosion')
-			yield(get_tree().create_timer(.6), "timeout")
-			parent._die()
 
 
 func _exit_state(old_state, _new_state):
