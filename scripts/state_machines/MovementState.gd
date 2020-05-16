@@ -16,7 +16,7 @@ func _ready():
 	
 
 func _state_logic(delta):
-	parent._handle_move_input()
+	parent._handle_horizontal_move_input()
 	#Apply a cap to the fall speed if the player is wall-sliding
 	if [states.wall_slide, states.glide].has(state):
 		parent._cap_gravity(delta)
@@ -32,8 +32,7 @@ func _input(event):
 		parent.jump_pressed = true
 		parent.remember_jump()
 	
-	if [states.idle, states.run, states.pre_fall].has(state):
-		if parent.jump_pressed:
+	if [states.idle, states.run, states.pre_fall].has(state) and parent.jump_pressed:
 			parent.velocity.y = -parent.jump_speed
 				
 		

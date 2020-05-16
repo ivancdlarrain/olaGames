@@ -68,10 +68,10 @@ func _cap_gravity(delta):
 	velocity.y = min(velocity.y, 130)
 
 
-func _handle_move_input():
+func _handle_horizontal_move_input():
 	var new_velocity 
 	move_direction = -int(Input.is_action_pressed("WASD_left")) + int(Input.is_action_pressed("WASD_right"))
-	no_input = move_direction == 0
+	no_input = !bool(move_direction)
 	if on_floor:
 		new_velocity = velocity.x + move_direction * max_speed / accel
 	else:
@@ -94,7 +94,7 @@ func _handle_move_input():
 
 
 func _apply_friction():
-	if not bool(move_direction) or abs(velocity.x) > max_speed:    # Si no está apretando para moverse o pasó el límite
+	if no_input or abs(velocity.x) > max_speed:    # Si no está apretando para moverse o pasó el límite
 		var v_sign = sign(velocity.x)
 		if v_sign != 0:                                        # Si se está moviendo:
 			velocity.x = velocity.x - v_sign * max_speed / deaccel
@@ -112,10 +112,8 @@ func _wall_jump():
 
 
 func remember_jump():
-	jump_pressed = true
 	yield(get_tree().create_timer(.1), "timeout")
 	jump_pressed = false
-	pass
 
 
 func _tile_detection():	
