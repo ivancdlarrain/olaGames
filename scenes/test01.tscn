@@ -20,9 +20,6 @@ script = ExtResource( 7 )
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
 position = Vector2( 103.455, 96.9179 )
-blue_tile_map_path = NodePath("../Blue")
-orange_tile_map_path = NodePath("../Orange")
-purple_tile_map_path = NodePath("../Purple")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="KinematicBody2D"]
 

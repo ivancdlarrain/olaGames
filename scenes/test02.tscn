@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/Drone.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/TileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/menus/Pause_menu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/KinematicBodies/PurpleEyeDrone.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
 
@@ -19,6 +20,12 @@ tile_data = PoolIntArray( 131079, 4, 4, 196615, 4, 6, 196627, 4, 4, 262145, 4, 1
 modulate = Color( 0, 1, 0.952941, 1 )
 tile_data = PoolIntArray( 0, 4, 1, 1, 4, 5, 2, 4, 5, 3, 4, 5, 4, 4, 5, 5, 4, 5, 6, 4, 5, 7, 4, 5, 8, 4, 5, 9, 4, 5, 10, 4, 5, 11, 4, 5, 12, 4, 3, 131088, 4, 1, 131089, 4, 5, 131090, 4, 5, 131091, 4, 3 )
 
+[node name="Purple" parent="Tiles" instance=ExtResource( 2 )]
+modulate = Color( 0.85098, 0, 1, 1 )
+collision_layer = 4
+collision_mask = 4
+tile_data = PoolIntArray( 65556, 4, 65536, 65557, 4, 65540, 65558, 4, 65540, 65559, 4, 65539, 131092, 4, 65541, 131093, 4, 262146, 131094, 4, 262146, 131095, 4, 131073, 131096, 4, 65540, 131097, 4, 65540, 131098, 4, 65539, 196628, 4, 65541, 196629, 4, 262146, 196630, 4, 262146, 196631, 4, 262146, 196632, 4, 262146, 196633, 4, 262146, 196634, 4, 131073, 196635, 4, 65540, 196636, 4, 65539, 262164, 4, 65541, 262165, 4, 262146, 262166, 4, 262146, 262167, 4, 262146, 262168, 4, 262146, 262169, 4, 262146, 262170, 4, 262146, 262171, 4, 262146, 262172, 4, 131073, 262173, 4, 65539, 327700, 4, 65541, 327701, 4, 262146, 327702, 4, 262146, 327703, 4, 262146, 327704, 4, 262146, 327705, 4, 262146, 327706, 4, 262146, 327707, 4, 262146, 327708, 4, 262146, 327709, 4, 131072, 393236, 4, 65541, 393237, 4, 262146, 393238, 4, 262146, 393239, 4, 262146, 393240, 4, 262146, 393241, 4, 262146, 393242, 4, 262146, 393243, 4, 262146, 393244, 4, 262146, 393245, 4, 131072, 458772, 4, 65541, 458773, 4, 262146, 458774, 4, 262146, 458775, 4, 262146, 458776, 4, 262146, 458777, 4, 262146, 458778, 4, 262146, 458779, 4, 262146, 458780, 4, 262146, 458781, 4, 131072, 524308, 4, 65537, 524309, 4, 65542, 524310, 4, 65542, 524311, 4, 65542, 524312, 4, 65542, 524313, 4, 65542, 524314, 4, 65542, 524315, 4, 65542, 524316, 4, 65542, 524317, 4, 327685, 524318, 4, 5, 524319, 4, 5, 524320, 4, 5, 524321, 4, 5, 524322, 4, 5, 524323, 4, 5, 524324, 4, 5, 524325, 4, 5, 524326, 4, 3 )
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 43.2249, -55.2802 )
 
@@ -30,20 +37,27 @@ smoothing_enabled = true
 
 [node name="Drones" type="Node" parent="."]
 
-[node name="SmallOrangeDrone" parent="Drones" instance=ExtResource( 1 )]
+[node name="SmallOrangeDrones" type="Node" parent="Drones"]
+
+[node name="SmallOrangeDrone" parent="Drones/SmallOrangeDrones" instance=ExtResource( 1 )]
 position = Vector2( 314.585, 116.165 )
 
-[node name="SmallOrangeDrone3" parent="Drones" instance=ExtResource( 1 )]
+[node name="SmallOrangeDrone3" parent="Drones/SmallOrangeDrones" instance=ExtResource( 1 )]
 position = Vector2( 423.678, 233.476 )
 
-[node name="SmallOrangeDrone2" parent="Drones" instance=ExtResource( 1 )]
+[node name="SmallOrangeDrone2" parent="Drones/SmallOrangeDrones" instance=ExtResource( 1 )]
 position = Vector2( 385.458, 234.356 )
 
-[node name="SmallOrangeDrone4" parent="Drones" instance=ExtResource( 1 )]
+[node name="SmallOrangeDrone4" parent="Drones/SmallOrangeDrones" instance=ExtResource( 1 )]
 position = Vector2( 507.76, 235.232 )
 
-[node name="SmallOrangeDrone6" parent="Drones" instance=ExtResource( 1 )]
+[node name="SmallOrangeDrone6" parent="Drones/SmallOrangeDrones" instance=ExtResource( 1 )]
 position = Vector2( 464.984, 232.446 )
 
-[node name="SmallOrangeDrone5" parent="Drones" instance=ExtResource( 1 )]
+[node name="SmallOrangeDrone5" parent="Drones/SmallOrangeDrones" instance=ExtResource( 1 )]
 position = Vector2( 560.673, 228.92 )
+
+[node name="PurpleEyeDrones" type="Node" parent="Drones"]
+
+[node name="PurpleEyeDrone" parent="Drones/PurpleEyeDrones" instance=ExtResource( 5 )]
+position = Vector2( 1175.63, 187.258 )
