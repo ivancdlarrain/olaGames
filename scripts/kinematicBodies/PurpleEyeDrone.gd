@@ -28,9 +28,11 @@ func apply_movement(direction):
 	# Animation:
 	if velocity.x > 0 and !facing_right:
 		scale.x *= -1
+		$DetectionRay.scale.x *= -1
 		facing_right = true
 	elif velocity.x < 0 and facing_right:
 		scale.x *= -1
+		$DetectionRay.scale.x *= -1
 		facing_right = false
 		
 
