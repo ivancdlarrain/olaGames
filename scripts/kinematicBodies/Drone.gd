@@ -53,3 +53,11 @@ func set_color_layer(n):
 
 func set_exp_transform(n):
 	exp_transform = n
+
+
+func set_gravity(n):
+	gravity = n
+
+
+func set_deaccel(n):
+	deaccel = n

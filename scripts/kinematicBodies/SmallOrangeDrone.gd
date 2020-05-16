@@ -9,7 +9,7 @@ onready var ready_timer = get_node('ReadyTimer') as Timer
 func _ready():
 	._ready()
 	set_color_layer(1)
-	set_exp_transform(3)
+	set_exp_transform(1.5)
 
 
 func _supra_jump(direction):
