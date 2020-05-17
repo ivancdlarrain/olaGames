@@ -151,3 +151,8 @@ func save():
 		
 	}
 	return save_dict
+
+
+func _on_Guts_body_entered(body):
+	if body != self:
+		_die()

@@ -10,11 +10,15 @@ func change_color(new_color):
 func enter_layer(layer):
 	parent.set_collision_layer_bit(layer, true)
 	parent.set_collision_mask_bit(layer, true)
+	parent.get_node('Guts').set_collision_layer_bit(layer, true)
+	parent.get_node('Guts').set_collision_mask_bit(layer, true)
 
 
 func exit_layer(layer):
 	parent.set_collision_layer_bit(layer, false)
 	parent.set_collision_mask_bit(layer, false)
+	parent.get_node('Guts').set_collision_layer_bit(layer, false)
+	parent.get_node('Guts').set_collision_mask_bit(layer, false)
 
 
 func _ready():
