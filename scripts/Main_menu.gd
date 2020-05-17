@@ -6,20 +6,6 @@ func _ready():
 	$TitleTimer.start()
 
 
-func _on_NewGame_pressed():
-# warning-ignore:return_value_discarded
-	get_tree().change_scene("res://scenes/Tutorials/Tutorial 1.tscn")
-
-
-func _on_NewGame2_pressed():
-	get_tree().quit()
-
-
-func _on_Load_Game_pressed():
-
-	Save.load_game()
-
-
 func _on_AnimationPlayer_animation_finished(anim_name):
 	$TitleTimer.start()
 	anim_played = anim_name

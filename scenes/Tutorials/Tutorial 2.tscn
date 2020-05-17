@@ -188,9 +188,6 @@ __meta__ = {
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 128, 256 )
-blue_tile_map_path = NodePath("../TileMaps/Blue/Blue")
-orange_tile_map_path = NodePath("../TileMaps/Orange/Orange")
-purple_tile_map_path = NodePath("../TileMaps/Purple/Purple")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( 0, -79.6482 )

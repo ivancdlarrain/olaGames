@@ -1,18 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://fonts/Manrope-VariableFont_wght.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/Main_menu.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/menu/Title.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/menu/Play.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/menu/Quit.png" type="Texture" id=5]
-
-[sub_resource type="DynamicFont" id=1]
-size = 26
-outline_size = 1
-extra_spacing_top = 2
-extra_spacing_bottom = 2
-extra_spacing_char = 3
-font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "title1"
@@ -57,18 +48,17 @@ __meta__ = {
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -0.663452
-margin_right = -0.663452
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayButton" type="TextureButton" parent="CanvasLayer/Panel"]
-margin_left = 116.352
-margin_top = 256.352
-margin_right = 399.352
-margin_bottom = 357.352
+margin_left = 382.577
+margin_top = 269.276
+margin_right = 665.577
+margin_bottom = 370.276
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -79,11 +69,12 @@ texture = ExtResource( 4 )
 vframes = 3
 
 [node name="QuitButton" type="TextureButton" parent="CanvasLayer/Panel"]
-margin_left = 115.233
-margin_top = 403.158
-margin_right = 289.233
-margin_bottom = 456.158
+margin_left = 434.445
+margin_top = 430.297
+margin_right = 608.445
+margin_bottom = 483.297
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -92,39 +83,6 @@ position = Vector2( 89.4798, 29.2605 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 5 )
 vframes = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 78.8015
-margin_top = -62.4762
-margin_right = 478.802
-margin_bottom = 137.524
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NewGame" type="Button" parent="CanvasLayer/VBoxContainer"]
-margin_right = 400.0
-margin_bottom = 46.0
-custom_fonts/font = SubResource( 1 )
-text = "New Game"
-
-[node name="Load Game" type="Button" parent="CanvasLayer/VBoxContainer"]
-margin_top = 50.0
-margin_right = 400.0
-margin_bottom = 96.0
-custom_fonts/font = SubResource( 1 )
-text = "Load Game"
-
-[node name="NewGame2" type="Button" parent="CanvasLayer/VBoxContainer"]
-margin_top = 100.0
-margin_right = 400.0
-margin_bottom = 146.0
-custom_fonts/font = SubResource( 1 )
-text = "Quit"
 
 [node name="Title" type="Sprite" parent="CanvasLayer"]
 position = Vector2( 512.318, 115.506 )
@@ -147,8 +105,5 @@ anims/title2 = SubResource( 3 )
 [connection signal="mouse_entered" from="CanvasLayer/Panel/QuitButton" to="." method="_on_QuitButton_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Panel/QuitButton" to="." method="_on_QuitButton_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Panel/QuitButton" to="." method="_on_TextureButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/NewGame" to="." method="_on_NewGame_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Load Game" to="." method="_on_Load_Game_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/NewGame2" to="." method="_on_NewGame2_pressed"]
 [connection signal="timeout" from="TitleTimer" to="." method="_on_TitleTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
