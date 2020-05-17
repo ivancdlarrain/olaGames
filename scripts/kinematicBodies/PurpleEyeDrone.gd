@@ -1,7 +1,7 @@
 extends Drone
 
 #movement:
-const MAX_SPEED = 50
+const MAX_SPEED = 100
 const SPEED_INCREASE = 10
 const DEACCEL = 5
 #animation:
@@ -22,7 +22,7 @@ func _ready():
 
 func apply_movement(direction):
 	velocity += SPEED_INCREASE * direction
-	if velocity.distance_to(Vector2(0, 0)):
+	if velocity.distance_to(Vector2(0, 0)) > MAX_SPEED:
 		velocity = velocity.normalized() * MAX_SPEED
 	velocity = move_and_slide(velocity)
 	# Animation:
