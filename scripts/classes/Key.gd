@@ -4,6 +4,7 @@ class_name Key
 
 func _ready():
 	frame = 0
+	set_light_mask(0)    # Keys will not be affected by light :)
 
 
 func hold_key():

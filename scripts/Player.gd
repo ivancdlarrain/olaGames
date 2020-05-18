@@ -130,12 +130,15 @@ func take_damage():
 
 
 func _die():
+	# Controls will no longer work
 	get_node('MovementState').set_physics_process(false)
 	get_node('ColorState').set_physics_process(false)
+	# The looks!
 	$Sprite.modulate = Color(1, 1, 1)
+	$Light2D.visible = false
 	yield(get_tree().create_timer(.01), "timeout")
 	playback.travel('death')
-	yield(get_tree().create_timer(.7), 'timeout')
+	yield(get_tree().create_timer(.7), 'timeout')       # intended to be replaced
 	get_tree().reload_current_scene()	
 
 

@@ -1,28 +1,36 @@
 extends StateMachine
 
+
 var color_switch = 0
 
 
+onready var sprite = parent.get_node('Sprite') as Sprite
+onready var guts = parent.get_node('Guts') as Area2D
+onready var light = parent.get_node('Light2D') as Light2D
+
+
 func change_color(new_color):
-	parent.get_node('Sprite').modulate = new_color
-	parent.get_node('Light2D').color = new_color
+	sprite.modulate = new_color
+	light.color = new_color
 
 
 func enter_layer(layer):
 	parent.set_collision_layer_bit(layer, true)
 	parent.set_collision_mask_bit(layer, true)
-	parent.get_node('Guts').set_collision_layer_bit(layer, true)
-	parent.get_node('Guts').set_collision_mask_bit(layer, true)
+	guts.set_collision_layer_bit(layer, true)
+	guts.set_collision_mask_bit(layer, true)
+	light.set_item_cull_mask(2 ^ (layer - 1))  #dislike this operation
 
 
 func exit_layer(layer):
 	parent.set_collision_layer_bit(layer, false)
 	parent.set_collision_mask_bit(layer, false)
-	parent.get_node('Guts').set_collision_layer_bit(layer, false)
-	parent.get_node('Guts').set_collision_mask_bit(layer, false)
+	guts.set_collision_layer_bit(layer, false)
+	guts.set_collision_mask_bit(layer, false)
 
 
 func _ready():
+	light.set_light_mask(2)
 	add_state('blue')
 	add_state('orange')
 	add_state('purple')

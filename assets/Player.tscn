@@ -148,6 +148,7 @@ extents = Vector2( 2.09141, 7.47339 )
 "drone_target",
 "saveable",
 ]]
+light_mask = 0
 scale = Vector2( 1.1, 1.2 )
 collision_layer = 9
 collision_mask = 9
@@ -180,10 +181,11 @@ wait_time = 0.4
 one_shot = true
 
 [node name="Sprite" type="Sprite" parent="."]
+light_mask = 0
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 6
-frame = 1
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/death = SubResource( 2 )
@@ -205,8 +207,10 @@ position = Vector2( 0.0928116, -4.38152 )
 shape = SubResource( 29 )
 
 [node name="Light2D" type="Light2D" parent="."]
+light_mask = 0
 texture = ExtResource( 5 )
 energy = 2.0
+range_item_cull_mask = 0
 shadow_enabled = true
 shadow_color = Color( 0.211765, 0.211765, 0.211765, 0 )
 [connection signal="body_entered" from="Guts" to="." method="_on_Guts_body_entered"]

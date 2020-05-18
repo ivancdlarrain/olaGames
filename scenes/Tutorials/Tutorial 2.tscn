@@ -228,6 +228,7 @@ tile_data = PoolIntArray( 262215, 0, 0, 262273, 0, 0, 262274, 0, 0, 262275, 0, 0
 
 [node name="Orange" parent="TileMaps/Orange" instance=ExtResource( 2 )]
 modulate = Color( 1, 0.529412, 0, 1 )
+light_mask = 2
 position = Vector2( 0, 0 )
 collision_layer = 2
 collision_mask = 2
@@ -243,6 +244,7 @@ tile_data = PoolIntArray( 131207, 0, 0, 131208, 0, 0, 131209, 0, 0, 131210, 0, 0
 
 [node name="Purple" parent="TileMaps/Purple" instance=ExtResource( 2 )]
 modulate = Color( 0.85098, 0, 1, 1 )
+light_mask = 4
 position = Vector2( 0, 0 )
 collision_layer = 4
 collision_mask = 4

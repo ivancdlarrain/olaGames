@@ -32,6 +32,7 @@ world_scene = "res://scenes/Tutorials/Tutorial 2.tscn"
 
 [node name="Wkey" type="Sprite" parent="."]
 modulate = Color( 0.686275, 0.686275, 0.686275, 1 )
+light_mask = 0
 position = Vector2( 176, 96 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 4 )
@@ -40,6 +41,7 @@ hframes = 2
 
 [node name="Akey" type="Sprite" parent="."]
 modulate = Color( 0.686275, 0.686275, 0.686275, 1 )
+light_mask = 0
 position = Vector2( 128, 144 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 4 )
@@ -49,6 +51,7 @@ frame = 2
 
 [node name="Skey" type="Sprite" parent="."]
 modulate = Color( 0.686275, 0.686275, 0.686275, 1 )
+light_mask = 0
 position = Vector2( 176, 144 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 4 )
@@ -58,6 +61,7 @@ frame = 4
 
 [node name="Dkey" type="Sprite" parent="."]
 modulate = Color( 0.686275, 0.686275, 0.686275, 1 )
+light_mask = 0
 position = Vector2( 224, 144 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 4 )
