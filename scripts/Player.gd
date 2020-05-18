@@ -130,7 +130,12 @@ func take_damage():
 
 
 func _die():
-# warning-ignore:return_value_discarded
+	get_node('MovementState').set_physics_process(false)
+	get_node('ColorState').set_physics_process(false)
+	$Sprite.modulate = Color(1, 1, 1)
+	yield(get_tree().create_timer(.01), "timeout")
+	playback.travel('death')
+	yield(get_tree().create_timer(.7), 'timeout')
 	get_tree().reload_current_scene()	
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/sprites/player/demo_player.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -9,7 +9,21 @@
 extents = Vector2( 6.74254, 22.9816 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "fall"
+resource_name = "death"
+length = 0.7
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 16, -0.25, 0, 0.25, 0, 17, -0.25, 0, 0.25, 0, 18, -0.25, 0, 0.25, 0, 19, -0.25, 0, 0.25, 0, 20, -0.25, 0, 0.25, 0, 21, -0.25, 0, 0.25, 0, 22, -0.25, 0, 0.25, 0, 23, -0.25, 0, 0.25, 0, 24, -0.25, 0, 0.25, 0, 25, -0.25, 0, 0.25, 0, 26, -0.25, 0, 0.25, 0, 27, -0.25, 0, 0.25, 0, 28, -0.25, 0, 0.25, 0, 29, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7 )
+}
+
+[sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Sprite:frame")
@@ -22,8 +36,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "idle"
+[sub_resource type="Animation" id=4]
 length = 0.4
 loop = true
 tracks/0/type = "bezier"
@@ -37,8 +50,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3 )
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "jump"
+[sub_resource type="Animation" id=5]
 length = 0.4
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Sprite:frame")
@@ -51,8 +63,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3 )
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "run"
+[sub_resource type="Animation" id=6]
 length = 0.8
 loop = true
 tracks/0/type = "bezier"
@@ -66,21 +77,20 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=6]
-animation = "fall"
-
 [sub_resource type="AnimationNodeAnimation" id=7]
-animation = "idle"
+animation = "death"
 
 [sub_resource type="AnimationNodeAnimation" id=8]
-animation = "jump"
+animation = "fall"
 
 [sub_resource type="AnimationNodeAnimation" id=9]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "jump"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "run"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
 
@@ -100,21 +110,36 @@ animation = "run"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=20]
 
-[sub_resource type="AnimationNodeStateMachine" id=21]
-states/fall/node = SubResource( 6 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
+[sub_resource type="AnimationNodeStateMachine" id=27]
+states/death/node = SubResource( 7 )
+states/death/position = Vector2( 413, 113 )
+states/fall/node = SubResource( 8 )
 states/fall/position = Vector2( 523, 187 )
-states/idle/node = SubResource( 7 )
+states/idle/node = SubResource( 9 )
 states/idle/position = Vector2( 310, 181 )
-states/jump/node = SubResource( 8 )
+states/jump/node = SubResource( 10 )
 states/jump/position = Vector2( 310, 43 )
-states/run/node = SubResource( 9 )
+states/run/node = SubResource( 11 )
 states/run/position = Vector2( 523, 43 )
-transitions = [ "idle", "run", SubResource( 10 ), "idle", "jump", SubResource( 11 ), "fall", "jump", SubResource( 12 ), "fall", "run", SubResource( 13 ), "fall", "idle", SubResource( 14 ), "jump", "idle", SubResource( 15 ), "jump", "run", SubResource( 16 ), "run", "jump", SubResource( 17 ), "run", "idle", SubResource( 18 ), "idle", "fall", SubResource( 19 ), "jump", "fall", SubResource( 20 ) ]
+transitions = [ "idle", "run", SubResource( 12 ), "idle", "jump", SubResource( 13 ), "fall", "jump", SubResource( 14 ), "fall", "run", SubResource( 15 ), "fall", "idle", SubResource( 16 ), "jump", "idle", SubResource( 17 ), "jump", "run", SubResource( 18 ), "run", "jump", SubResource( 19 ), "run", "idle", SubResource( 20 ), "idle", "fall", SubResource( 21 ), "jump", "fall", SubResource( 22 ), "jump", "death", SubResource( 23 ), "run", "death", SubResource( 24 ), "fall", "death", SubResource( 25 ), "idle", "death", SubResource( 26 ) ]
 start_node = "idle"
+end_node = "death"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
 
-[sub_resource type="RectangleShape2D" id=23]
+[sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 2.09141, 7.47339 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -155,25 +180,26 @@ one_shot = true
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-vframes = 4
-hframes = 4
-frame = 2
+vframes = 6
+hframes = 6
+frame = 30
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fall = SubResource( 2 )
-anims/idle = SubResource( 3 )
-anims/jump = SubResource( 4 )
-anims/run = SubResource( 5 )
+anims/death = SubResource( 2 )
+anims/fall = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/jump = SubResource( 5 )
+anims/run = SubResource( 6 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 21 )
+tree_root = SubResource( 27 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 22 )
+parameters/playback = SubResource( 28 )
 
 [node name="Guts" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Guts"]
 position = Vector2( 0.0928116, -4.38152 )
-shape = SubResource( 23 )
+shape = SubResource( 29 )
 [connection signal="body_entered" from="Guts" to="." method="_on_Guts_body_entered"]

@@ -67,10 +67,10 @@ __meta__ = {
 }
 
 [node name="Spikes" type="RichTextLabel" parent="Text"]
-margin_left = 2300.27
-margin_top = 33.3368
-margin_right = 2527.27
-margin_bottom = 198.337
+margin_left = 2212.3
+margin_top = 28.4498
+margin_right = 2439.3
+margin_bottom = 193.45
 custom_fonts/normal_font = SubResource( 1 )
 text = "dont touch the spikes!!"
 __meta__ = {
@@ -222,7 +222,7 @@ tile_data = PoolIntArray( 131230, 4, 65536, 131231, 4, 65540, 131232, 4, 65539, 
 modulate = Color( 0, 0.972549, 1, 1 )
 collision_layer = 1
 collision_mask = 1
-tile_data = PoolIntArray( 262273, 0, 0, 262274, 0, 0, 262275, 0, 0, 262276, 0, 0, 262277, 0, 0 )
+tile_data = PoolIntArray( 262215, 0, 0, 262273, 0, 0, 262274, 0, 0, 262275, 0, 0, 262276, 0, 0, 262277, 0, 0 )
 
 [node name="Orange" type="Node" parent="TileMaps"]
 
@@ -237,7 +237,7 @@ tile_data = PoolIntArray( 327809, 4, 65536, 327810, 4, 65540, 327811, 4, 65540, 
 modulate = Color( 1, 0.529412, 0, 1 )
 collision_layer = 2
 collision_mask = 2
-tile_data = PoolIntArray( 131207, 0, 0, 131208, 0, 0, 131209, 0, 0, 131210, 0, 0, 131211, 0, 0, 131212, 0, 0 )
+tile_data = PoolIntArray( 131207, 0, 0, 131208, 0, 0, 131209, 0, 0, 131210, 0, 0, 131211, 0, 0, 131212, 0, 0, 196681, 0, 0 )
 
 [node name="Purple" type="Node" parent="TileMaps"]
 
@@ -254,6 +254,12 @@ position = Vector2( 0, 0 )
 collision_layer = 0
 collision_mask = 0
 tile_data = PoolIntArray( 174, 2, 0, 175, 2, 0, 176, 2, 0, 177, 2, 0, 178, 2, 0, 179, 2, 0, 65710, 2, 0, 65711, 2, 0, 65712, 2, 0, 65713, 2, 0, 65714, 2, 0, 65715, 2, 0, 131242, 2, 0, 131243, 2, 0, 131244, 2, 0, 131245, 2, 0, 131246, 2, 0, 131247, 2, 0, 196778, 2, 0, 196779, 2, 0, 196780, 2, 0, 196781, 2, 0, 196782, 2, 0, 196783, 2, 0 )
+
+[node name="Spikes" parent="TileMaps/Purple" instance=ExtResource( 13 )]
+modulate = Color( 0.85098, 0, 1, 1 )
+collision_layer = 4
+collision_mask = 4
+tile_data = PoolIntArray( 327749, 0, 0 )
 
 [node name="White" type="Node" parent="TileMaps"]
 
