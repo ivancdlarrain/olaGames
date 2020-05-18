@@ -5,6 +5,7 @@ var color_switch = 0
 
 func change_color(new_color):
 	parent.get_node('Sprite').modulate = new_color
+	parent.get_node('Light2D').color = new_color
 
 
 func enter_layer(layer):
