@@ -23,8 +23,8 @@ func _on_LoadGame_button_down():
 	$CanvasLayer/Panel/LoadGame/Sprite.frame = 2
 
 
-func _on_LoadGame_pressed():
-	Save.load_game()
+#func _on_LoadGame_pressed():
+#	Save.load_game()
 
 
 func _on_LoadGame_mouse_entered():

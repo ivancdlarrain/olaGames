@@ -19,15 +19,34 @@ func _on_Main_Menu_pressed():
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://scenes/menus/Main_menu.tscn")
 
-
-
-
 func _on_Save_pressed():
 	Save.save_game()
-
+	
+	
+#------------ Saved Games Menu ------------#
 
 func _on_Load_pressed():
-	Save.load_game()
-	get_tree().paused = false
-	visible = false
+	
 	$CanvasLayer/VBoxContainer.visible = false
+	$"CanvasLayer/Save Slots".visible = true
+
+
+
+func _on_Slot_1_pressed():
+	Save.load_game(0)
+	get_tree().paused = false
+
+
+func _on_Slot_2_pressed():
+	Save.load_game(1)
+	get_tree().paused = false
+
+
+func _on_Slot_3_pressed():
+	Save.load_game(2)
+	get_tree().paused = false
+
+
+func _on_Back_pressed():
+	$"CanvasLayer/Save Slots".visible = false
+	$CanvasLayer/VBoxContainer.visible = true
