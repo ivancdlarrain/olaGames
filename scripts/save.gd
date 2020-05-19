@@ -90,7 +90,20 @@ func push_order():
 	var last = save_slots.pop_back()
 	save_slots.push_front(last)
 
-
+# Delete saves when starting a new game
+func delete_saves():
+	var dir = Directory.new()
+	dir.remove("res://data/savegames/savegame1.json")
+	dir.remove("res://data/savegames/savegame2.json")
+	dir.remove("res://data/savegames/savegame3.json")
+	
+	save_slots.clear()
+	save_slots.append(SAVE1)
+	save_slots.append(SAVE2)
+	save_slots.append(SAVE3)
+	
+	
+	
 	
 	
 	
