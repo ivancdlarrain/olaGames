@@ -1,12 +1,16 @@
 extends Node
 
 const SAVE_PATH = "res://data/savegames/savegame.json"
-var _settings = {}
+
+var save_slots = []
+
 
 func _ready():
 	pass
 
 func save_game():
+#	if save_slot_used():
+#		pass
 	var save_dict = {}
 	var nodes_to_save = get_tree().get_nodes_in_group("saveable")
 	for node in nodes_to_save:
@@ -41,7 +45,9 @@ func load_game():
 			
 	savefile.close()
 	
-	
+func save_slot_used(savefile: File):
+	if savefile.file_exists(SAVE_PATH):
+		return true
 	
 	
 
