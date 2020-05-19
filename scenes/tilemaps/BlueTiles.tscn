@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://assets/tilesets/TileSet.tres" type="TileSet" id=1]
 
-[sub_resource type="CanvasItemMaterial" id=1]
-
-[node name="TileMap" type="TileMap"]
-material = SubResource( 1 )
+[node name="BlueTiles" type="TileMap"]
+modulate = Color( 0, 0.972549, 1, 1 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
