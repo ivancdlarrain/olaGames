@@ -1,7 +1,17 @@
 extends Node
 
-const SAVE_PATH = "res://data/savegames/savegame.json"
-var _settings = {}
+const SAVE1 = "res://data/savegames/savegame1.json"
+const SAVE2 = "res://data/savegames/savegame2.json"
+const SAVE3 = "res://data/savegames/savegame3.json"
+
+const SAVE_ORDER = "res://data/savegames/saveorder.cfg"
+var cfg_file = ConfigFile.new()
+
+
+var save_slots = [SAVE1, SAVE2, SAVE3]
+var order_cfg = {"order" : []}
+
+
 
 func _ready():
 	pass
@@ -14,18 +24,19 @@ func save_game():
 		pass
 	
 	var savefile = File.new()
-	savefile.open(SAVE_PATH, File.READ)
+	savefile.open(save_slots[0], File.READ)
 	
 	savefile.store_line(to_json(save_dict))
 	savefile.close()
+	push_order()
 
-func load_game():
+func load_game(slot):
 	print("Loading Game")
 	var savefile = File.new()
-	if not savefile.file_exists(SAVE_PATH):
+	if not savefile.file_exists(save_slots[slot]):
 		return
 	
-	savefile.open(SAVE_PATH, File.READ)
+	savefile.open(save_slots[slot], File.READ)
 	var save_data = {}
 	save_data = JSON.parse(savefile.get_as_text()).result
 	
@@ -40,6 +51,37 @@ func load_game():
 #				node.set_position(Vector2(save_data[node_path]["pos"]["x"], save_data[node_path]["pos"]["y"]))
 			
 	savefile.close()
+
+func generate_order_cfg():
+	for order in save_slots:
+		order_cfg["order"].append(order[4])
+	cfg_file.set_value(order_cfg)
+	cfg_file.save(SAVE_ORDER)
+				
+	
+	
+
+func load_order():
+	var error = cfg_file.load(SAVE_ORDER)
+	if error != OK:
+		print ("Error loading the settings. Error code %s" % error)
+		return []
+	for slot in cfg_file["order"]:
+		match slot:
+			1: save_slots[slot] = SAVE1
+			2: save_slots[slot] = SAVE2
+			3: save_slots[slot] = SAVE3
+	return	
+
+func push_order():
+	var last = save_slots[2]
+	save_slots[2] = save_slots[1]
+	save_slots[1] = save_slots[0]
+	save_slots[0] = last
+		
+
+	
+	
 	
 	
 	
