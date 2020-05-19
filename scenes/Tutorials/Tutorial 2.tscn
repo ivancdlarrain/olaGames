@@ -25,18 +25,21 @@ script = ExtResource( 5 )
 [node name="Keys" type="Node2D" parent="."]
 
 [node name="space" type="Sprite" parent="Keys"]
+light_mask = 0
 position = Vector2( 1604.85, 116.733 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 hframes = 2
 
 [node name="space2" type="Sprite" parent="Keys"]
+light_mask = 0
 position = Vector2( 2884.83, 47.2906 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 hframes = 2
 
 [node name="left" type="Sprite" parent="Keys"]
+light_mask = 0
 position = Vector2( 247.665, 315.753 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
@@ -45,6 +48,7 @@ hframes = 2
 frame = 2
 
 [node name="right2" type="Sprite" parent="Keys"]
+light_mask = 0
 position = Vector2( 334.728, 314.161 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
@@ -78,6 +82,7 @@ __meta__ = {
 }
 
 [node name="Glide" type="RichTextLabel" parent="Text"]
+light_mask = 0
 margin_left = 2735.3
 margin_top = 10.5053
 margin_right = 2962.3
@@ -91,10 +96,11 @@ __meta__ = {
 }
 
 [node name="DJump" type="RichTextLabel" parent="Text"]
+light_mask = 0
 margin_left = 3704.57
-margin_top = 46.6916
+margin_top = 45.3992
 margin_right = 3931.57
-margin_bottom = 211.692
+margin_bottom = 210.4
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "while [color=#ff8700] orange [/color] press jump in the air to do a double jump"
@@ -130,6 +136,7 @@ __meta__ = {
 }
 
 [node name="Collision" type="RichTextLabel" parent="Text"]
+light_mask = 0
 margin_left = 802.907
 margin_top = 68.4942
 margin_right = 1153.91
@@ -147,6 +154,7 @@ __meta__ = {
 }
 
 [node name="Dash" type="RichTextLabel" parent="Text"]
+light_mask = 0
 margin_left = 1471.62
 margin_top = 2.79444
 margin_right = 1880.62
@@ -236,6 +244,7 @@ tile_data = PoolIntArray( 327809, 4, 65536, 327810, 4, 65540, 327811, 4, 65540, 
 
 [node name="Spikes" parent="TileMaps/Orange" instance=ExtResource( 13 )]
 modulate = Color( 1, 0.529412, 0, 1 )
+light_mask = 2
 collision_layer = 2
 collision_mask = 2
 tile_data = PoolIntArray( 131207, 0, 0, 131208, 0, 0, 131209, 0, 0, 131210, 0, 0, 131211, 0, 0, 131212, 0, 0, 196681, 0, 0 )
@@ -252,6 +261,7 @@ tile_data = PoolIntArray( 131233, 4, 65536, 131234, 4, 65540, 131235, 4, 65539, 
 
 [node name="PurpleAppear" parent="TileMaps/Purple" instance=ExtResource( 2 )]
 modulate = Color( 0.85098, 0, 1, 1 )
+light_mask = 4
 position = Vector2( 0, 0 )
 collision_layer = 0
 collision_mask = 0
@@ -259,6 +269,7 @@ tile_data = PoolIntArray( 174, 2, 0, 175, 2, 0, 176, 2, 0, 177, 2, 0, 178, 2, 0,
 
 [node name="Spikes" parent="TileMaps/Purple" instance=ExtResource( 13 )]
 modulate = Color( 0.85098, 0, 1, 1 )
+light_mask = 4
 collision_layer = 4
 collision_mask = 4
 tile_data = PoolIntArray( 327749, 0, 0 )
@@ -266,6 +277,7 @@ tile_data = PoolIntArray( 327749, 0, 0 )
 [node name="White" type="Node" parent="TileMaps"]
 
 [node name="White" parent="TileMaps/White" instance=ExtResource( 2 )]
+light_mask = 7
 position = Vector2( 0, 0 )
 collision_layer = 15
 collision_mask = 15
@@ -280,6 +292,7 @@ world_scene = "res://scenes/demo1.tscn"
 
 [node name="Button" parent="RuleTiles" instance=ExtResource( 9 )]
 modulate = Color( 0.85098, 0, 1, 1 )
+light_mask = 4
 position = Vector2( 5338.67, 168.138 )
 collision_layer = 4
 collision_mask = 4
