@@ -53,6 +53,12 @@ limit_bottom = 715
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 3 )]
 
+[node name="TileMap" parent="." instance=ExtResource( 13 )]
+modulate = Color( 0, 1, 0.984314, 1 )
+position = Vector2( -2, 0 )
+collision_layer = 0
+collision_mask = 0
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer2" instance=ExtResource( 6 )]
@@ -100,7 +106,6 @@ tile_map_path = NodePath("../BlueAppear")
 
 [node name="Orange" parent="Tiles/Orange" instance=ExtResource( 13 )]
 modulate = Color( 0.807843, 0.505882, 0.168627, 1 )
-light_mask = 2
 position = Vector2( 0, 0 )
 collision_layer = 2
 collision_mask = 2
@@ -108,7 +113,6 @@ tile_data = PoolIntArray( 65566, 4, 65536, 65567, 4, 65539, 131096, 4, 65536, 13
 
 [node name="OrangeAppear" parent="Tiles/Orange" instance=ExtResource( 13 )]
 modulate = Color( 1, 0.529412, 0, 1 )
-light_mask = 2
 position = Vector2( 0, 0 )
 collision_layer = 0
 collision_mask = 0
@@ -116,14 +120,12 @@ tile_data = PoolIntArray( 262241, 2, 0, 262242, 2, 0, 262243, 2, 0, 262244, 2, 0
 
 [node name="Spikes" parent="Tiles/Orange" instance=ExtResource( 9 )]
 modulate = Color( 1, 0.529412, 0, 1 )
-light_mask = 2
 collision_layer = 2
 collision_mask = 2
 tile_data = PoolIntArray( 30, 0, 0, 31, 0, 0, 458828, -1073741824, 0, 458831, -1610612736, 0, 524364, -1073741824, 0, 524367, -1610612736, 0, 589900, -1073741824, 0, 589903, -1610612736, 0, 655439, -1610612736, 0, 720975, -1610612736, 0 )
 
 [node name="Button2" parent="Tiles/Orange" instance=ExtResource( 4 )]
 modulate = Color( 1, 0.529412, 0, 1 )
-light_mask = 2
 position = Vector2( 2888, 168 )
 collision_layer = 2
 collision_mask = 2
@@ -134,7 +136,6 @@ layer_bit = 1
 
 [node name="Purple" parent="Tiles/Purple" instance=ExtResource( 13 )]
 modulate = Color( 0.639216, 0.196078, 0.717647, 1 )
-light_mask = 4
 position = Vector2( 0, 0 )
 collision_layer = 4
 collision_mask = 4
@@ -142,7 +143,6 @@ tile_data = PoolIntArray( -262096, 4, 65536, -262095, 4, 65539, -196560, 4, 6554
 
 [node name="Spikes" parent="Tiles/Purple" instance=ExtResource( 9 )]
 modulate = Color( 0.85098, 0, 1, 1 )
-light_mask = 4
 collision_layer = 4
 collision_mask = 4
 tile_data = PoolIntArray( -262097, -1073741824, 0, -196561, -1073741824, 0, -131025, -1073741824, 0, -65489, -1073741824, 0, 47, -1073741824, 0, 65583, -1073741824, 0, 131118, -1610612736, 0, 131119, -1073741824, 0, 196654, -1610612736, 0, 196655, -1073741824, 0, 262190, -1610612736, 0, 262191, -1073741824, 0, 327726, -1610612736, 0, 327727, -1073741824, 0, 393262, -1610612736, 0, 393263, -1073741824, 0, 458798, -1610612736, 0, 458799, -1073741824, 0, 524334, -1610612736, 0, 524335, -1073741824, 0, 589870, -1610612736, 0, 589871, -1073741824, 0 )
