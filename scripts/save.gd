@@ -1,15 +1,16 @@
 extends Node
 
-var save_path = "res://data/savegames/savegame.json"
+const SAVE_PATH = "res://data/savegames/savegame.json"
 
-var SAVE_SLOTS = [save_path%1, save_path%2, save_path%3]
+var save_slots = []
 
 
 func _ready():
 	pass
 
-func save_game(slot: int):
-	
+func save_game():
+#	if save_slot_used():
+#		pass
 	var save_dict = {}
 	var nodes_to_save = get_tree().get_nodes_in_group("saveable")
 	for node in nodes_to_save:
@@ -17,18 +18,18 @@ func save_game(slot: int):
 		pass
 	
 	var savefile = File.new()
-	savefile.open(SAVE_SLOTS[slot - 1], File.READ)
+	savefile.open(SAVE_PATH, File.READ)
 	
 	savefile.store_line(to_json(save_dict))
 	savefile.close()
 
-func load_game(slot: int):
+func load_game():
 	print("Loading Game")
 	var savefile = File.new()
-	if not savefile.file_exists(SAVE_SLOTS[slot - 1]):
+	if not savefile.file_exists(SAVE_PATH):
 		return
 	
-	savefile.open(SAVE_SLOTS[slot - 1], File.READ)
+	savefile.open(SAVE_PATH, File.READ)
 	var save_data = {}
 	save_data = JSON.parse(savefile.get_as_text()).result
 	
@@ -44,12 +45,9 @@ func load_game(slot: int):
 			
 	savefile.close()
 	
-func save_slot_used(slot: int):
-	var savefile = File.new()
-	savefile.open(SAVE_SLOTS[slot - 1], File.READ)
-	if savefile.file_exists(SAVE_SLOTS[slot - 1]):
-		savefile.close()
+func save_slot_used(savefile: File):
+	if savefile.file_exists(SAVE_PATH):
 		return true
-	return false
+	
 	
 
