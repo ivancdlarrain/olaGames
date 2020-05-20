@@ -53,9 +53,9 @@ __meta__ = {
 }
 
 [node name="PlayButton" type="TextureButton" parent="CanvasLayer/Panel"]
-margin_left = 382.577
+margin_left = 385.032
 margin_top = 269.276
-margin_right = 665.577
+margin_right = 668.032
 margin_bottom = 370.276
 __meta__ = {
 "_edit_group_": true,
@@ -89,7 +89,6 @@ position = Vector2( 512.318, 115.506 )
 scale = Vector2( 6, 7 )
 texture = ExtResource( 3 )
 vframes = 7
-frame = 6
 
 [node name="TitleTimer" type="Timer" parent="."]
 wait_time = 10.0

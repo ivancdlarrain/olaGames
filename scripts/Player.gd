@@ -136,10 +136,11 @@ func _die():
 	# The looks!
 	$Sprite.modulate = Color(1, 1, 1)
 	$Light2D.visible = false
-	yield(get_tree().create_timer(.01), "timeout")
+	yield(get_tree().create_timer(.001), "timeout")
 	playback.travel('death')
-	yield(get_tree().create_timer(.7), 'timeout')       # intended to be replaced
-	get_tree().reload_current_scene()	
+
+func _actually_die():
+	get_tree().reload_current_scene()
 
 
 #Save Game

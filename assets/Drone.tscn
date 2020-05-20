@@ -153,7 +153,7 @@ light_mask = 2
 texture = ExtResource( 2 )
 vframes = 5
 hframes = 3
-frame = 2
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/aggro = SubResource( 2 )
