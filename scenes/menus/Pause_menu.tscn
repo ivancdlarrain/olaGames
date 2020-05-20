@@ -91,7 +91,61 @@ margin_right = 400.0
 margin_bottom = 161.0
 custom_fonts/font = SubResource( 2 )
 text = "Main Menu"
+
+[node name="Save Slots" type="VBoxContainer" parent="Pause/CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -100.0
+margin_right = 200.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Pause/CanvasLayer/Save Slots"]
+margin_right = 400.0
+margin_bottom = 61.0
+custom_fonts/font = SubResource( 1 )
+text = "Choose a save slot"
+align = 1
+valign = 1
+
+[node name="Slot 1" type="Button" parent="Pause/CanvasLayer/Save Slots"]
+margin_top = 65.0
+margin_right = 400.0
+margin_bottom = 111.0
+custom_fonts/font = SubResource( 2 )
+text = "Save slot 1"
+
+[node name="Slot 2" type="Button" parent="Pause/CanvasLayer/Save Slots"]
+margin_top = 115.0
+margin_right = 400.0
+margin_bottom = 161.0
+custom_fonts/font = SubResource( 2 )
+text = "Save slot 2"
+
+[node name="Slot 3" type="Button" parent="Pause/CanvasLayer/Save Slots"]
+margin_top = 115.0
+margin_right = 400.0
+margin_bottom = 161.0
+custom_fonts/font = SubResource( 2 )
+text = "Save slot 3"
+
+[node name="Back" type="Button" parent="Pause/CanvasLayer/Save Slots"]
+margin_top = 115.0
+margin_right = 400.0
+margin_bottom = 161.0
+custom_fonts/font = SubResource( 2 )
+text = "Back"
 [connection signal="pressed" from="Pause/CanvasLayer/VBoxContainer/Resume" to="Pause" method="_on_Resume_pressed"]
 [connection signal="pressed" from="Pause/CanvasLayer/VBoxContainer/Save" to="Pause" method="_on_Save_pressed"]
 [connection signal="pressed" from="Pause/CanvasLayer/VBoxContainer/Load" to="Pause" method="_on_Load_pressed"]
 [connection signal="pressed" from="Pause/CanvasLayer/VBoxContainer/Main Menu" to="Pause" method="_on_Main_Menu_pressed"]
+[connection signal="pressed" from="Pause/CanvasLayer/Save Slots/Slot 1" to="Pause" method="_on_Slot_1_pressed"]
+[connection signal="pressed" from="Pause/CanvasLayer/Save Slots/Slot 2" to="Pause" method="_on_Slot_2_pressed"]
+[connection signal="pressed" from="Pause/CanvasLayer/Save Slots/Slot 3" to="Pause" method="_on_Slot_3_pressed"]
+[connection signal="pressed" from="Pause/CanvasLayer/Save Slots/Back" to="Pause" method="_on_Back_pressed"]

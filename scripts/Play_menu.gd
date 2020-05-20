@@ -4,6 +4,7 @@ extends Control
 
 
 func _on_NewGame_pressed():
+	Save.delete_saves()
 	get_tree().change_scene("res://scenes/Tutorials/Tutorial 1.tscn")
 
 
@@ -24,7 +25,7 @@ func _on_LoadGame_button_down():
 
 
 func _on_LoadGame_pressed():
-	Save.load_game()
+	get_tree().change_scene("res://scenes/menus/Load_menu.tscn")
 
 
 func _on_LoadGame_mouse_entered():
