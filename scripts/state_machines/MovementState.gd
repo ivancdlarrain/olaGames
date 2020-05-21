@@ -127,10 +127,13 @@ func _get_transition(_delta):
 			else:
 				if parent.velocity.y < 0: 
 					return states.jump
-				
+		
 		states.dash:
 			if abs(parent.velocity.x) <= parent.max_speed:
-				return states.run
+				if !on_floor:
+					return states.fall
+				else:
+					return states.run
 		
 		states.glide:
 			if !on_floor:
