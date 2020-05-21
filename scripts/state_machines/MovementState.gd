@@ -123,6 +123,7 @@ func _get_transition(_delta):
 					return states.jump
 		
 		states.dash:
+			if on_wall: return states.wall_slide
 			if abs(parent.velocity.x) <= parent.max_speed:
 				if !on_floor:
 					return states.fall
@@ -194,7 +195,7 @@ func _enter_state(new_state, _old_state):
 			parent.c_timer.start()
 
 
-func _exit_state(old_state, _new_state):
+func _exit_state(old_state, new_state):
 	match old_state:
 		states.pre_fall:
 			parent.grav = parent.default_grav
@@ -202,5 +203,8 @@ func _exit_state(old_state, _new_state):
 			parent.grav = parent.default_grav
 			parent.dashing = false
 			parent.dash_cd.start()
+			if new_state == states.wall_slide:
+				print('yay!')
+				parent.velocity = parent.move_and_slide(Vector2(0, -parent.max_speed))
 		states.glide:
 			parent.grav = parent.default_grav

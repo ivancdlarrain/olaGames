@@ -37,21 +37,12 @@ func _ready():
 
 
 func _state_logic(_delta):
-	if Input.is_action_just_pressed("ui_left"):
-		if state != 0:
-			color_switch = 0
-		else:
-			pass     # Here we could put our cool function
-	elif Input.is_action_just_pressed("ui_down"):
-		if state != 1:
-			color_switch = 1
-		else:
-			pass     # Here we could put our cool function
-	elif Input.is_action_just_pressed("ui_right"):
-		if state != 2:
-			color_switch = 2
-		else:
-			pass     # Here we could put our cool function
+	if Input.is_action_just_pressed("ui_left") and state != 0:
+		color_switch = 0
+	elif Input.is_action_just_pressed("ui_down") and state != 1:
+		color_switch = 1
+	elif Input.is_action_just_pressed("ui_right") and state != 2:
+		color_switch = 2
 	else:
 		color_switch = -1
 
