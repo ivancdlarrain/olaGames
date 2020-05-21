@@ -29,34 +29,30 @@ func _state_logic(delta):
 
 func _input(event):
 	if event.is_action_pressed('WASD_up'):
+		if [states.wall_slide].has(state):
+			parent._wall_jump()
 		parent.jump_pressed = true
 		parent.remember_jump()
 	
 	if [states.idle, states.run, states.pre_fall].has(state) and parent.jump_pressed:
 			parent.velocity.y = -parent.jump_speed
-				
-		
-	if [color.states.orange].has(color.state):
-		if event.is_action_pressed('WASD_up'):
-			if [states.jump, states.fall, states.glide].has(state):
-				if parent.double_jump:
-					parent.velocity.y = -parent.jump_speed
-					parent.double_jump = false
-	if [states.wall_slide].has(state):
-		if event.is_action_pressed('WASD_up'):
-			
-			parent._wall_jump()
-	if event.is_action_pressed("special"):
-		if [color.states.blue].has(color.state):
-			if [states.run, states.fall, states.jump].has(state) and parent.dash_cd.is_stopped():
-				parent.dashing  = true
-		elif [color.states.orange].has(color.state):
-			pass
+	
+	match color.state:
+		color.states.blue:
+			if event.is_action_pressed("special"):
+				if [states.run, states.fall, states.jump].has(state) and parent.dash_cd.is_stopped():
+					parent.dashing  = true
+		color.states.orange:
+			if event.is_action_pressed('WASD_up'):
+				if [states.jump, states.fall, states.glide].has(state):
+					if parent.double_jump:
+						parent.velocity.y = -parent.jump_speed
+						parent.double_jump = false
+		color.states.purple:
+			if event.is_action_pressed("special"):
+				if [states.jump, states.fall].has(state):
+					parent.gliding = true
 					
-		else:
-			if [states.jump, states.fall].has(state):
-				parent.gliding = true
-	#Change if needed for another color
 	if event.is_action_released("special") or parent.on_floor or parent.is_on_wall() or ![color.states.purple].has(color.state):
 		parent.gliding = false	
 	
