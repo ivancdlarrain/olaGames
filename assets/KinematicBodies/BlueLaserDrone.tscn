@@ -1,11 +1,11 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/kinematicBodies/BlueLaserDrone.gd" type="Script" id=1]
 [ext_resource path="res://scripts/state_machines/BlueLaserDrone.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/hostile mobs/BlueLaserDrone.png" type="Texture" id=3]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 0, 0, -200, 300, 200, 300 )
+[sub_resource type="ConvexPolygonShape2D" id=17]
+points = PoolVector2Array( 0, 0, -300, 300, 300, 300 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "activate"
@@ -112,16 +112,19 @@ transitions = [ "idle", "activate", SubResource( 10 ), "activate", "move", SubRe
 radius = 48.9942
 height = 12.1721
 
+[sub_resource type="CircleShape2D" id=18]
+radius = 424.388
+
 [node name="BlueDrone" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
 [node name="States" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionCone" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-shape = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionCone"]
+shape = SubResource( 17 )
 
 [node name="DetectionRay" type="RayCast2D" parent="."]
 
@@ -135,7 +138,7 @@ anims/move = SubResource( 5 )
 texture = ExtResource( 3 )
 vframes = 7
 hframes = 7
-frame = 37
+frame = 41
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 14 )
@@ -146,3 +149,8 @@ parameters/playback = SubResource( 15 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 1, -0.359999 )
 shape = SubResource( 16 )
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource( 18 )

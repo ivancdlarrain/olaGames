@@ -330,4 +330,4 @@ position = Vector2( 776, 512 )
 scale = Vector2( 2, 2 )
 
 [node name="BlueDrone" parent="." instance=ExtResource( 17 )]
-position = Vector2( 620.499, -69.8061 )
+position = Vector2( 619.271, -69.8061 )
