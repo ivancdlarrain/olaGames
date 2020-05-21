@@ -31,8 +31,13 @@ func _input(event):
 	if event.is_action_pressed('WASD_up'):
 		if [states.wall_slide].has(state):
 			parent._wall_jump()
-		parent.jump_pressed = true
-		parent.remember_jump()
+		else:
+			parent.jump_pressed = true
+			parent.remember_jump()
+		
+	elif event.is_action_released("WASD_up"):
+		if [states.jump].has(state):
+			parent.velocity.y = parent.velocity.y * 0.5
 	
 	if [states.idle, states.run, states.pre_fall].has(state) and parent.jump_pressed:
 			parent.velocity.y = -parent.jump_speed
@@ -44,22 +49,15 @@ func _input(event):
 					parent.dashing  = true
 		color.states.orange:
 			if event.is_action_pressed('WASD_up'):
-				if [states.jump, states.fall, states.glide].has(state):
-					if parent.double_jump:
-						parent.velocity.y = -parent.jump_speed
-						parent.double_jump = false
+				if [states.jump, states.fall, states.glide].has(state) and parent.double_jump:
+					parent.velocity.y = -parent.jump_speed
+					parent.double_jump = false
 		color.states.purple:
 			if event.is_action_pressed("special"):
 				if [states.jump, states.fall].has(state):
 					parent.gliding = true
-					
-	if event.is_action_released("special") or parent.on_floor or parent.is_on_wall() or ![color.states.purple].has(color.state):
-		parent.gliding = false	
-	
-	#Make jump height dependant on how much key is pressed:
-	if event.is_action_released("WASD_up"):
-		if [states.jump].has(state):
-			parent.velocity.y = parent.velocity.y * 0.5
+			elif event.is_action_released("special") or parent.on_floor or parent.is_on_wall():
+				parent.gliding = false	
 
 
 func _get_transition(_delta):

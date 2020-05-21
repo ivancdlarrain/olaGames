@@ -88,3 +88,4 @@ func _exit_state(old_state, _new_state):
 			exit_layer(1)
 		states.purple:
 			exit_layer(2)
+			parent.gliding = false
