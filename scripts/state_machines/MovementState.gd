@@ -182,11 +182,8 @@ func _enter_state(new_state, _old_state):
 			emit_signal("use_ground_collision", true)
 			parent.playback.travel("run")
 			parent.grav = 0
-			parent.velocity.y = 0
-			if parent.facing_right:
-					parent.velocity.x = parent.max_speed * 3
-			else:
-					parent.velocity.x = -parent.max_speed * 3
+			var x = parent.max_speed * 3.3 if parent.facing_right else parent.max_speed * -3.3
+			parent.velocity = parent.move_and_slide(Vector2(x, 0))
 		states.glide:
 			emit_signal("use_ground_collision", false)
 			parent.playback.travel("fall")

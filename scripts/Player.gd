@@ -83,14 +83,16 @@ func _handle_horizontal_move_input():
 			velocity.x = sign(velocity.x)*max_speed
 		
 	# Facing:
-	if Input.is_action_pressed("WASD_left") and not Input.is_action_pressed("WASD_right"):
+	var going_left = Input.is_action_pressed("WASD_left") and not Input.is_action_pressed("WASD_right")
+	var going_right = Input.is_action_pressed("WASD_right") and not Input.is_action_pressed("WASD_left")
+	if going_left:
 		if facing_right:
 			scale.x *= -1
-		facing_right = false
-	if Input.is_action_pressed("WASD_right") and not Input.is_action_pressed("WASD_left"):
+			facing_right = false
+	elif going_right:
 		if not facing_right:
 			scale.x *= -1
-		facing_right = true
+			facing_right = true
 
 
 func _apply_friction():
