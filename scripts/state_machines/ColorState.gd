@@ -19,7 +19,6 @@ func enter_layer(layer):
 	parent.set_collision_mask_bit(layer, true)
 	guts.set_collision_layer_bit(layer, true)
 	guts.set_collision_mask_bit(layer, true)
-	light.set_item_cull_mask(pow(2, layer))      # dislike this operation
 
 
 func exit_layer(layer):
