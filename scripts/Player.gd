@@ -9,7 +9,7 @@ const UP = Vector2(0, -1)
 var velocity = Vector2()
 export var jump_speed = 400
 export var grav = 1000
-export var glide_grav = 300
+export var glide_grav = 500
 export var default_grav = 1000
 export var max_speed = 300
 
@@ -65,7 +65,7 @@ func _apply_gravity(delta):
 
 func _cap_gravity(delta):
 	velocity.y += delta * grav
-	velocity.y = min(velocity.y, 130)
+	velocity.y = min(velocity.y, 200)
 
 
 func _handle_horizontal_move_input():

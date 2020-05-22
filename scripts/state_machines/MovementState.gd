@@ -58,6 +58,7 @@ func _input(event):
 				if states.wall_slide == state:
 					parent._wall_jump()
 					parent.double_jump = true
+					parent.dj_cd.stop()
 				elif [states.jump, states.fall].has(state) and (parent.double_jump or parent.dj_cd.is_stopped()):
 					parent.velocity.y = -parent.jump_speed
 					parent.double_jump = false
@@ -102,6 +103,7 @@ func _get_transition(_delta):
 		states.jump:
 			if on_floor:
 				parent.double_jump = true
+				parent.dj_cd.stop()
 				if parent.velocity.x == 0: 
 					return states.idle
 				else: 
@@ -114,13 +116,10 @@ func _get_transition(_delta):
 			
 			elif parent.gliding:
 				return states.glide
-				
-			else:
-				if parent.velocity.y > 0: 
+			
+			elif parent.velocity.y > 0: 
 					return states.fall
-				
-				if parent.grav == parent.glide_grav:
-					return states.glide
+			
 		states.fall:
 			if on_floor:
 				parent.double_jump = true
@@ -200,8 +199,8 @@ func _enter_state(new_state, _old_state):
 			emit_signal("use_ground_collision", false)
 			parent.playback.travel("fall")
 			parent.grav = parent.glide_grav	
-			if parent.velocity.y < 0:
-				parent.velocity.y = 0
+#			if parent.velocity.y < 0:
+#				parent.velocity.y = 0
 		states.wall_slide:
 			emit_signal("use_ground_collision", false)
 			parent.playback.travel("fall")
