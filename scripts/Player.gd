@@ -9,7 +9,7 @@ const UP = Vector2(0, -1)
 var velocity = Vector2()
 export var jump_speed = 400
 export var grav = 1000
-export var glide_grav = 300
+export var glide_grav = 500
 export var default_grav = 1000
 export var max_speed = 300
 
@@ -28,13 +28,13 @@ var jump_pressed = false
 var on_floor = false
 var no_input = true
 var double_jump = true
-var can_jump = true
 
 #------- Timers -------#
 
 onready var dash_cd = $DashCooldown
 onready var c_timer = $CoyoteTimer
 onready var j_timer = $JumpWindow
+onready var dj_cd = $DJumpCooldown
 
 #------- Animation -------#
 onready var playback = $AnimationTree.get("parameters/playback")
@@ -65,7 +65,7 @@ func _apply_gravity(delta):
 
 func _cap_gravity(delta):
 	velocity.y += delta * grav
-	velocity.y = min(velocity.y, 130)
+	velocity.y = min(velocity.y, 200)
 
 
 func _handle_horizontal_move_input():
@@ -83,14 +83,16 @@ func _handle_horizontal_move_input():
 			velocity.x = sign(velocity.x)*max_speed
 		
 	# Facing:
-	if Input.is_action_pressed("WASD_left") and not Input.is_action_pressed("WASD_right"):
+	var going_left = Input.is_action_pressed("WASD_left") and not Input.is_action_pressed("WASD_right")
+	var going_right = Input.is_action_pressed("WASD_right") and not Input.is_action_pressed("WASD_left")
+	if going_left:
 		if facing_right:
 			scale.x *= -1
-		facing_right = false
-	if Input.is_action_pressed("WASD_right") and not Input.is_action_pressed("WASD_left"):
+			facing_right = false
+	elif going_right:
 		if not facing_right:
 			scale.x *= -1
-		facing_right = true
+			facing_right = true
 
 
 func _apply_friction():
@@ -109,11 +111,6 @@ func _wall_jump():
 		double_jump_direction = Vector2(400, -400)
 	
 	velocity = double_jump_direction
-
-
-func remember_jump():
-	yield(get_tree().create_timer(.1), "timeout")
-	jump_pressed = false
 
 
 func _tile_detection():	
