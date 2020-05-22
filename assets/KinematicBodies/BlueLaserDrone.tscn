@@ -10,7 +10,6 @@ points = PoolVector2Array( 0, 0, -300, 300, 300, 300 )
 [sub_resource type="Animation" id=2]
 resource_name = "activate"
 length = 1.076
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -27,7 +26,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "deactivate"
 length = 1.29
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -89,11 +87,13 @@ animation = "move"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=10]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id=14]
 states/activate/node = SubResource( 6 )
@@ -104,7 +104,9 @@ states/idle/node = SubResource( 8 )
 states/idle/position = Vector2( 277, 126 )
 states/move/node = SubResource( 9 )
 states/move/position = Vector2( 683, 126 )
-transitions = [ "idle", "activate", SubResource( 10 ), "activate", "move", SubResource( 11 ), "move", "deactivate", SubResource( 12 ), "deactivate", "idle", SubResource( 13 ) ]
+transitions = [ "idle", "activate", SubResource( 10 ), "move", "deactivate", SubResource( 12 ), "activate", "move", SubResource( 18 ), "deactivate", "idle", SubResource( 19 ) ]
+start_node = "idle"
+graph_offset = Vector2( -204.408, 0 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=15]
 
@@ -138,7 +140,7 @@ anims/move = SubResource( 5 )
 texture = ExtResource( 3 )
 vframes = 7
 hframes = 7
-frame = 41
+frame = 22
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 14 )

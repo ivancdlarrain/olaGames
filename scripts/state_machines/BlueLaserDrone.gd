@@ -42,7 +42,7 @@ func _enter_state(new_state, old_state):
 		states.patrol:
 			#Play patrol anim and then start patrol
 			print("Enemy entered detection area, starting patrol...")
-			parent.playback.travel("aggro")
+			parent.playback.travel("move")
 			parent.charge_timer.start()
 		states.fire:
 			print("Firing!")

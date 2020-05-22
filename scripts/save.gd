@@ -14,7 +14,7 @@ var order_dict = {"order" : []}
 
 
 func _ready():
-	load_order_cfg()
+	load_order_file()
 	pass
 
 func save_game():
@@ -29,8 +29,8 @@ func save_game():
 	print(save_slots[0])
 	savefile.store_line(to_json(save_dict))
 	savefile.close()
-	generate_order_cfg()
-	load_order_cfg()
+	generate_order_file()
+	load_order_file()
 
 func load_game(slot):
 	print("Loading Game")
@@ -54,7 +54,7 @@ func load_game(slot):
 			
 	savefile.close()
 
-func generate_order_cfg():
+func generate_order_file():
 	order_dict["order"].clear()
 	for i in range(3):
 		order_dict["order"].insert(i, save_slots[i])
@@ -68,7 +68,7 @@ func generate_order_cfg():
 	
 	
 
-func load_order_cfg():
+func load_order_file():
 	var order_file = File.new()
 	if not order_file.file_exists(SAVE_ORDER):
 		return "No order found"

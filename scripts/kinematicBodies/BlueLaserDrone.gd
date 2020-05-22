@@ -8,7 +8,9 @@ onready var cooldown = $FireCD
 func _patrol(delta):
 	pass
 
-
+func _ready():
+	print("Drone ready")
+	._ready()
 
 
 
