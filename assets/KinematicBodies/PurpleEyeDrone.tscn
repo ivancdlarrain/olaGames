@@ -134,7 +134,7 @@ states/aggro/position = Vector2( 782, 108 )
 states/deactivation/node = SubResource( 9 )
 states/deactivation/position = Vector2( 602, 43 )
 states/explosion/node = SubResource( 10 )
-states/explosion/position = Vector2( 875, 192 )
+states/explosion/position = Vector2( 877, 193 )
 states/idle/node = SubResource( 11 )
 states/idle/position = Vector2( 388, 97 )
 transitions = [ "deactivation", "idle", SubResource( 12 ), "activation", "aggro", SubResource( 13 ), "aggro", "deactivation", SubResource( 14 ), "aggro", "explosion", SubResource( 15 ), "idle", "activation", SubResource( 16 ), "activation", "explosion", SubResource( 17 ) ]
@@ -170,7 +170,7 @@ light_mask = 4
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 6
-frame = 6
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/activation = SubResource( 2 )

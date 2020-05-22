@@ -35,3 +35,15 @@ func _physics_process(_delta):
 	if Input.is_action_just_released("special"):
 		_release_key(space)
 		_release_key(space2)
+	
+	
+	#Test
+	if Input.is_action_just_pressed("test"):
+		$LaserBeam.set_physics_process(true)
+#		$LaserBeam.visible = true
+		
+	
+	if Input.is_action_just_released("test"):
+		$LaserBeam.set_physics_process(false)
+#		$LaserBeam.visible = false
+		

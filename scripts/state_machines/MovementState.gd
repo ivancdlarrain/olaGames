@@ -145,7 +145,7 @@ func _get_transition(_delta):
 					return states.fall
 				else:
 					return states.run
-		
+
 		states.glide:
 			if !on_floor:
 				if !parent.gliding:
