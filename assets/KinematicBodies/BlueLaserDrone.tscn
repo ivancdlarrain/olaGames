@@ -4,7 +4,7 @@
 [ext_resource path="res://scripts/state_machines/BlueLaserDrone.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/hostile mobs/BlueLaserDrone.png" type="Texture" id=3]
 
-[sub_resource type="ConvexPolygonShape2D" id=17]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, -300, 300, 300, 300 )
 
 [sub_resource type="Animation" id=2]
@@ -112,7 +112,7 @@ transitions = [ "idle", "activate", SubResource( 10 ), "activate", "move", SubRe
 radius = 48.9942
 height = 12.1721
 
-[sub_resource type="CircleShape2D" id=18]
+[sub_resource type="CircleShape2D" id=17]
 radius = 424.388
 
 [node name="BlueDrone" type="KinematicBody2D"]
@@ -124,7 +124,7 @@ script = ExtResource( 2 )
 [node name="DetectionCone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionCone"]
-shape = SubResource( 17 )
+shape = SubResource( 1 )
 
 [node name="DetectionRay" type="RayCast2D" parent="."]
 
@@ -153,4 +153,8 @@ shape = SubResource( 16 )
 [node name="DetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-shape = SubResource( 18 )
+shape = SubResource( 17 )
+
+[node name="ChargeTimerTest" type="Timer" parent="."]
+one_shot = true
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_DetectionArea_area_entered"]
