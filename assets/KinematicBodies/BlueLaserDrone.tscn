@@ -157,4 +157,11 @@ shape = SubResource( 17 )
 
 [node name="ChargeTimerTest" type="Timer" parent="."]
 one_shot = true
-[connection signal="area_entered" from="DetectionArea" to="." method="_on_DetectionArea_area_entered"]
+
+[node name="FireTimerTest" type="Timer" parent="."]
+one_shot = true
+
+[node name="FireCD" type="Timer" parent="."]
+one_shot = true
+[connection signal="body_entered" from="DetectionCone" to="." method="_on_DetectionCone_body_entered"]
+[connection signal="body_exited" from="DetectionCone" to="." method="_on_DetectionCone_body_exited"]

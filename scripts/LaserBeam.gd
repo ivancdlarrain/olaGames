@@ -19,4 +19,4 @@ func _physics_process(delta):
 	beam.rotation = raycast.cast_to.angle()
 	beam.region_rect.end.x = end.position.length()
 	
-	print(raycast.get_collision_point())
+

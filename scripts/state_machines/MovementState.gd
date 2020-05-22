@@ -25,7 +25,6 @@ func _state_logic(delta):
 	parent._apply_friction()
 	parent._apply_movement()
 	parent._tile_detection()
-	print(parent.on_floor)
 
 
 func _input(event):

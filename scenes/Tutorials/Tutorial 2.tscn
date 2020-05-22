@@ -331,7 +331,7 @@ position = Vector2( 776, 512 )
 scale = Vector2( 2, 2 )
 
 [node name="BlueDrone" parent="." instance=ExtResource( 17 )]
-position = Vector2( 619.271, -69.8061 )
+position = Vector2( 626.639, -63.4903 )
 
 [node name="LaserBeam" parent="." instance=ExtResource( 18 )]
 position = Vector2( 620.435, -10.2725 )
