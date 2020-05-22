@@ -28,13 +28,13 @@ var jump_pressed = false
 var on_floor = false
 var no_input = true
 var double_jump = true
-var can_jump = true
 
 #------- Timers -------#
 
 onready var dash_cd = $DashCooldown
 onready var c_timer = $CoyoteTimer
 onready var j_timer = $JumpWindow
+onready var dj_cd = $DJumpCooldown
 
 #------- Animation -------#
 onready var playback = $AnimationTree.get("parameters/playback")
@@ -111,11 +111,6 @@ func _wall_jump():
 		double_jump_direction = Vector2(400, -400)
 	
 	velocity = double_jump_direction
-
-
-func remember_jump():
-	yield(get_tree().create_timer(.1), "timeout")
-	jump_pressed = false
 
 
 func _tile_detection():	
