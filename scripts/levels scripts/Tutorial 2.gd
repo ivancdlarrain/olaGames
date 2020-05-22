@@ -40,10 +40,10 @@ func _physics_process(_delta):
 	#Test
 	if Input.is_action_just_pressed("test"):
 		$LaserBeam.set_physics_process(true)
-		$LaserBeam.visible = true
+#		$LaserBeam.visible = true
 		
 	
 	if Input.is_action_just_released("test"):
 		$LaserBeam.set_physics_process(false)
-		$LaserBeam.visible = false
+#		$LaserBeam.visible = false
 		
