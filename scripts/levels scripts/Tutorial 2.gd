@@ -6,6 +6,10 @@ onready var W = $"WallJump Instruction/up"
 onready var space = $Keys/space
 onready var space2 = $Keys/space2
 
+func _ready():
+	var a = 5.0/2.0
+	print(a)
+
 func _hold_key(key):
 	key.frame += 1
 	
