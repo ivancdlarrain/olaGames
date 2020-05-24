@@ -5,13 +5,13 @@
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/hostile mobs/BeamCollision.png" type="Texture" id=4]
 
-[sub_resource type="CanvasItemMaterial" id=2]
+[sub_resource type="CanvasItemMaterial" id=1]
 particles_animation = true
 particles_anim_h_frames = 4
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=2]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
@@ -42,11 +42,11 @@ collision_mask = 15
 position = Vector2( 100, 0 )
 
 [node name="Particles2D" type="Particles2D" parent="End"]
-material = SubResource( 2 )
+material = SubResource( 1 )
 amount = 18
 lifetime = 0.25
 preprocess = 0.25
-process_material = SubResource( 3 )
+process_material = SubResource( 2 )
 texture = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]

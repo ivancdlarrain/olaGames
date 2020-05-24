@@ -1,15 +1,16 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scripts/kinematicBodies/BlueLaserDrone.gd" type="Script" id=1]
 [ext_resource path="res://scripts/state_machines/BlueLaserDrone.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/hostile mobs/BlueLaserDrone.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/hostile mobs/spinning lights blue drone.png" type="Texture" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, -300, 300, 300, 300 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "activate"
-length = 1.076
+length = 1.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -25,7 +26,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "deactivate"
-length = 1.29
+length = 1.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -56,6 +57,23 @@ tracks/0/keys = {
 "values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
 }
 
+[sub_resource type="Animation" id=18]
+resource_name = "lights"
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 1, 2, 3, 4, 5, 6 ]
+}
+
 [sub_resource type="Animation" id=5]
 resource_name = "move"
 length = 1.07
@@ -82,18 +100,34 @@ animation = "deactivate"
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAdd2" id=19]
+filters = [ "Sprite2:frame" ]
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "lights"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "move"
+
+[sub_resource type="AnimationNodeBlendTree" id=22]
+graph_offset = Vector2( -114, 88 )
+nodes/Add2/node = SubResource( 19 )
+nodes/Add2/position = Vector2( 420, 140 )
+nodes/Animation/node = SubResource( 21 )
+nodes/Animation/position = Vector2( 180, 120 )
+"nodes/Animation 2/node" = SubResource( 20 )
+"nodes/Animation 2/position" = Vector2( 180, 240 )
+nodes/output/position = Vector2( 640, 200 )
+node_connections = [ "output", 0, "Add2", "Add2", 0, "Animation", "Add2", 1, "Animation 2" ]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=10]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
-switch_mode = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
 
 [sub_resource type="AnimationNodeStateMachine" id=14]
 states/activate/node = SubResource( 6 )
@@ -102,9 +136,9 @@ states/deactivate/node = SubResource( 7 )
 states/deactivate/position = Vector2( 479, 204 )
 states/idle/node = SubResource( 8 )
 states/idle/position = Vector2( 277, 126 )
-states/move/node = SubResource( 9 )
-states/move/position = Vector2( 683, 126 )
-transitions = [ "idle", "activate", SubResource( 10 ), "move", "deactivate", SubResource( 12 ), "activate", "move", SubResource( 18 ), "deactivate", "idle", SubResource( 19 ) ]
+states/move/node = SubResource( 22 )
+states/move/position = Vector2( 699.592, 126 )
+transitions = [ "idle", "activate", SubResource( 10 ), "deactivate", "idle", SubResource( 13 ), "activate", "move", SubResource( 23 ), "move", "deactivate", SubResource( 24 ) ]
 start_node = "idle"
 graph_offset = Vector2( -204.408, 0 )
 
@@ -134,19 +168,21 @@ shape = SubResource( 1 )
 anims/activate = SubResource( 2 )
 anims/deactivate = SubResource( 3 )
 anims/idle = SubResource( 4 )
+anims/lights = SubResource( 18 )
 anims/move = SubResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 vframes = 7
 hframes = 7
-frame = 27
+frame = 4
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 14 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 15 )
+parameters/move/Add2/add_amount = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 1, -0.359999 )
@@ -165,5 +201,12 @@ one_shot = true
 
 [node name="FireCD" type="Timer" parent="."]
 one_shot = true
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 0, -25 )
+texture = ExtResource( 4 )
+vframes = 2
+hframes = 7
+frame = 2
 [connection signal="body_entered" from="DetectionCone" to="." method="_on_DetectionCone_body_entered"]
 [connection signal="body_exited" from="DetectionCone" to="." method="_on_DetectionCone_body_exited"]
