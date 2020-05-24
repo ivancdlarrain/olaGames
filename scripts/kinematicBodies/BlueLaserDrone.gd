@@ -5,14 +5,22 @@ onready var charge_timer = $ChargeTimerTest
 onready var fire_timer = $FireTimerTest
 onready var cooldown = $FireCD
 onready var lights = $Sprite2
+const LASER_SCENE = preload("res://assets/entities/drone/LaserBeam.tscn")
 
 func _patrol(delta):
 	pass
 
 func _ready():
 	print("Drone ready")
+	
+	
 	._ready()
 
+func _fire(pos):
+	var laser = LASER_SCENE.instance()
+	laser.position = position
+	laser.cast_to = pos - position
+	get_parent().add_child(laser)
 
 
 

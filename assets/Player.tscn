@@ -175,12 +175,10 @@ script = ExtResource( 4 )
 script = ExtResource( 3 )
 
 [node name="GroundCollisionShape" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0.256704, 2.02225 )
 shape = SubResource( 1 )
 
 [node name="AirCollisionShape" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0.256704, 2.02225 )
 shape = SubResource( 1 )
 
@@ -206,6 +204,7 @@ light_mask = 0
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 6
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/death = SubResource( 2 )

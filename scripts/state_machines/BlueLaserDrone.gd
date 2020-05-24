@@ -9,7 +9,7 @@ func _ready():
 	call_deferred('set_state', states.idle)
 	._ready()
 
-func _state_logic(delta):		
+func _state_logic(delta):
 	._state_logic(delta)
 	
 func _get_transition(delta):
@@ -47,6 +47,7 @@ func _enter_state(new_state, old_state):
 		states.fire:
 			parent.playback.travel("move")
 			print("Firing!")
+			parent._fire(raycast.get_collision_point())
 			parent.fire_timer.start() #Placeholder timer to simulate firing
 func _exit_state(old_state, new_state):
 	match old_state:
