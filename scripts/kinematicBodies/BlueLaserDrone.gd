@@ -4,6 +4,7 @@ var enemy_in_range = false
 onready var charge_timer = $ChargeTimerTest
 onready var fire_timer = $FireTimerTest
 onready var cooldown = $FireCD
+onready var lights = $Sprite2
 
 func _patrol(delta):
 	pass

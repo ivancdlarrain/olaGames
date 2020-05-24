@@ -5,10 +5,11 @@ func _ready():
 	add_state("idle")
 	add_state("patrol")
 	add_state("fire")
+	add_state("initializing")
 	call_deferred('set_state', states.idle)
 	._ready()
 
-func _state_logic(delta):
+func _state_logic(delta):		
 	._state_logic(delta)
 	
 func _get_transition(delta):
@@ -28,7 +29,7 @@ func _get_transition(delta):
 					return states.idle
 				else:
 					return states.patrol
-					
+						
 				
 				
 		
@@ -37,7 +38,6 @@ func _get_transition(delta):
 func _enter_state(new_state, old_state):
 	match new_state:
 		states.idle:
-			#Play deactivation animation
 			parent.playback.travel("idle")
 		states.patrol:
 			#Play patrol anim and then start patrol
@@ -45,6 +45,7 @@ func _enter_state(new_state, old_state):
 			parent.playback.travel("move")
 			parent.charge_timer.start()
 		states.fire:
+			parent.playback.travel("move")
 			print("Firing!")
 			parent.fire_timer.start() #Placeholder timer to simulate firing
 func _exit_state(old_state, new_state):
