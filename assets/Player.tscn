@@ -1,17 +1,73 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=43 format=2]
 
-[ext_resource path="res://assets/sprites/player/demo_player.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/player/Protagonista Spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://scripts/state_machines/ColorState.gd" type="Script" id=3]
 [ext_resource path="res://scripts/state_machines/MovementState.gd" type="Script" id=4]
 [ext_resource path="res://assets/textures/PlayerLight.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6.74254, 22.9816 )
+extents = Vector2( 7.50202, 22.9816 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "death"
-length = 0.7
+length = 0.1
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_actually_die"
+} ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 6, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 7, -0.25, 0, 0.25, 0, 8, -0.25, 0, 0.25, 0, 9, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 0.2 )
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "ground fall"
+length = 0.1
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 10, -0.25, 0, 0.25, 0, 11, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1 )
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "ground jump"
+length = 0.1
 step = 0.05
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Sprite:frame")
@@ -20,66 +76,12 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 16, -0.25, 0, 0.25, 0, 17, -0.25, 0, 0.25, 0, 18, -0.25, 0, 0.25, 0, 19, -0.25, 0, 0.25, 0, 20, -0.25, 0, 0.25, 0, 21, -0.25, 0, 0.25, 0, 22, -0.25, 0, 0.25, 0, 23, -0.25, 0, 0.25, 0, 24, -0.25, 0, 0.25, 0, 25, -0.25, 0, 0.25, 0, 26, -0.25, 0, 0.25, 0, 27, -0.25, 0, 0.25, 0, 28, -0.25, 0, 0.25, 0, 29, -0.25, 0, 0.25, 0, 30, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7 )
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.7 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "_actually_die"
-} ]
-}
-
-[sub_resource type="Animation" id=3]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 7, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-
-[sub_resource type="Animation" id=4]
-length = 0.4
-loop = true
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 )
-}
-
-[sub_resource type="Animation" id=5]
-length = 0.4
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 4, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0, 7, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 )
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.05, 0.1 )
 }
 
 [sub_resource type="Animation" id=6]
-length = 0.8
+length = 0.6
 loop = true
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("Sprite:frame")
@@ -88,73 +90,138 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 8, -0.25, 0, 0.25, 0, 9, -0.25, 0, 0.25, 0, 10, -0.25, 0, 0.25, 0, 11, -0.25, 0, 0.25, 0, 12, -0.25, 0, 0.25, 0, 13, -0.25, 0, 0.25, 0, 14, -0.25, 0, 0.25, 0, 15, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 )
+"points": PoolRealArray( 24, -0.25, 0, 0.25, 0, 25, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="Animation" id=7]
+length = 0.1
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 4, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.05, 0.1 )
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.55
+loop = true
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 12, -0.25, 0, 0.25, 0, 13, -0.25, 0, 0.25, 0, 14, -0.25, 0, 0.25, 0, 15, -0.25, 0, 0.25, 0, 16, -0.25, 0, 0.25, 0, 17, -0.25, 0, 0.25, 0, 18, -0.25, 0, 0.25, 0, 19, -0.25, 0, 0.25, 0, 20, -0.25, 0, 0.25, 0, 21, -0.25, 0, 0.25, 0, 22, -0.25, 0, 0.25, 0, 23, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55 )
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "transicion idle run"
+length = 0.1
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 24, -0.25, 0, 0.25, 0, 23, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1 )
+}
+
+[sub_resource type="AnimationNodeAnimation" id=33]
 animation = "death"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=34]
 animation = "fall"
 
-[sub_resource type="AnimationNodeAnimation" id=9]
+[sub_resource type="AnimationNodeAnimation" id=35]
+animation = "ground fall"
+
+[sub_resource type="AnimationNodeAnimation" id=36]
+animation = "ground jump"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=37]
 animation = "jump"
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=38]
 animation = "run"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "transicion idle run"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+[sub_resource type="AnimationNodeStateMachineTransition" id=52]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+[sub_resource type="AnimationNodeStateMachineTransition" id=53]
 
-[sub_resource type="AnimationNodeStateMachine" id=27]
-states/death/node = SubResource( 7 )
-states/death/position = Vector2( 413, 113 )
-states/fall/node = SubResource( 8 )
-states/fall/position = Vector2( 523, 187 )
-states/idle/node = SubResource( 9 )
-states/idle/position = Vector2( 310, 181 )
-states/jump/node = SubResource( 10 )
-states/jump/position = Vector2( 310, 43 )
-states/run/node = SubResource( 11 )
-states/run/position = Vector2( 523, 43 )
-transitions = [ "idle", "run", SubResource( 12 ), "idle", "jump", SubResource( 13 ), "fall", "jump", SubResource( 14 ), "fall", "run", SubResource( 15 ), "fall", "idle", SubResource( 16 ), "jump", "idle", SubResource( 17 ), "jump", "run", SubResource( 18 ), "run", "jump", SubResource( 19 ), "run", "idle", SubResource( 20 ), "idle", "fall", SubResource( 21 ), "jump", "fall", SubResource( 22 ), "jump", "death", SubResource( 23 ), "run", "death", SubResource( 24 ), "fall", "death", SubResource( 25 ), "idle", "death", SubResource( 26 ) ]
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+
+[sub_resource type="AnimationNodeStateMachine" id=30]
+states/death/node = SubResource( 33 )
+states/death/position = Vector2( 646, 160.55 )
+states/fall/node = SubResource( 34 )
+states/fall/position = Vector2( 521, 54.5497 )
+"states/ground fall/node" = SubResource( 35 )
+"states/ground fall/position" = Vector2( 684, 54.5497 )
+"states/ground jump/node" = SubResource( 36 )
+"states/ground jump/position" = Vector2( 201, 160.55 )
+states/idle/node = SubResource( 12 )
+states/idle/position = Vector2( 297, 261 )
+states/jump/node = SubResource( 37 )
+states/jump/position = Vector2( 310, 54.5497 )
+states/run/node = SubResource( 38 )
+states/run/position = Vector2( 749, 261 )
+"states/transicion idle run/node" = SubResource( 39 )
+"states/transicion idle run/position" = Vector2( 521, 322 )
+transitions = [ "idle", "transicion idle run", SubResource( 40 ), "transicion idle run", "run", SubResource( 41 ), "run", "idle", SubResource( 42 ), "idle", "ground jump", SubResource( 43 ), "run", "ground jump", SubResource( 44 ), "ground jump", "jump", SubResource( 45 ), "jump", "fall", SubResource( 46 ), "fall", "ground fall", SubResource( 47 ), "fall", "jump", SubResource( 48 ), "ground fall", "idle", SubResource( 49 ), "idle", "death", SubResource( 50 ), "transicion idle run", "death", SubResource( 51 ), "run", "death", SubResource( 52 ), "ground fall", "death", SubResource( 53 ), "fall", "death", SubResource( 54 ), "jump", "death", SubResource( 55 ), "ground jump", "death", SubResource( 56 ) ]
 start_node = "idle"
-end_node = "death"
+graph_offset = Vector2( 0, -6.45025 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=31]
 
-[sub_resource type="RectangleShape2D" id=29]
+[sub_resource type="RectangleShape2D" id=32]
 extents = Vector2( 2.09141, 7.47339 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -175,11 +242,11 @@ script = ExtResource( 4 )
 script = ExtResource( 3 )
 
 [node name="GroundCollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2( 0.256704, 2.02225 )
+position = Vector2( -1.597, 8.989 )
 shape = SubResource( 1 )
 
 [node name="AirCollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2( 0.256704, 2.02225 )
+position = Vector2( -1.59699, 8.98907 )
 shape = SubResource( 1 )
 
 [node name="CoyoteTimer" type="Timer" parent="."]
@@ -202,28 +269,32 @@ one_shot = true
 [node name="Sprite" type="Sprite" parent="."]
 light_mask = 0
 texture = ExtResource( 1 )
-vframes = 6
-hframes = 6
-frame = 3
+vframes = 4
+hframes = 8
+frame = 24
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/death = SubResource( 2 )
 anims/fall = SubResource( 3 )
-anims/idle = SubResource( 4 )
-anims/jump = SubResource( 5 )
-anims/run = SubResource( 6 )
+"anims/ground fall" = SubResource( 4 )
+"anims/ground jump" = SubResource( 5 )
+anims/idle = SubResource( 6 )
+anims/jump = SubResource( 7 )
+anims/run = SubResource( 8 )
+"anims/transicion idle run" = SubResource( 9 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 27 )
+tree_root = SubResource( 30 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 28 )
+parameters/playback = SubResource( 31 )
 
 [node name="Guts" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Guts"]
+visible = false
 position = Vector2( 0.0928116, -4.38152 )
-shape = SubResource( 29 )
+shape = SubResource( 32 )
 
 [node name="Light2D" type="Light2D" parent="."]
 light_mask = 0
