@@ -20,6 +20,7 @@ func _fire(pos):
 	var laser = LASER_SCENE.instance()
 	laser.position = position
 	laser.cast_to = pos - position
+	laser.drone = self
 	get_parent().add_child(laser)
 
 

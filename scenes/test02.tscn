@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/Drone.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/TileMap.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/KinematicBodies/PurpleEyeDrone.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/tilemaps/OrangeTiles.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/tilemaps/3DTile1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/events/ScreenShake.tscn" type="PackedScene" id=8]
 
 [node name="Node2D" type="Node2D"]
 
@@ -16,6 +17,8 @@ position = Vector2( -44.7713, 230.719 )
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 smoothing_enabled = true
+
+[node name="ScreenShake" parent="Player/Camera2D" instance=ExtResource( 8 )]
 
 [node name="Tiles" type="Node" parent="."]
 
