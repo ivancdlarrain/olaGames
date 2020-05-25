@@ -5,5 +5,5 @@ func _ready():
 
 func _process(_delta):
 	# Respawn
-	if $KinematicBody2D.get_position().y > 1000:
-		$KinematicBody2D._die()
+	if $Player.get_position().y > 1000:
+		$Player._die()
