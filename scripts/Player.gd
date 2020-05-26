@@ -5,13 +5,14 @@ extends KinematicBody2D
 
 #------- Variables for character movement -------#
 
-const UP = Vector2(0, -1)
+var UP = Vector2(0, -1)
 var velocity = Vector2()
 export var jump_speed = 400
 export var grav = 1000
-export var glide_grav = 500
-export var default_grav = 1000
 export var max_speed = 300
+
+const purple_grav = 700
+const default_grav = 1000
 
 var move_direction = 0
 var double_jump_direction = Vector2()
@@ -23,7 +24,6 @@ var deaccel = 6.0
 #------- Bool values for state logic -------#
 
 var dashing = false
-var gliding = false
 var jump_pressed = false
 var on_floor = false
 var no_input = true
@@ -65,7 +65,7 @@ func _apply_gravity(delta):
 
 func _cap_gravity(delta):
 	velocity.y += delta * grav
-	velocity.y = min(velocity.y, 200)
+	velocity.y = min(velocity.y, grav/5)
 
 
 func _handle_horizontal_move_input():
@@ -138,6 +138,10 @@ func _die():
 
 func _actually_die():
 	get_tree().reload_current_scene()
+
+
+func jump():
+	velocity.y = -jump_speed
 
 
 #Save Game

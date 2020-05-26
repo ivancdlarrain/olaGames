@@ -69,6 +69,7 @@ func _enter_state(new_state, _old_state):
 		states.purple:
 			change_color(Color(0.85098, 0, 1))
 			enter_layer(2)
+			parent.grav = parent.purple_grav
 
 
 func _exit_state(old_state, _new_state):
@@ -79,4 +80,4 @@ func _exit_state(old_state, _new_state):
 			exit_layer(1)
 		states.purple:
 			exit_layer(2)
-			parent.gliding = false
+			parent.grav = parent.default_grav

@@ -137,91 +137,91 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 )
 }
 
-[sub_resource type="AnimationNodeAnimation" id=33]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "death"
 
-[sub_resource type="AnimationNodeAnimation" id=34]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "fall"
 
-[sub_resource type="AnimationNodeAnimation" id=35]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "ground fall"
 
-[sub_resource type="AnimationNodeAnimation" id=36]
+[sub_resource type="AnimationNodeAnimation" id=13]
 animation = "ground jump"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=37]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "jump"
 
-[sub_resource type="AnimationNodeAnimation" id=38]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "run"
 
-[sub_resource type="AnimationNodeAnimation" id=39]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "transicion idle run"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=52]
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=53]
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
 
-[sub_resource type="AnimationNodeStateMachine" id=30]
-states/death/node = SubResource( 33 )
+[sub_resource type="AnimationNodeStateMachine" id=35]
+states/death/node = SubResource( 10 )
 states/death/position = Vector2( 646, 160.55 )
-states/fall/node = SubResource( 34 )
+states/fall/node = SubResource( 11 )
 states/fall/position = Vector2( 521, 54.5497 )
-"states/ground fall/node" = SubResource( 35 )
+"states/ground fall/node" = SubResource( 12 )
 "states/ground fall/position" = Vector2( 684, 54.5497 )
-"states/ground jump/node" = SubResource( 36 )
+"states/ground jump/node" = SubResource( 13 )
 "states/ground jump/position" = Vector2( 201, 160.55 )
-states/idle/node = SubResource( 12 )
+states/idle/node = SubResource( 14 )
 states/idle/position = Vector2( 297, 261 )
-states/jump/node = SubResource( 37 )
+states/jump/node = SubResource( 15 )
 states/jump/position = Vector2( 310, 54.5497 )
-states/run/node = SubResource( 38 )
+states/run/node = SubResource( 16 )
 states/run/position = Vector2( 749, 261 )
-"states/transicion idle run/node" = SubResource( 39 )
+"states/transicion idle run/node" = SubResource( 17 )
 "states/transicion idle run/position" = Vector2( 521, 322 )
-transitions = [ "idle", "transicion idle run", SubResource( 40 ), "transicion idle run", "run", SubResource( 41 ), "run", "idle", SubResource( 42 ), "idle", "ground jump", SubResource( 43 ), "run", "ground jump", SubResource( 44 ), "ground jump", "jump", SubResource( 45 ), "jump", "fall", SubResource( 46 ), "fall", "ground fall", SubResource( 47 ), "fall", "jump", SubResource( 48 ), "ground fall", "idle", SubResource( 49 ), "idle", "death", SubResource( 50 ), "transicion idle run", "death", SubResource( 51 ), "run", "death", SubResource( 52 ), "ground fall", "death", SubResource( 53 ), "fall", "death", SubResource( 54 ), "jump", "death", SubResource( 55 ), "ground jump", "death", SubResource( 56 ) ]
+transitions = [ "idle", "transicion idle run", SubResource( 18 ), "transicion idle run", "run", SubResource( 19 ), "run", "idle", SubResource( 20 ), "idle", "ground jump", SubResource( 21 ), "run", "ground jump", SubResource( 22 ), "ground jump", "jump", SubResource( 23 ), "jump", "fall", SubResource( 24 ), "fall", "ground fall", SubResource( 25 ), "fall", "jump", SubResource( 26 ), "ground fall", "idle", SubResource( 27 ), "idle", "death", SubResource( 28 ), "transicion idle run", "death", SubResource( 29 ), "run", "death", SubResource( 30 ), "ground fall", "death", SubResource( 31 ), "fall", "death", SubResource( 32 ), "jump", "death", SubResource( 33 ), "ground jump", "death", SubResource( 34 ) ]
 start_node = "idle"
 graph_offset = Vector2( 0, -6.45025 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=31]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=36]
 
-[sub_resource type="RectangleShape2D" id=32]
+[sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 2.09141, 7.47339 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -269,8 +269,8 @@ one_shot = true
 [node name="Sprite" type="Sprite" parent="."]
 light_mask = 0
 texture = ExtResource( 1 )
-vframes = 4
-hframes = 8
+vframes = 6
+hframes = 5
 frame = 24
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -284,17 +284,17 @@ anims/run = SubResource( 8 )
 "anims/transicion idle run" = SubResource( 9 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 30 )
+tree_root = SubResource( 35 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 31 )
+parameters/playback = SubResource( 36 )
 
 [node name="Guts" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Guts"]
 visible = false
 position = Vector2( 0.0928116, -4.38152 )
-shape = SubResource( 32 )
+shape = SubResource( 37 )
 
 [node name="Light2D" type="Light2D" parent="."]
 light_mask = 0
