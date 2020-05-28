@@ -9,23 +9,23 @@ func _ready():
 	call_deferred('set_state', states.idle)
 	._ready()
 
-func _state_logic(delta):
+func _state_logic(delta):	
 	._state_logic(delta)
 	
 func _get_transition(delta):
 	match state:
 		states.idle:
-			if parent.enemy_in_range:
+			if looking_for_player:
 				return states.patrol
 		states.patrol: 
-			if parent.charge_timer.is_stopped():
+			if parent.cooldown.is_stopped():
 				return states.fire
 			else:
-				if !parent.enemy_in_range:
+				if !looking_for_player:
 					return states.idle
 		states.fire:
-			if parent.fire_timer.is_stopped():
-				if !parent.enemy_in_range:
+			if !parent.cooldown.is_stopped():
+				if !looking_for_player:
 					return states.idle
 				else:
 					return states.patrol
@@ -43,16 +43,14 @@ func _enter_state(new_state, old_state):
 			#Play patrol anim and then start patrol
 			print("Enemy entered detection area, starting patrol...")
 			parent.playback.travel("move")
-			parent.charge_timer.start()
 		states.fire:
 			parent.playback.travel("move")
 			print("Firing!")
-			parent._fire(raycast.get_collision_point())
-			parent.fire_timer.start() #Placeholder timer to simulate firing
+			parent._fire(ray_direction)
+			parent.cooldown.start()
 func _exit_state(old_state, new_state):
 	match old_state:
 		states.fire:
 			print("Stopped Firing")
-			#Why does it print before the exit state one ? !!!
 			
 	

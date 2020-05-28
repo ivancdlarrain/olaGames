@@ -134,7 +134,7 @@ anims/move = SubResource( 4 )
 texture = ExtResource( 3 )
 vframes = 7
 hframes = 7
-frame = 16
+frame = 17
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 13 )
@@ -145,6 +145,7 @@ parameters/playback = SubResource( 14 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 1, -0.359999 )
 shape = SubResource( 15 )
+disabled = true
 
 [node name="DetectionArea" type="Area2D" parent="."]
 
