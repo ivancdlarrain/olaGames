@@ -9,6 +9,7 @@ export var impact: PackedScene
 		
 func _fire(direction: Vector2):
 	self.direction = direction
+	rotation = direction.angle()
 	$AnimationPlayer.play("travel")
 
 func _physics_process(delta):

@@ -134,7 +134,7 @@ anims/move = SubResource( 4 )
 texture = ExtResource( 3 )
 vframes = 7
 hframes = 7
-frame = 10
+frame = 3
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 13 )
