@@ -39,6 +39,9 @@ onready var dj_cd = $DJumpCooldown
 #------- Animation -------#
 onready var playback = $AnimationTree.get("parameters/playback")
 
+#------- Particles -------#
+onready var dashParticles = $Particles2D
+
 var was_on_floor = false
 
 

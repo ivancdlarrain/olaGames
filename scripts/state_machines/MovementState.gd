@@ -185,6 +185,7 @@ func _enter_state(new_state, _old_state):
 			parent.playback.travel("fall")
 		states.dash:
 			emit_signal("use_ground_collision", true)
+			parent.dashParticles.emitting = true
 			parent.playback.travel("run")
 			var x = parent.max_speed * 3.3 if parent.facing_right else parent.max_speed * -3.3
 			parent.velocity = parent.move_and_slide(Vector2(x, 0))
