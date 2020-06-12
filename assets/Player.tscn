@@ -306,5 +306,5 @@ shadow_enabled = true
 shadow_color = Color( 0.211765, 0.211765, 0.211765, 0 )
 
 [node name="Particles2D" parent="." instance=ExtResource( 6 )]
-position = Vector2( -0.860616, 8.28341 )
+position = Vector2( -0.143432, 3.41855 )
 [connection signal="body_entered" from="Guts" to="." method="_on_Guts_body_entered"]

@@ -16,6 +16,7 @@ position = Vector2( -44.7713, 230.719 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
+zoom = Vector2( 0.2, 0.2 )
 smoothing_enabled = true
 
 [node name="ScreenShake" parent="Player/Camera2D" instance=ExtResource( 8 )]

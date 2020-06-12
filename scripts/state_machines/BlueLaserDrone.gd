@@ -41,16 +41,14 @@ func _enter_state(new_state, old_state):
 			parent.playback.travel("idle")
 		states.patrol:
 			#Play patrol anim and then start patrol
-			print("Enemy entered detection area, starting patrol...")
 			parent.playback.travel("move")
 		states.fire:
 			parent.playback.travel("move")
-			print("Firing!")
 			parent._fire(ray_direction)
 			parent.cooldown.start()
-func _exit_state(old_state, new_state):
-	match old_state:
-		states.fire:
-			print("Stopped Firing")
+#func _exit_state(old_state, new_state):
+#	match old_state:
+#		states.fire:
+#			print("Stopped Firing")
 			
 	

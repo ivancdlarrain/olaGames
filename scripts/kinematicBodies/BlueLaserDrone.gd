@@ -16,7 +16,6 @@ func _ready():
 func _fire(pos: Vector2):
 	var temp = projectile.instance()
 	add_child(temp)
-	print(pos.normalized())
 	temp._fire(pos.normalized())
 
 
