@@ -75,6 +75,10 @@ collision_mask = 4
 position = Vector2( 3248, 480 )
 world_scene = "res://scenes/menus/Main_menu.tscn"
 
+[node name="Portal2" parent="." instance=ExtResource( 12 )]
+position = Vector2( 480, 520 )
+world_scene = "res://scenes/Levels/demo1_bonus.tscn"
+
 [node name="Tiles" type="Node" parent="."]
 
 [node name="Blue" type="Node" parent="Tiles"]

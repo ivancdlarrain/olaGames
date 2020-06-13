@@ -102,7 +102,7 @@ func _apply_friction():
 	if no_input or abs(velocity.x) > max_speed:    # Si no está apretando para moverse o pasó el límite
 		var v_sign = sign(velocity.x)
 		if v_sign != 0:                                        # Si se está moviendo:
-			velocity.x = velocity.x - v_sign * max_speed / deaccel
+			velocity.x = velocity.x - v_sign * max_speed / (deaccel *(2 - int(on_floor))) # deaccel if on_floor else deaccel*2
 			if sign(velocity.x) != v_sign:
 				velocity.x = 0
 
