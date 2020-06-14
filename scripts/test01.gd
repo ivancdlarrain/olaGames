@@ -5,5 +5,5 @@ func _ready():
 
 func _process(_delta):
 	# Respawn
-	if $Player.get_position().y > 1000:
+	if $Player.get_position().y > 2000:
 		$Player._die()

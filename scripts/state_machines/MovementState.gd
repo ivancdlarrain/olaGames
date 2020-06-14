@@ -11,6 +11,7 @@ func _ready():
 	add_state('dash')
 	add_state('wall_slide')
 	add_state('pre_fall')
+	add_state('vertical_dash')
 	call_deferred('set_state', states.idle)
 	
 
@@ -42,7 +43,7 @@ func _state_logic(delta):
 				parent._tile_detection()
 			
 			states.dash:    # No grav or move input
-				parent._apply_friction()
+				parent.dash_distance -= abs(parent.velocity.x) * delta
 				parent._apply_movement()
 				parent._tile_detection()
 			
@@ -51,6 +52,14 @@ func _state_logic(delta):
 				if !parent.j_timer.is_stopped():
 					parent.jump()
 					parent.j_timer.stop()
+				parent._apply_movement()
+				parent._tile_detection()
+			
+			states.vertical_dash:
+				parent.dash_distance -= abs(parent.velocity.y) * delta
+				print(parent.velocity.y)
+				parent._handle_horizontal_move_input()
+				parent._apply_friction()
 				parent._apply_movement()
 				parent._tile_detection()
 
@@ -145,12 +154,14 @@ func _get_transition(_delta):
 					return states.jump
 		
 		states.dash:
-			if on_wall: return states.wall_slide
-			if abs(parent.velocity.x) <= parent.max_speed:
+			if on_wall: return states.vertical_dash
+			if parent.dash_distance <= 0:
 				if !on_floor:
 					return states.fall
 				else:
 					return states.run
+			if parent.velocity.x == 0:
+				return states.idle
 		
 		states.wall_slide:
 			if on_floor:
@@ -165,7 +176,11 @@ func _get_transition(_delta):
 					return states.jump
 			else:
 				return states.fall
-		
+				
+		states.vertical_dash:
+			if parent.is_on_ceiling() or parent.dash_distance <= 0:
+				return states.jump
+				
 	return null
 
 
@@ -187,8 +202,7 @@ func _enter_state(new_state, _old_state):
 			emit_signal("use_ground_collision", true)
 			parent.dashParticles.emitting = true
 			parent.playback.travel("run")
-			var x = parent.max_speed * 3.3 if parent.facing_right else parent.max_speed * -3.3
-			parent.velocity = parent.move_and_slide(Vector2(x, 0))
+			parent.velocity = parent.move_and_slide(Vector2(parent.dash_speed * (-1 + 2 * int(parent.facing_right)), 0))
 		states.wall_slide:
 			emit_signal("use_ground_collision", false)
 			parent.playback.travel("fall")
@@ -198,6 +212,10 @@ func _enter_state(new_state, _old_state):
 			emit_signal("use_ground_collision", true)
 			parent.playback.travel("run")
 			parent.c_timer.start()
+			
+		states.vertical_dash:
+			parent.velocity = Vector2(0, -parent.dash_speed)
+			parent.dashParticles.emitting = true
 
 
 func _exit_state(old_state, new_state):
@@ -205,5 +223,10 @@ func _exit_state(old_state, new_state):
 		states.dash:
 			parent.dashing = false
 			parent.dash_cd.start()
-			if new_state == states.wall_slide:
-				parent.velocity = parent.move_and_slide(Vector2(0, -parent.max_speed))
+			if new_state != states.vertical_dash:
+				parent.velocity.x = sign(parent.velocity.x) * parent.max_speed
+				parent.dash_distance = parent.dash_max_distance
+
+		states.vertical_dash:
+			parent.dash_distance = parent.dash_max_distance
+			parent.velocity.y = -parent.jump_speed
