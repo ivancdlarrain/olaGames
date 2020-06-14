@@ -6,7 +6,7 @@ export var layer_bit : int
 export var default_state: bool
 
 var transparency1 = 1
-var transparency2 = 0.5
+var transparency2 = 0.3
 
 
 func set_transparency(condition):
@@ -28,8 +28,10 @@ func _on_Area2D_body_entered(_body):
 	
 
 func _on_AnimationPlayer_animation_finished(_anim_name):
-	if len($Area2D.get_overlapping_bodies()) > 0:
-		var new_state = !bool(tile_map.get_collision_layer_bit(layer_bit))
-		set_transparency(new_state)
-		tile_map.set_collision_layer_bit(layer_bit, new_state)
-		tile_map.set_collision_mask_bit(layer_bit, new_state)
+	for body in $Area2D.get_overlapping_bodies():
+		if body in get_tree().get_nodes_in_group("alive"):
+			var new_state = !bool(tile_map.get_collision_layer_bit(layer_bit))
+			set_transparency(new_state)
+			tile_map.set_collision_layer_bit(layer_bit, new_state)
+			tile_map.set_collision_mask_bit(layer_bit, new_state)
+			break
