@@ -154,5 +154,8 @@ projectile = ExtResource( 6 )
 [node name="Goal" parent="Portals" instance=ExtResource( 4 )]
 position = Vector2( 2848, -8 )
 world_scene = "res://scenes/menus/Main_menu.tscn"
+<<<<<<< HEAD
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 10 )]
+=======
+>>>>>>> parent of fad131e... Updated demo1_bonus2

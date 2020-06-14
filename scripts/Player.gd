@@ -22,9 +22,9 @@ var deaccel = 6.0
 
 #------- Dash values -------#
 
-var dash_max_distance = 150
+var dash_max_distance = 120
 var dash_distance = dash_max_distance
-var dash_speed = 900
+var dash_speed = 1200
 
 
 #------- Bool values for state logic -------#

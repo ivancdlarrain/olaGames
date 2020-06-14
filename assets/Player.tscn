@@ -223,7 +223,7 @@ graph_offset = Vector2( 0, -6.45025 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=36]
 
 [sub_resource type="RectangleShape2D" id=37]
-extents = Vector2( 2.65014, 14.3923 )
+extents = Vector2( 2.09141, 7.47339 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "alive",
@@ -272,7 +272,7 @@ light_mask = 0
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 5
-frame = 24
+frame = 25
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/death = SubResource( 2 )
@@ -291,16 +291,14 @@ active = true
 parameters/playback = SubResource( 36 )
 
 [node name="Guts" type="Area2D" parent="."]
-visible = false
-position = Vector2( -1.10313, 12.9125 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Guts"]
+visible = false
 position = Vector2( 0.0928116, -4.38152 )
 shape = SubResource( 37 )
 
 [node name="Light2D" type="Light2D" parent="."]
 light_mask = 0
-position = Vector2( -0.632796, -0.828662 )
 texture = ExtResource( 5 )
 texture_scale = 0.75
 range_item_cull_mask = 7
