@@ -1,10 +1,10 @@
 extends Node
 
-const SAVE1 = "res://data/savegames/savegame1.json"
-const SAVE2 = "res://data/savegames/savegame2.json"
-const SAVE3 = "res://data/savegames/savegame3.json"
+const SAVE1 = "user://savegame1.json"
+const SAVE2 = "user://savegame2.json"
+const SAVE3 = "user://savegame3.json"
 
-const SAVE_ORDER = "res://data/savegames/saveorder.json"
+const SAVE_ORDER = "user://saveorder.json"
 
 
 var save_slots = [SAVE1, SAVE2, SAVE3]
@@ -93,9 +93,9 @@ func push_order():
 # Delete saves when starting a new game
 func delete_saves():
 	var dir = Directory.new()
-	dir.remove("res://data/savegames/savegame1.json")
-	dir.remove("res://data/savegames/savegame2.json")
-	dir.remove("res://data/savegames/savegame3.json")
+	dir.remove("user://savegame1.json")
+	dir.remove("user://savegame2.json")
+	dir.remove("user://savegame3.json")
 	
 	save_slots.clear()
 	save_slots.append(SAVE1)
