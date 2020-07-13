@@ -4,6 +4,7 @@ extends Area2D
 const PROJECTILE_SPEED = 500
 var direction = Vector2()
 var velocity = Vector2()
+onready var particle = $Particles2D
 export var impact: PackedScene
 	
 		
