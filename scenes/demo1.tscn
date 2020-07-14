@@ -167,19 +167,10 @@ position = Vector2( 2408, 304 )
 position = Vector2( -56, -152 )
 projectile = ExtResource( 18 )
 
-[node name="Projectile" parent="Drones/BlueDrone2" instance=ExtResource( 18 )]
-position = Vector2( -24, -24 )
-
 [node name="BlueDrone3" parent="Drones" instance=ExtResource( 17 )]
 position = Vector2( 1960, -16 )
 projectile = ExtResource( 18 )
 
-[node name="Projectile" parent="Drones/BlueDrone3" instance=ExtResource( 18 )]
-position = Vector2( -24, -24 )
-
 [node name="BlueDrone4" parent="Drones" instance=ExtResource( 17 )]
 position = Vector2( 2112, -16 )
 projectile = ExtResource( 18 )
-
-[node name="Projectile" parent="Drones/BlueDrone4" instance=ExtResource( 18 )]
-position = Vector2( -24, -24 )

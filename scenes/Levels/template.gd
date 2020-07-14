@@ -1,13 +1,15 @@
 extends Node2D
 
-onready var box_dialogue = $HUDcanvas/DialogueBox
-
 func _ready():
-	box_dialogue.start()
-	
+	$HUDcanvas/DialogueBox.visible = false
 
-	
+func _process(_delta):
+	# Respawn
+	if $Player.get_position().y > 2000:
+		$Player._die()
 
+
+#Hide switch HUD when in dialogue
 
 func _on_DialogueBox_dialogue_start():
 	$HUDcanvas/HUD.visible = false
@@ -16,5 +18,5 @@ func _on_DialogueBox_dialogue_start():
 
 
 func _on_DialogueBox_dialogue_end():
-	$HUDcanvas/HUD.visible = true
+	$HUDcanvasHUD.visible = true
 	$Player.set_physics_process(true)
