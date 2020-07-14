@@ -7,14 +7,17 @@ onready var name_label = $NameBox/MarginContainer/Name
 
 var dialogue_dict : Dictionary
 var index = 0
-var finished: bool
+var finished = false
 
 func _ready():
+	dialogue_label.percent_visible = 0
 	load_file()
 
 func _physics_process(delta):
+	$finisharrow.visible = finished
 	if finished: 
 		if Input.is_action_just_pressed("ui_accept"):
+			
 			display_dialogue()
 
 func load_file():
@@ -32,6 +35,15 @@ func display_dialogue():
 	if index < dialogue_dict.size():
 		name_label.text = conversation[index].name
 		dialogue_label.text = conversation[index].text
-		finished = true
+		$Tween.interpolate_property(dialogue_label, "percent_visible", 0, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Tween.start()
+		
+	else:
+		queue_free()
+
 	index += 1
 	
+
+
+func _on_Tween_tween_completed(object, key):
+	finished = true
