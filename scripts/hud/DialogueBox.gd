@@ -4,7 +4,7 @@ class_name DialogueBox
 signal dialogue_ended()
 
 #Dialogue player:
-onready var dialogue_player: DialoguePlayer = get_node("DialoguePlayer")
+onready var dialogue_player: DialoguePlayer = get_parent().get_node("DialoguePlayer")
 
 
 #Text labels:

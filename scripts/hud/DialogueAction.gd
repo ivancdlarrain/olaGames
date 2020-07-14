@@ -1,7 +1,7 @@
 extends Node
 class_name DialogueAction
 
-export var dialogue_path: String
+export (String, FILE, "*.json")var dialogue_path: String
 
 func interact() -> void:
 	var dialogue = load_dialogue()
@@ -12,7 +12,7 @@ func load_dialogue() -> Dictionary:
 	assert(file.file_exists(dialogue_path))
 	
 	file.open(dialogue_path, file.READ)
-	var dialogue = JSON.parse(file.get_as_text())
-	assert(dialogue.size > 0)
-	return dialogue
+	var dialogue = JSON.parse(file.get_as_text()).result
+	assert(dialogue.size() > 0)
+	return dialogue 
 	
