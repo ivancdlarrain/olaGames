@@ -3,6 +3,10 @@ class_name DialogueAction
 
 export var dialogue_path: String
 
+func interact() -> void:
+	var dialogue = load_dialogue()
+	owner.play_dialogue(dialogue)
+
 func load_dialogue() -> Dictionary:
 	var file = File.new()
 	assert(file.file_exists(dialogue_path))
