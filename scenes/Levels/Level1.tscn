@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/ruletiles/Spikes.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Area2D scenes/Portal.tscn" type="PackedScene" id=2]
@@ -11,9 +11,6 @@
 [ext_resource path="res://scenes/TileMap.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/ruletiles/Button.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scripts/levels scripts/Level1.gd" type="Script" id=11]
-[ext_resource path="res://scenes/events/Dialogue/DialogueBox.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scripts/hud/DialoguePlayer.gd" type="Script" id=13]
-[ext_resource path="res://scripts/hud/DialogueAction.gd" type="Script" id=14]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 11 )
@@ -129,13 +126,3 @@ projectile = ExtResource( 7 )
 [node name="Goal" parent="Portals" instance=ExtResource( 2 )]
 position = Vector2( 2208, 240 )
 world_scene = "res://scenes/demo1.tscn"
-
-[node name="Dialogue" type="Node" parent="."]
-script = ExtResource( 14 )
-dialogue_path = "res://data/dialogues/level1.json"
-
-[node name="DialoguePlayer" type="Node" parent="Dialogue"]
-script = ExtResource( 13 )
-
-[node name="DialogueBox" parent="Dialogue" instance=ExtResource( 12 )]
-visible = false

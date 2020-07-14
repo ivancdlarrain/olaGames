@@ -1,53 +1,37 @@
 extends Control
-class_name DialogueBox
 
-signal dialogue_ended()
+export (String, FILE, "*.json") var dialogue_filepath: String
 
-#Dialogue player:
-onready var dialogue_player: DialoguePlayer = get_parent().get_node("DialoguePlayer")
+onready var dialogue_label = $TextBox/MarginContainer/HBoxContainer/Dialogue
+onready var name_label = $NameBox/MarginContainer/Name
 
+var dialogue_dict : Dictionary
+var index = 0
+var finished: bool
 
-#Text labels:
-onready var text_label = $Panel/MarginContainer/Columns/DialogueText
-onready var name_label = $Panel/MarginContainer/Columns/Name
+func _ready():
+	load_file()
 
-#Buttons:
-onready var next_button = $Panel/MarginContainer/Columns/Next
-onready var done_button = $Panel/MarginContainer/Columns/Done
+func _physics_process(delta):
+	if finished: 
+		if Input.is_action_just_pressed("ui_accept"):
+			display_dialogue()
 
-#CharPortrait:
-onready var portrait = $CharPortrait as TextureRect
+func load_file():
+	var dialogue_file = File.new()
+	assert(dialogue_file.file_exists(dialogue_filepath))
+	dialogue_file.open(dialogue_filepath, File.READ)
+	var dict = JSON.parse(dialogue_file.get_as_text()).result
+	assert(dict.keys().size() > 0)
+	dialogue_dict = dict
+	display_dialogue()
 
-func start(dialogue) -> void:
-	done_button.hide()
-	next_button.show()
-	next_button.grab_focus() #Focuses the input into this button
-	dialogue_player.start(dialogue)
-	update_content()
-	show()
-
-func button_next_pressed() -> void:
-	dialogue_player.next()
-	update_content()
-
-func dialogue_player_finished() -> void:
-	next_button.hide()
-	done_button.show()
-	done_button.grab_focus()
-
-func button_finished_pressed() -> void:
-	emit_signal("dialogue_ended")
-	hide()
+func display_dialogue():
+	finished = false
+	var conversation = dialogue_dict.values()
+	if index < dialogue_dict.size():
+		name_label.text = conversation[index].name
+		dialogue_label.text = conversation[index].text
+		finished = true
+	index += 1
 	
-func update_content() -> void:
-	#var dialogue_player_name = dialogue_player.title
-	var dialogue_player_name = 'Testname'
-	name_label.text = dialogue_player_name
-	#var dialogue_player_text = dialogue_player.text
-	var dialogue_player_text = 'This is a test dialogue'
-	text_label.text = dialogue_player_name
-	#portrait.texture = DialogueDatabase.get_texture(dialogue_player_name)
-	
-	
-
-

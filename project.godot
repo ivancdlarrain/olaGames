@@ -9,21 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "DialogueAction",
-"language": "GDScript",
-"path": "res://scripts/hud/DialogueAction.gd"
-}, {
-"base": "Control",
-"class": "DialogueBox",
-"language": "GDScript",
-"path": "res://scripts/hud/DialogueBox.gd"
-}, {
-"base": "Node",
-"class": "DialoguePlayer",
-"language": "GDScript",
-"path": "res://scripts/hud/DialoguePlayer.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "Drone",
 "language": "GDScript",
@@ -45,9 +30,6 @@ _global_script_classes=[ {
 "path": "res://scripts/state_machines/StateMachine.gd"
 } ]
 _global_script_class_icons={
-"DialogueAction": "",
-"DialogueBox": "",
-"DialoguePlayer": "",
 "Drone": "",
 "DroneStateMachine": "",
 "Key": "",
