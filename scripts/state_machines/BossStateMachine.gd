@@ -6,8 +6,10 @@ func _ready():
 	._ready()
 	add_state('idle')
 	add_state('chase')
-	add_state('casting_attack')
-	add_state('attack')
+	add_state('main')
+	add_state('secondary')
+	add_state('recovery')
+	add_state('changing_color')
 	call_deferred('set_state', states.idle)
 
 
@@ -20,11 +22,33 @@ func _state_logic(delta):
 		states.chase:
 			parent.horizontal_movement(ray_direction.x > 0)
 		
-		states.casting_attack:
+		states.main:
+			match color.state:
+				color.states.blue:
+					pass
+				
+				color.states.orange:
+					pass
+				
+				color.states.purple:
+					pass
+		
+		states.secondary:
+			match color.state:
+				color.states.blue:
+					pass
+				
+				color.states.orange:
+					pass
+				
+				color.states.purple:
+					pass
+		
+		states.recovery:
 			pass
 		
-		states.attack:
-			parent.move_and_slide(parent.velocity)
+		states.changing_color:
+			pass
 
 
 func _get_transition(delta):
@@ -33,12 +57,39 @@ func _get_transition(delta):
 			pass
 		
 		states.chase:
+			if parent.player_on_range():
+				if randi()%3+1 > 1:
+					return states.main
+				
+				else:
+					return states.secondary
+		
+		states.main:
+			match color.state:
+				color.states.blue:
+					pass
+				
+				color.states.orange:
+					pass
+				
+				color.states.purple:
+					pass
+		
+		states.secondary:
+			match color.state:
+				color.states.blue:
+					pass
+				
+				color.states.orange:
+					pass
+				
+				color.states.purple:
+					pass
+		
+		states.recovery:
 			pass
 		
-		states.casting_attack:
-			pass
-		
-		states.attack:
+		states.changing_color:
 			pass
 		
 	return null
@@ -52,11 +103,17 @@ func _enter_state(new_state, old_state):
 		states.chase:
 			pass
 		
-		states.casting_attack:
+		states.main:
 			pass
 		
-		states.attack:
-			parent.attack()
+		states.secondary:
+			pass
+		
+		states.recovery:
+			pass
+		
+		states.changing_color:
+			pass
 
 
 func _exit_state(old_state, new_state):
@@ -67,9 +124,14 @@ func _exit_state(old_state, new_state):
 		states.chase:
 			pass
 		
-		states.casting_attack:
+		states.main:
 			pass
 		
-		states.attack:
+		states.secondary:
 			pass
-
+		
+		states.recovery:
+			pass
+		
+		states.changing_color:
+			pass

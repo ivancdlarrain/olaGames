@@ -91,6 +91,19 @@ func _die():
 	pass
 
 
+func player_on_range():
+	# This function checks if boss can attack the player
+	match color.state:
+		color.states.blue:
+			return true
+		
+		color.states.orange:
+			return true
+		
+		color.states.purple:
+			return true
+
+
 func back_to_y_level():
 	# Movement:
 	velocity = Vector2(0, -ORANGE_RECOVERY_SPEED)
@@ -144,16 +157,3 @@ func secondary_attack():
 		
 		color.states.purple:
 			purple_secondary_attack()
-
-
-func attack():
-	if randi()%3+1 > 1:
-		main_attack()
-	
-	else:
-		secondary_attack()
-
-
-
-#   Color change:
-
