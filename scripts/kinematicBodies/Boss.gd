@@ -1,10 +1,10 @@
 extends Drone
 
 # Movement
-const MAX_SPEED = 0
-const SPEED_INCREASE = 0
-const DEACCEL = 0
-export var y_level = 0
+const MAX_SPEED = 200
+const SPEED_INCREASE = 10
+const DEACCEL = 5
+export var y_level = -400
 
 # Animation
 var facing_right = false
@@ -13,13 +13,13 @@ var facing_right = false
 var enemy_on_range = false
 
 # Combat:
-var health = 0
-const BLUE_DAMAGE = 0
-const ORANGE_DAMAGE = 0
-const PURPLE_DAMAGE = 0
+var health = 200
+const BLUE_DAMAGE = 30
+const ORANGE_DAMAGE = 20
+const PURPLE_DAMAGE = 10
 
-const ORANGE_MAIN_SPEED = 0
-const ORANGE_RECOVERY_SPEED = 0
+const ORANGE_MAIN_SPEED = 500
+const ORANGE_RECOVERY_SPEED = 50
 
 # Platforms that the boss will be able to control:
 export var platform_1 : NodePath
@@ -46,7 +46,7 @@ func _ready():
 func horizontal_movement(move_right):
 	# Movement:
 	var dir = -1 + 2*int(move_right)
-	velocity += SPEED_INCREASE * dir
+	velocity.x += SPEED_INCREASE * dir
 	if abs(velocity.x) > MAX_SPEED:
 		velocity.x = sign(velocity.x) * MAX_SPEED
 	velocity = move_and_slide(velocity)
@@ -107,6 +107,7 @@ func player_on_range():
 func back_to_y_level():
 	# Movement:
 	velocity = Vector2(0, -ORANGE_RECOVERY_SPEED)
+	velocity = move_and_slide(velocity)
 
 
 func blue_main_attack():
@@ -157,3 +158,4 @@ func secondary_attack():
 		
 		color.states.purple:
 			purple_secondary_attack()
+
