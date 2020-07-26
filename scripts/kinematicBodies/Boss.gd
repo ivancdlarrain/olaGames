@@ -18,21 +18,32 @@ const BLUE_DAMAGE = 30
 const ORANGE_DAMAGE = 20
 const PURPLE_DAMAGE = 10
 
+
 const ORANGE_MAIN_SPEED = 500
-const ORANGE_RECOVERY_SPEED = 50
+const ORANGE_RECOVERY_SPEED = 200
 
 # Platforms that the boss will be able to control:
 export var platform_1 : NodePath
+export var platform_1_external : NodePath
 export var platform_2 : NodePath
+export var platform_2_external : NodePath
 export var platform_3 : NodePath
+export var platform_3_external : NodePath
+
 onready var tile_map_1 = get_node(platform_1) as TileMap
+onready var tile_map_1_external = get_node(platform_1_external) as TileMap
 onready var tile_map_2 = get_node(platform_2) as TileMap
+onready var tile_map_2_external = get_node(platform_2_external) as TileMap
 onready var tile_map_3 = get_node(platform_3) as TileMap
+onready var tile_map_3_external = get_node(platform_3_external) as TileMap
 
 
 # State machines:
 onready var combat = get_node("DroneStateMachine")
 onready var color = get_node("ColorState")
+
+# Scenes:
+const PURPLE_EYE_DRONE = preload("res://assets/KinematicBodies/PurpleMinion.tscn")
 
 
 func _ready():
@@ -73,6 +84,7 @@ func apply_deaccel():
 #   Attack:
 
 func take_damage():
+	print('Ouch')
 	match color.state:
 		color.states.blue:
 			health -= BLUE_DAMAGE
@@ -125,11 +137,12 @@ func orange_main_attack():
 
 
 func orange_secondary_attack():
-	pass
+	orange_main_attack()
 
 
 func purple_main_attack():
-	pass
+	for i in range(4):
+		summon_PurpleMinion(position - Vector2((2*i - 3) * 10, -10))
 
 
 func purple_secondary_attack():
@@ -158,4 +171,19 @@ func secondary_attack():
 		
 		color.states.purple:
 			purple_secondary_attack()
+
+
+func summon_explosion(pos, layer, size):
+	var explosion = EXPLOSION_SCENE.instance() as Area2D
+	explosion.position = pos
+	explosion.set_layer(layer)
+	explosion.scale = Vector2(size, size)
+	get_parent().add_child(explosion)
+	shake._start(0.2, 15, 32)
+
+
+func summon_PurpleMinion(pos):
+	var minion = PURPLE_EYE_DRONE.instance()
+	minion.position = pos
+	add_child(minion)
 

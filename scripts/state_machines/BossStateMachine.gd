@@ -8,6 +8,9 @@ var recovery_finished = false
 var finished_color_change = false
 var on_range = false
 
+# Purple attack flags:
+var remaining_drones = 0
+
 
 func _ready():
 	._ready()
@@ -36,10 +39,10 @@ func _state_logic(delta):
 					pass
 				
 				color.states.orange:
-					parent.horizontal_movement(ray_direction.x > 0)
+					parent.move_and_slide(parent.velocity)
 				
 				color.states.purple:
-					pass
+					parent.horizontal_movement(ray_direction.x > 0)
 		
 		states.secondary:
 			match color.state:
@@ -47,7 +50,7 @@ func _state_logic(delta):
 					pass
 				
 				color.states.orange:
-					parent.horizontal_movement(ray_direction.x > 0)
+					parent.move_and_slide(parent.velocity)
 				
 				color.states.purple:
 					pass
@@ -99,7 +102,8 @@ func _get_transition(delta):
 						return states.recovery
 				
 				color.states.purple:
-					pass
+					if remaining_drones == 0:
+						return states.recovery
 		
 		states.secondary:
 			match color.state:
@@ -107,7 +111,8 @@ func _get_transition(delta):
 					pass
 				
 				color.states.orange:
-					if !on_range: return states.chase
+					if orange_collision:
+						return states.recovery
 				
 				color.states.purple:
 					pass
@@ -138,18 +143,18 @@ func _enter_state(new_state, old_state):
 		
 		states.main:
 			parent.main_attack()
-#			match color.state:
-#				color.states.blue:
-#					pass
-#
-#				color.states.orange:
-#					pass
-#
-#				color.states.purple:
-#					pass
+			match color.state:
+				color.states.blue:
+					pass
+				
+				color.states.orange:
+					pass
+				
+				color.states.purple:
+					remaining_drones = 4
 		
 		states.secondary:
-			pass
+			parent.secondary_attack()
 		
 		states.recovery:
 			pass
@@ -167,18 +172,29 @@ func _exit_state(old_state, new_state):
 			pass
 		
 		states.main:
+			parent.take_damage()
 			match color.state:
 				color.states.blue:
 					pass
 				
 				color.states.orange:
 					orange_collision = false
+					parent.summon_explosion(parent.position, 1, 2)
 				
 				color.states.purple:
 					pass
 		
 		states.secondary:
-			pass
+			match color.state:
+				color.states.blue:
+					pass
+				
+				color.states.orange:
+					orange_collision = false
+					parent.summon_explosion(parent.position, 1, 2)
+				
+				color.states.purple:
+					pass
 		
 		states.recovery:
 			recovery_finished = false
@@ -188,21 +204,17 @@ func _exit_state(old_state, new_state):
 
 
 
-
-
-
-
 # Some connections:
 func _on_DestructionArea_body_entered(_body):
-	if state == states.main and color.state == color.states.orange:
+	if state in [states.main, states.secondary] and color.state == color.states.orange:
 		orange_collision = true
 
 
 func _on_OrangeRange_body_entered(body):
-	if body in get_tree().get_nodes_in_group("drone_target") and color.state == color.states.orange:
+	if body in get_tree().get_nodes_in_group("drone_target") and color.state in [color.states.orange, color.states.purple]:
 		on_range = true
 
 
 func _on_OrangeRange_body_exited(body):
-	if body in get_tree().get_nodes_in_group("drone_target") and color.state == color.states.orange:
+	if body in get_tree().get_nodes_in_group("drone_target") and color.state in [color.states.orange, color.states.purple]:
 		on_range = false
