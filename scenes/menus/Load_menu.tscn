@@ -1,16 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://fonts/Manrope-VariableFont_wght.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/textures/menubuttons/2 - slot2frames.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Load_menu.gd" type="Script" id=2]
 [ext_resource path="res://fonts/ARCADECLASSIC.TTF" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/textures/menubuttons/2 - slot1frames.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/menubuttons/3 - slot1frames.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/menubuttons/1 - slot1frames.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/menubuttons/3 - backframes.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/menubuttons/3 - slot2frames.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/menubuttons/1 - backframes.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/menubuttons/1 - slot3frames.png" type="Texture" id=10]
+[ext_resource path="res://assets/textures/menubuttons/2 - slot3frames.png" type="Texture" id=11]
+[ext_resource path="res://assets/textures/menubuttons/2 - backframes.png" type="Texture" id=12]
+[ext_resource path="res://assets/textures/menubuttons/1 - slot2frames.png" type="Texture" id=13]
+[ext_resource path="res://assets/textures/menubuttons/3 - slot3frames.png" type="Texture" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
 font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 23
-font_data = ExtResource( 1 )
 
 [node name="Load_Menu" type="Control"]
 anchor_right = 1.0
@@ -35,47 +42,65 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -512.0
+margin_left = -256.0
 margin_top = -288.0
-margin_right = 512.0
+margin_right = 256.0
 margin_bottom = 288.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
-margin_right = 1024.0
+anchor_top = 0.0225694
+anchor_bottom = 0.0225694
+margin_right = 512.0
 margin_bottom = 51.0
 custom_fonts/font = SubResource( 1 )
 text = "Choose save slot"
 align = 1
 
-[node name="Slot 1" type="TextureButton" parent="CanvasLayer/VBoxContainer"]
-margin_top = 55.0
-margin_right = 1024.0
-margin_bottom = 55.0
+[node name="Slot 1" type="TextureButton" parent="CanvasLayer"]
+modulate = Color( 1, 0.52549, 0.145098, 1 )
+margin_left = 392.0
+margin_top = 86.0
+margin_right = 643.0
+margin_bottom = 167.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Slot 2" type="Button" parent="CanvasLayer/VBoxContainer"]
-margin_top = 59.0
-margin_right = 1024.0
-margin_bottom = 97.0
-custom_fonts/font = SubResource( 2 )
-text = "Save slot 2"
+[node name="Slot 2" type="TextureButton" parent="CanvasLayer"]
+modulate = Color( 0.956863, 0.776471, 0.560784, 1 )
+margin_left = 392.0
+margin_top = 185.0
+margin_right = 643.0
+margin_bottom = 266.0
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 1 )
 
-[node name="Slot 3" type="Button" parent="CanvasLayer/VBoxContainer"]
-margin_top = 101.0
-margin_right = 1024.0
-margin_bottom = 139.0
-custom_fonts/font = SubResource( 2 )
-text = "Save slot 3"
+[node name="Slot 3" type="TextureButton" parent="CanvasLayer"]
+margin_left = 392.0
+margin_top = 281.0
+margin_right = 643.0
+margin_bottom = 362.0
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 11 )
 
-[node name="Back" type="Button" parent="CanvasLayer/VBoxContainer"]
-margin_top = 143.0
-margin_right = 1024.0
-margin_bottom = 181.0
-custom_fonts/font = SubResource( 2 )
-text = "Back"
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Slot 1" to="." method="_on_Slot_1_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Slot 2" to="." method="_on_Slot_2_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Slot 3" to="." method="_on_Slot_3_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Back" to="." method="_on_Back_pressed"]
+[node name="Back" type="TextureButton" parent="CanvasLayer"]
+modulate = Color( 0.654902, 0.945098, 1, 1 )
+margin_left = 392.0
+margin_top = 448.0
+margin_right = 643.0
+margin_bottom = 529.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 12 )
+[connection signal="pressed" from="CanvasLayer/Slot 1" to="." method="_on_Slot_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/Slot 2" to="." method="_on_Slot_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Slot 3" to="." method="_on_Slot_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/Back" to="." method="_on_Back_pressed"]
