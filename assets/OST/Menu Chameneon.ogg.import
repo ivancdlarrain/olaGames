@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Menu Chameneon.ogg-85cb451c927db3e57a7c9b7422753c72.oggstr"
+
+[deps]
+
+source_file="res://assets/OST/Menu Chameneon.ogg"
+dest_files=[ "res://.import/Menu Chameneon.ogg-85cb451c927db3e57a7c9b7422753c72.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

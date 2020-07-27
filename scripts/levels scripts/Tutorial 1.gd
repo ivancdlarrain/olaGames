@@ -9,6 +9,9 @@ onready var orange = $orange
 onready var purple = $purple
 onready var space = $space
 
+func _ready():
+	MusicController.play_level_music()
+
 
 func _hold_key(key):
 	key.frame += 1

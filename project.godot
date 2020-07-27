@@ -45,6 +45,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Save="*res://scripts/save.gd"
+MusicController="*res://Music/MusicController.gd"
 
 [display]
 
