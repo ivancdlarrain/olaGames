@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3 - slot2frames.png-27ab4d8da225cff19085030cfc3c7d2c.stex"
+path="res://.import/1 - saveframes.png-2182e9dadfbadb4e59e016a1a66d7002.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/menubuttons/3 - slot2frames.png"
-dest_files=[ "res://.import/3 - slot2frames.png-27ab4d8da225cff19085030cfc3c7d2c.stex" ]
+source_file="res://assets/textures/menubuttons/pause/1 - saveframes.png"
+dest_files=[ "res://.import/1 - saveframes.png-2182e9dadfbadb4e59e016a1a66d7002.stex" ]
 
 [params]
 

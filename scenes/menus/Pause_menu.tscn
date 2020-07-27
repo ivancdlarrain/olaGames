@@ -1,22 +1,44 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scripts/Pause.gd" type="Script" id=1]
-[ext_resource path="res://fonts/Manrope-VariableFont_wght.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/textures/menubuttons/2 - slot1frames.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/menubuttons/pause/3 - resumeframes.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/menubuttons/pause/1 - resumeframes.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/menubuttons/pause/2 - resumeframes.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/menubuttons/pause/2 - saveframes.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/menubuttons/pause/1 - loadframes.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/menubuttons/pause/3 - loadframes.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/menubuttons/pause/1 - mainframes.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/menubuttons/pause/3 - mainframes.png" type="Texture" id=10]
+[ext_resource path="res://assets/textures/menubuttons/pause/2 - loadframes.png" type="Texture" id=11]
+[ext_resource path="res://assets/textures/menubuttons/pause/1 - saveframes.png" type="Texture" id=12]
+[ext_resource path="res://assets/textures/menubuttons/pause/3 - saveframes.png" type="Texture" id=13]
+[ext_resource path="res://assets/textures/menubuttons/pause/2 - mainframes.png" type="Texture" id=14]
+[ext_resource path="res://fonts/ARCADECLASSIC.TTF" type="DynamicFontData" id=15]
+[ext_resource path="res://assets/textures/menubuttons/2 - slot2frames.png" type="Texture" id=16]
+[ext_resource path="res://assets/textures/menubuttons/3 - backframes.png" type="Texture" id=17]
+[ext_resource path="res://assets/textures/menubuttons/3 - slot1frames.png" type="Texture" id=18]
+[ext_resource path="res://assets/textures/menubuttons/3 - slot2frames.png" type="Texture" id=19]
+[ext_resource path="res://assets/textures/menubuttons/1 - backframes.png" type="Texture" id=20]
+[ext_resource path="res://assets/textures/menubuttons/1 - slot3frames.png" type="Texture" id=21]
+[ext_resource path="res://assets/textures/menubuttons/1 - slot1frames.png" type="Texture" id=22]
+[ext_resource path="res://assets/textures/menubuttons/2 - slot3frames.png" type="Texture" id=23]
+[ext_resource path="res://assets/textures/menubuttons/2 - backframes.png" type="Texture" id=24]
+[ext_resource path="res://assets/textures/menubuttons/1 - slot2frames.png" type="Texture" id=25]
+[ext_resource path="res://assets/textures/menubuttons/3 - slot3frames.png" type="Texture" id=26]
 
 [sub_resource type="DynamicFont" id=1]
-size = 31
+size = 63
 outline_size = 1
+outline_color = Color( 0.00784314, 0, 0.913725, 1 )
 extra_spacing_bottom = 17
 extra_spacing_char = 7
-font_data = ExtResource( 2 )
+font_data = ExtResource( 15 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 26
-outline_size = 1
-extra_spacing_top = 2
-extra_spacing_bottom = 2
-extra_spacing_char = 3
-font_data = ExtResource( 2 )
+size = 62
+outline_color = Color( 0.882353, 0.0862745, 0.0862745, 1 )
+font_data = ExtResource( 15 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
 layer = 100
@@ -48,99 +70,134 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -200.0
-margin_top = -100.0
-margin_right = 200.0
-margin_bottom = 100.0
+margin_left = -137.0
+margin_top = -174.0
+margin_right = 254.0
+margin_bottom = 228.0
+rect_scale = Vector2( 0.7, 0.7 )
+size_flags_vertical = 0
+custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Pause/CanvasLayer/VBoxContainer"]
-margin_right = 400.0
-margin_bottom = 61.0
+margin_right = 391.0
+margin_bottom = 82.0
 custom_fonts/font = SubResource( 1 )
 text = "Paused"
 align = 1
 valign = 1
 
-[node name="Resume" type="Button" parent="Pause/CanvasLayer/VBoxContainer"]
-margin_top = 65.0
-margin_right = 400.0
-margin_bottom = 111.0
-custom_fonts/font = SubResource( 2 )
-text = "Resume"
+[node name="Resume" type="TextureButton" parent="Pause/CanvasLayer/VBoxContainer"]
+modulate = Color( 0.596078, 0.8, 1, 1 )
+margin_top = 82.0
+margin_right = 391.0
+margin_bottom = 163.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 3 )
 
-[node name="Save" type="Button" parent="Pause/CanvasLayer/VBoxContainer"]
-margin_top = 115.0
-margin_right = 400.0
-margin_bottom = 161.0
-custom_fonts/font = SubResource( 2 )
-text = "Save Game"
+[node name="Save" type="TextureButton" parent="Pause/CanvasLayer/VBoxContainer"]
+modulate = Color( 0.890196, 0.54902, 0.85098, 1 )
+margin_top = 163.0
+margin_right = 391.0
+margin_bottom = 244.0
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 13 )
 
-[node name="Load" type="Button" parent="Pause/CanvasLayer/VBoxContainer"]
-margin_top = 115.0
-margin_right = 400.0
-margin_bottom = 161.0
-custom_fonts/font = SubResource( 2 )
-text = "Load Game"
+[node name="Load" type="TextureButton" parent="Pause/CanvasLayer/VBoxContainer"]
+modulate = Color( 0.92549, 0.803922, 0.443137, 1 )
+margin_top = 244.0
+margin_right = 391.0
+margin_bottom = 325.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 11 )
+texture_hover = ExtResource( 8 )
 
-[node name="Main Menu" type="Button" parent="Pause/CanvasLayer/VBoxContainer"]
-margin_top = 115.0
-margin_right = 400.0
-margin_bottom = 161.0
-custom_fonts/font = SubResource( 2 )
-text = "Main Menu"
+[node name="Main Menu" type="TextureButton" parent="Pause/CanvasLayer/VBoxContainer"]
+margin_top = 325.0
+margin_right = 391.0
+margin_bottom = 406.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 10 )
 
 [node name="Save Slots" type="VBoxContainer" parent="Pause/CanvasLayer"]
 visible = false
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.444
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -200.0
-margin_top = -100.0
-margin_right = 200.0
-margin_bottom = 100.0
+anchor_bottom = 0.444
+margin_left = -187.0
+margin_top = -141.744
+margin_right = 347.0
+margin_bottom = 263.256
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.7, 0.7 )
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Pause/CanvasLayer/Save Slots"]
-margin_right = 400.0
-margin_bottom = 61.0
-custom_fonts/font = SubResource( 1 )
-text = "Choose a save slot"
+[node name="Label2" type="Label" parent="Pause/CanvasLayer/Save Slots"]
+margin_right = 534.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 2 )
+text = "choose a save slot"
 align = 1
-valign = 1
 
-[node name="Slot 1" type="Button" parent="Pause/CanvasLayer/Save Slots"]
-margin_top = 65.0
-margin_right = 400.0
-margin_bottom = 111.0
-custom_fonts/font = SubResource( 2 )
-text = "Save slot 1"
+[node name="Slot 1" type="TextureButton" parent="Pause/CanvasLayer/Save Slots"]
+modulate = Color( 1, 0.52549, 0.145098, 1 )
+margin_left = 141.0
+margin_top = 68.0
+margin_right = 392.0
+margin_bottom = 149.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource( 22 )
+texture_pressed = ExtResource( 18 )
+texture_hover = ExtResource( 2 )
 
-[node name="Slot 2" type="Button" parent="Pause/CanvasLayer/Save Slots"]
-margin_top = 115.0
-margin_right = 400.0
-margin_bottom = 161.0
-custom_fonts/font = SubResource( 2 )
-text = "Save slot 2"
+[node name="Slot 2" type="TextureButton" parent="Pause/CanvasLayer/Save Slots"]
+modulate = Color( 0.956863, 0.776471, 0.560784, 1 )
+margin_left = 141.0
+margin_top = 153.0
+margin_right = 392.0
+margin_bottom = 234.0
+size_flags_horizontal = 4
+texture_normal = ExtResource( 25 )
+texture_pressed = ExtResource( 19 )
+texture_hover = ExtResource( 16 )
 
-[node name="Slot 3" type="Button" parent="Pause/CanvasLayer/Save Slots"]
-margin_top = 115.0
-margin_right = 400.0
-margin_bottom = 161.0
-custom_fonts/font = SubResource( 2 )
-text = "Save slot 3"
+[node name="Slot 3" type="TextureButton" parent="Pause/CanvasLayer/Save Slots"]
+margin_left = 141.0
+margin_top = 238.0
+margin_right = 392.0
+margin_bottom = 319.0
+size_flags_horizontal = 4
+texture_normal = ExtResource( 21 )
+texture_pressed = ExtResource( 26 )
+texture_hover = ExtResource( 23 )
 
-[node name="Back" type="Button" parent="Pause/CanvasLayer/Save Slots"]
-margin_top = 115.0
-margin_right = 400.0
-margin_bottom = 161.0
-custom_fonts/font = SubResource( 2 )
-text = "Back"
+[node name="Back" type="TextureButton" parent="Pause/CanvasLayer/Save Slots"]
+modulate = Color( 0.654902, 0.945098, 1, 1 )
+margin_left = 141.0
+margin_top = 323.0
+margin_right = 392.0
+margin_bottom = 404.0
+size_flags_horizontal = 4
+texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 17 )
+texture_hover = ExtResource( 24 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Pause/CanvasLayer/Save Slots"]
+margin_top = 408.0
+margin_right = 534.0
+margin_bottom = 408.0
 [connection signal="pressed" from="Pause/CanvasLayer/VBoxContainer/Resume" to="Pause" method="_on_Resume_pressed"]
 [connection signal="pressed" from="Pause/CanvasLayer/VBoxContainer/Save" to="Pause" method="_on_Save_pressed"]
 [connection signal="pressed" from="Pause/CanvasLayer/VBoxContainer/Load" to="Pause" method="_on_Load_pressed"]
