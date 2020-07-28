@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/Area2D scenes/Portal.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/camera/playerCam.tscn" type="PackedScene" id=2]
@@ -9,9 +9,10 @@
 [ext_resource path="res://scenes/events/Dialogue/DialogueBox.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/TileMap.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/menus/Pause_menu.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/Levels/Level2.gd" type="Script" id=10]
+[ext_resource path="res://scripts/levels scripts/Level2.gd" type="Script" id=10]
 [ext_resource path="res://assets/ruletiles/Button.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/Drone.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/sprites/environment/background/City background orange version.png" type="Texture" id=13]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource( 10 )
@@ -25,6 +26,15 @@ limit_left = -928
 limit_top = -544
 limit_right = 832
 limit_bottom = 224
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Player"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Player/ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0.1 )
+
+[node name="Sprite" type="Sprite" parent="Player/ParallaxBackground/ParallaxLayer"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 13 )
 
 [node name="Tiles" type="Node" parent="."]
 
@@ -137,6 +147,7 @@ position = Vector2( -432, 112 )
 
 [node name="Goal" parent="Portals" instance=ExtResource( 1 )]
 position = Vector2( 0, -360 )
+world_scene = "res://scenes/Levels/Level3.tscn"
 
 [node name="HUDcanvas" type="CanvasLayer" parent="."]
 

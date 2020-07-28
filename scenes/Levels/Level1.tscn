@@ -149,7 +149,7 @@ projectile = ExtResource( 7 )
 
 [node name="Goal" parent="Portals" instance=ExtResource( 2 )]
 position = Vector2( 2192, 176 )
-world_scene = "res://scenes/demo1.tscn"
+world_scene = "res://scenes/Levels/Level2.tscn"
 
 [node name="PauseMenu" parent="." instance=ExtResource( 15 )]
 
