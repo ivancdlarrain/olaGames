@@ -4,7 +4,9 @@ var anim_played = "title2"
 
 func _ready():
 	$TitleTimer.start()
-	MusicController.play_menu_music()
+	if MusicController.stream != MusicController.menu_music:
+		MusicController.play_menu_music()
+	
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

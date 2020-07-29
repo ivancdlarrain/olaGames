@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://fonts/ARCADECLASSIC.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/menus/Credits.gd" type="Script" id=2]
@@ -7,8 +7,11 @@
 size = 20
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "creditsroll"
+[sub_resource type="DynamicFont" id=2]
+extra_spacing_char = 1
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
 length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("CanvasLayer/VBoxContainer:rect_position")
@@ -129,7 +132,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Button" type="Button" parent="CanvasLayer"]
+margin_left = 16.0
+margin_top = 544.0
+margin_right = 196.0
+margin_bottom = 567.0
+custom_fonts/font = SubResource( 2 )
+text = "Return to main menu"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/creditsroll = SubResource( 2 )
+anims/creditsroll = SubResource( 3 )
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]
