@@ -140,6 +140,7 @@ position = Vector2( 256, -888 )
 collision_layer = 4
 collision_mask = 4
 tile_map_path = NodePath("../AppearTile")
+layer_bit = 2
 default_state = true
 
 [node name="White" type="Node" parent="Tiles"]
