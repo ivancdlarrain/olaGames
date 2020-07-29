@@ -8,7 +8,7 @@
 [ext_resource path="res://scenes/events/Dialogue/DialogueBox.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/menus/Pause_menu.tscn" type="PackedScene" id=9]
 
-[node name="Template" type="Node2D"]
+[node name="BossFight" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 152 )
@@ -71,6 +71,13 @@ tile_data = PoolIntArray( -589841, 1, 262149, -589840, 1, 5, -589839, 1, 5, -589
 
 [node name="Boss" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 0, -240 )
+y_level = -240
+platform_1 = NodePath("../../Tiles/Platform1/Front")
+platform_1_external = NodePath("../../Tiles/Platform1/Back")
+platform_2 = NodePath("../../Tiles/Platform2/Front")
+platform_2_external = NodePath("../../Tiles/Platform2/Back")
+platform_3 = NodePath("../../Tiles/Platform3/Front")
+platform_3_external = NodePath("../../Tiles/Platform3/Back")
 
 [node name="HUDcanvas" type="CanvasLayer" parent="."]
 

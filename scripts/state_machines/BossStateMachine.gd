@@ -24,7 +24,7 @@ func _ready():
 
 
 func _state_logic(delta):
-	print(states.keys()[state])
+#	print(states.keys()[state])
 	._state_logic(delta)
 	match state:
 		states.idle:
@@ -42,6 +42,7 @@ func _state_logic(delta):
 					parent.move_and_slide(parent.velocity)
 				
 				color.states.purple:
+#					print(len(parent.minions))
 					parent.horizontal_movement(ray_direction.x > 0)
 		
 		states.secondary:

@@ -11,7 +11,7 @@ var deaccel = 2
 
 # Animation
 onready var playback = $AnimationTree.get("parameters/playback")
-onready var shake = get_owner().get_node("Player/Camera2D/ScreenShake")
+#onready var shake = get_owner().get_node("Player/Camera2D/ScreenShake")
 var color_layer = 0
 var exp_transform = 1
 
@@ -40,6 +40,7 @@ func take_damage():
 
 
 func _die():
+	var shake = get_owner().get_node("Player/Camera2D/ScreenShake")
 	var explosion = EXPLOSION_SCENE.instance() as Area2D
 	explosion.position = position
 	explosion.set_layer(color_layer)

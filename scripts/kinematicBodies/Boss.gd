@@ -141,8 +141,9 @@ func orange_secondary_attack():
 
 
 func purple_main_attack():
-	for i in range(4):
-		summon_PurpleMinion(position - Vector2((2*i - 3) * 10, -10))
+	print("MINIONS!")
+	for i in range(2):
+		summon_PurpleMinion(position - Vector2((40*i - 3) * 10, -120))
 
 
 func purple_secondary_attack():
@@ -174,6 +175,7 @@ func secondary_attack():
 
 
 func summon_explosion(pos, layer, size):
+	var shake = get_owner().get_node("Player/Camera2D/ScreenShake")
 	var explosion = EXPLOSION_SCENE.instance() as Area2D
 	explosion.position = pos
 	explosion.set_layer(layer)
@@ -182,8 +184,10 @@ func summon_explosion(pos, layer, size):
 	shake._start(0.2, 15, 32)
 
 
+var minions = []
 func summon_PurpleMinion(pos):
 	var minion = PURPLE_EYE_DRONE.instance()
+	minions.append(minion)
 	minion.position = pos
-	add_child(minion)
+	get_parent().add_child(PURPLE_EYE_DRONE.instance())
 
