@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=2]
 
-[ext_resource path="res://scripts/kinematicBodies/PurpleEyeDrone.gd" type="Script" id=1]
+[ext_resource path="res://scripts/kinematicBodies/PurpleMinion.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/hostile mobs/PurpleEyeDrone.png" type="Texture" id=2]
 [ext_resource path="res://scripts/state_machines/PurpleEyeDrone.gd" type="Script" id=3]
 
@@ -170,7 +170,7 @@ light_mask = 4
 texture = ExtResource( 2 )
 vframes = 7
 hframes = 6
-frame = 10
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/activation = SubResource( 2 )

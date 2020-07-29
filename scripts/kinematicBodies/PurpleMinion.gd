@@ -46,6 +46,7 @@ func apply_deaccel():
 
 
 func take_damage():
+	get_tree().get_node("BossFight").get_node("Boss").get_node("DroneStateMachine").remaining_drones -= 1
 	_die()
 
 
