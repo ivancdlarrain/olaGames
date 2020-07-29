@@ -51,3 +51,7 @@ func _on_PlayButton_pressed():
 
 func _on_QuitButton_button_down():
 	$CanvasLayer/Panel/QuitButton/Quit.frame = 2
+
+
+func _on_Credits_pressed():
+	get_tree().change_scene("res://scenes/Credits.tscn")

@@ -11,7 +11,7 @@ func dissapear():
 
 
 func _ready():
-	dissapear()
+	$AnimationPlayer.play("creditsroll")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

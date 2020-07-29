@@ -1,9 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
+[ext_resource path="res://fonts/ARCADECLASSIC.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/Main_menu.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/menu/Title.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/menu/Play.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/menu/Quit.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=3]
+size = 21
+font_data = ExtResource( 1 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "title1"
@@ -84,6 +89,18 @@ scale = Vector2( 3, 3 )
 texture = ExtResource( 5 )
 vframes = 3
 
+[node name="Credits" type="Button" parent="CanvasLayer/Panel"]
+margin_left = 868.0
+margin_top = 509.0
+margin_right = 976.0
+margin_bottom = 538.0
+custom_fonts/font = SubResource( 3 )
+text = "Credits"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Title" type="Sprite" parent="CanvasLayer"]
 position = Vector2( 512.318, 115.506 )
 scale = Vector2( 6, 7 )
@@ -104,5 +121,6 @@ anims/title2 = SubResource( 2 )
 [connection signal="mouse_entered" from="CanvasLayer/Panel/QuitButton" to="." method="_on_QuitButton_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Panel/QuitButton" to="." method="_on_QuitButton_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Panel/QuitButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="timeout" from="TitleTimer" to="." method="_on_TitleTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

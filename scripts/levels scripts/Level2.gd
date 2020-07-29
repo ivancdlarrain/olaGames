@@ -7,4 +7,7 @@ func _ready():
 	get_node('Player').get_node('Sprite').modulate = Color(1, 0.529412, 0)
 	get_node('Player').get_node("Light2D").color = Color(1, 0.529412, 0)
 
-
+func _process(_delta):
+	# Respawn
+	if $Player.get_position().y > 500:
+		$Player._die()
