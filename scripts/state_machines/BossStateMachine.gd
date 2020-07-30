@@ -73,7 +73,8 @@ func _state_logic(delta):
 					recovery_finished = true
 		
 		states.changing_color:
-			parent.horizontal_movement(ray_direction.x > 0)
+			yield(get_tree().create_timer(1), "timeout")
+			finished_color_change = true
 
 
 func _get_transition(delta):
@@ -161,7 +162,7 @@ func _enter_state(new_state, old_state):
 			pass
 		
 		states.changing_color:
-			pass
+			color.changing_color = true
 
 
 func _exit_state(old_state, new_state):

@@ -22,21 +22,6 @@ const PURPLE_DAMAGE = 10
 const ORANGE_MAIN_SPEED = 1000
 const ORANGE_RECOVERY_SPEED = 250
 
-# Platforms that the boss will be able to control:
-export var platform_1 : NodePath
-export var platform_1_external : NodePath
-export var platform_2 : NodePath
-export var platform_2_external : NodePath
-export var platform_3 : NodePath
-export var platform_3_external : NodePath
-
-onready var tile_map_1 = get_node(platform_1) as TileMap
-onready var tile_map_1_external = get_node(platform_1_external) as TileMap
-onready var tile_map_2 = get_node(platform_2) as TileMap
-onready var tile_map_2_external = get_node(platform_2_external) as TileMap
-onready var tile_map_3 = get_node(platform_3) as TileMap
-onready var tile_map_3_external = get_node(platform_3_external) as TileMap
-
 
 # State machines:
 onready var combat = get_node("DroneStateMachine")
@@ -187,4 +172,5 @@ func summon_explosion(pos, layer, size):
 func summon_PurpleMinion():
 	var minion = PURPLE_EYE_DRONE.instance()
 	get_parent().add_child(PURPLE_EYE_DRONE.instance())
+
 

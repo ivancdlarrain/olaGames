@@ -20,17 +20,15 @@ func exit_layer(layer):
 
 
 func _get_transition(_delta):
-	match state:
-		states.blue:
-			if changing_color:
+	if changing_color:
+		match state:
+			states.blue:
 				return states.orange
 		
-		states.orange:
-			if changing_color:
+			states.orange:
 				return states.purple
 		
-		states.purple:
-			if changing_color:
+			states.purple:
 				return states.blue
 	
 	return null
@@ -38,15 +36,12 @@ func _get_transition(_delta):
 
 func _enter_state(new_state, _old_state):
 	changing_color = false
-	match new_state:
-		states.blue:
-			enter_layer(0)
-		states.orange:
-			enter_layer(1)
-		states.purple:
-			enter_layer(2)
+	enter_layer(new_state)
+	var level = get_tree().get_root().get_node("BossFight")
+	for platform in level.platforms:
+		level.change_platform_layer(platform, new_state)
 
 
 func _exit_state(old_state, _new_state):
-	pass
+	exit_layer(old_state)
 

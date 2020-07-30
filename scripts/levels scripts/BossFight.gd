@@ -1,6 +1,11 @@
 extends Node2D
 
 onready var tween = $Tween as Tween
+onready var platforms = [
+	$Tiles/Platform1/Front, $Tiles/Platform1/Back,
+	$Tiles/Platform2/Front, $Tiles/Platform2/Back,
+	$Tiles/Platform3/Front, $Tiles/Platform3/Back
+]
 
 func _ready():
 	pass
@@ -38,8 +43,8 @@ func change_platform_layer(platform, layer):
 			old_layer = 1
 	tween.interpolate_property(platform, "modulate", current_color, new_color, 1, tween.TRANS_LINEAR)
 	tween.start()
-	yield(get_tree().create_timer(1), "timeout")
 	platform.set_collision_layer_bit(layer, true)
+	yield(get_tree().create_timer(1), "timeout")
 	platform.set_collision_layer_bit(old_layer, false)
 	
 

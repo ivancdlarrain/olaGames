@@ -83,12 +83,6 @@ tile_data = PoolIntArray( 458734, -1610612736, 0, 393233, -1073741824, 0, 524270
 [node name="Boss" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 0, -240 )
 y_level = -240
-platform_1 = NodePath("../../Tiles/Platform1/Front")
-platform_1_external = NodePath("../../Tiles/Platform1/Back")
-platform_2 = NodePath("../../Tiles/Platform2/Front")
-platform_2_external = NodePath("../../Tiles/Platform2/Back")
-platform_3 = NodePath("../../Tiles/Platform3/Front")
-platform_3_external = NodePath("../../Tiles/Platform3/Back")
 
 [node name="HUDcanvas" type="CanvasLayer" parent="."]
 
