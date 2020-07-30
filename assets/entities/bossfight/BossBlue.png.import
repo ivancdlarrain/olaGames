@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BossBlue.png-bc605df200af097397d8c0b692076ce6.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://assets/entities/bossfight/BossBlue.png"
-dest_files=[ "res://.import/BossBlue.png-bc605df200af097397d8c0b692076ce6.stex" ]
-
 [params]
 
 compress/mode=0

@@ -138,8 +138,13 @@ func purple_main_attack():
 		yield(get_tree().create_timer(1.5), "timeout")
 
 
+var finished_purple_secundary = false
 func purple_secondary_attack():
-	pass
+	var x = randi()%3
+	var fx = Vector2(2*x, 2*x + 1) # Contains platform index
+	level.dissapear_platform(platforms[fx.x], platforms[fx.y])
+	yield(get_tree().create_timer(1.5), "timeout")
+	finished_purple_secundary = true
 
 
 func main_attack():

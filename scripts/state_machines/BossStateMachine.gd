@@ -70,7 +70,7 @@ func _state_logic(delta):
 					parent.move_and_slide(parent.velocity)
 				
 				color.states.purple:
-					pass
+					parent.apply_deaccel()
 		
 		states.recovery:
 			match color.state:
@@ -134,8 +134,9 @@ func _get_transition(delta):
 						return states.recovery
 				
 				color.states.purple:
+					if parent.finished_purple_secundary:
+						return states.recovery
 					
-					pass
 		
 		states.recovery:
 			if recovery_finished:
@@ -181,7 +182,9 @@ func _enter_state(new_state, old_state):
 					playback.travel("purple_attack_loop")
 		
 		states.recovery:
-			pass
+			match color.state:
+				color.states.orange:
+					playback.travel("idle_orange")
 		
 		states.changing_color:
 			match color.state:
@@ -225,7 +228,7 @@ func _exit_state(old_state, new_state):
 					parent.summon_explosion(parent.position, 1, 2)
 				
 				color.states.purple:
-					pass
+					parent.finished_purple_secundary = false
 		
 		states.recovery:
 			recovery_finished = false
