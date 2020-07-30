@@ -5,12 +5,12 @@
 [ext_resource path="res://scripts/hud/DialogueBox.gd" type="Script" id=3]
 [ext_resource path="res://fonts/Manrope-VariableFont_wght.ttf" type="DynamicFontData" id=4]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 20
 extra_spacing_space = 9
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 19
 font_data = ExtResource( 2 )
 
@@ -73,10 +73,11 @@ __meta__ = {
 margin_top = 7.0
 margin_right = 496.0
 margin_bottom = 97.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "This is a placeholder dialogue
 Conchetumareeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 Wea fea"
+percent_visible = 0.0
 
 [node name="NameBox" type="Panel" parent="."]
 anchor_left = 0.5
@@ -100,7 +101,7 @@ __meta__ = {
 margin_top = 7.0
 margin_right = 216.0
 margin_bottom = 27.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Name"
 align = 1
 valign = 1
@@ -119,3 +120,4 @@ texture = ExtResource( 1 )
 autoplay = "arrow"
 anims/arrow = SubResource( 3 )
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
+[connection signal="tween_step" from="Tween" to="." method="_on_Tween_tween_step"]

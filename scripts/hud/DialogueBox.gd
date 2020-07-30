@@ -60,3 +60,7 @@ func display_dialogue():
 
 func _on_Tween_tween_completed(object, key):
 	finished = true
+
+
+func _on_Tween_tween_step(object, key, elapsed, value):
+	pass # Replace with function body.
