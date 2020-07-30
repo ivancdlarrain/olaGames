@@ -50,6 +50,8 @@ onready var dashParticles = $Particles2D
 
 var was_on_floor = false
 
+#------- State machines -------#
+onready var colorstate = $ColorState
 
 func _ready():
 # warning-ignore:return_value_discarded

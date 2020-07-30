@@ -6,6 +6,7 @@ func _ready():
 	get_node('Player').get_node("ColorState").set_state(2)
 	get_node('Player').get_node('Sprite').modulate = Color(0.85098, 0, 1)
 	get_node('Player').get_node("Light2D").color = Color(0.85098, 0, 1)
+	get_node('Player').get_node("ColorState").set_physics_process(false)
 
 func _process(_delta):
 	# Respawn
