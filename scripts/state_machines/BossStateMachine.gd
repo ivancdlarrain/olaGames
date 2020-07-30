@@ -70,10 +70,10 @@ func _state_logic(delta):
 						parent.velocity.y = 0
 				
 				color.states.purple:
-					pass
+					recovery_finished = true
 		
 		states.changing_color:
-			pass
+			parent.horizontal_movement(ray_direction.x > 0)
 
 
 func _get_transition(delta):
@@ -84,7 +84,7 @@ func _get_transition(delta):
 		
 		states.chase:
 			if on_range:
-				if randi()%3+1 > 1:
+				if randi()%4+1 == 1:
 					return states.main
 				
 				else:
@@ -152,7 +152,7 @@ func _enter_state(new_state, old_state):
 					pass
 				
 				color.states.purple:
-					remaining_drones = 4
+					remaining_drones = 3
 		
 		states.secondary:
 			parent.secondary_attack()

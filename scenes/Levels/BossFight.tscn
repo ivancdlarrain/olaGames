@@ -1,17 +1,20 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/KinematicBodies/Boss.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/camera/playerCam.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/ruletiles/Spikes.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/tilemaps/3DTile1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/hud/switchhud.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/events/Dialogue/DialogueBox.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/levels scripts/BossFight.gd" type="Script" id=8]
 [ext_resource path="res://scenes/menus/Pause_menu.tscn" type="PackedScene" id=9]
 
 [node name="BossFight" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, 152 )
+position = Vector2( 440, 152 )
 
 [node name="Camera2D" parent="Player" instance=ExtResource( 2 )]
 current = true
@@ -31,11 +34,12 @@ limit_bottom = 288
 [node name="Platform1" type="Node" parent="Tiles"]
 
 [node name="Front" parent="Tiles/Platform1" instance=ExtResource( 5 )]
-collision_layer = 7
-collision_mask = 7
+modulate = Color( 0, 0.905882, 1, 1 )
+collision_mask = 0
 tile_data = PoolIntArray( 458736, 1, 65536, 458737, 1, 65540, 458738, 1, 65540, 458739, 1, 65540, 458740, 1, 65540, 458741, 1, 65540, 458742, 1, 65540, 458743, 1, 65539, 524272, 1, 65541, 524273, 1, 262146, 524274, 1, 262146, 524275, 1, 262146, 524276, 1, 262146, 524277, 1, 262146, 524278, 1, 262146, 524279, 1, 131072, 589808, 1, 65537, 589809, 1, 65542, 589810, 1, 65542, 589811, 1, 65542, 589812, 1, 65542, 589813, 1, 65542, 589814, 1, 65542, 589815, 1, 65538 )
 
 [node name="Back" parent="Tiles/Platform1" instance=ExtResource( 5 )]
+modulate = Color( 0, 1, 0.976471, 1 )
 collision_layer = 0
 collision_mask = 0
 tile_data = PoolIntArray( 458736, 2, 1, 458737, 2, 5, 458738, 2, 5, 458739, 2, 5, 458740, 2, 5, 458741, 2, 5, 458742, 2, 5, 458743, 2, 262148, 524279, 2, 6, 589815, 2, 2 )
@@ -44,7 +48,7 @@ tile_data = PoolIntArray( 458736, 2, 1, 458737, 2, 5, 458738, 2, 5, 458739, 2, 5
 
 [node name="Front" parent="Tiles/Platform2" instance=ExtResource( 5 )]
 collision_layer = 7
-collision_mask = 7
+collision_mask = 0
 tile_data = PoolIntArray( 458748, 1, 65536, 458749, 1, 65540, 458750, 1, 65540, 458751, 1, 65540, 393216, 1, 65540, 393217, 1, 65540, 393218, 1, 65540, 393219, 1, 65539, 524284, 1, 65541, 524285, 1, 262146, 524286, 1, 262146, 524287, 1, 262146, 458752, 1, 262146, 458753, 1, 262146, 458754, 1, 262146, 458755, 1, 131072, 589820, 1, 65537, 589821, 1, 65542, 589822, 1, 65542, 589823, 1, 65542, 524288, 1, 65542, 524289, 1, 65542, 524290, 1, 65542, 524291, 1, 65538 )
 
 [node name="Back" parent="Tiles/Platform2" instance=ExtResource( 5 )]
@@ -56,7 +60,7 @@ tile_data = PoolIntArray( 458748, 2, 1, 458749, 2, 5, 458750, 2, 5, 458751, 2, 5
 
 [node name="Front" parent="Tiles/Platform3" instance=ExtResource( 5 )]
 collision_layer = 7
-collision_mask = 2147483655
+collision_mask = 2147483648
 tile_data = PoolIntArray( 393224, 1, 65536, 393225, 1, 65540, 393226, 1, 65540, 393227, 1, 65540, 393228, 1, 65540, 393229, 1, 65540, 393230, 1, 65540, 393231, 1, 65539, 458760, 1, 65541, 458761, 1, 262146, 458762, 1, 262146, 458763, 1, 262146, 458764, 1, 262146, 458765, 1, 262146, 458766, 1, 262146, 458767, 1, 131072, 524296, 1, 65537, 524297, 1, 65542, 524298, 1, 65542, 524299, 1, 65542, 524300, 1, 65542, 524301, 1, 65542, 524302, 1, 65542, 524303, 1, 65538 )
 
 [node name="Back" parent="Tiles/Platform3" instance=ExtResource( 5 )]
@@ -65,7 +69,14 @@ collision_mask = 0
 tile_data = PoolIntArray( 393224, 2, 1, 393225, 2, 5, 393226, 2, 5, 393227, 2, 5, 393228, 2, 5, 393229, 2, 5, 393230, 2, 5, 393231, 2, 262148, 458767, 2, 6, 524303, 2, 2 )
 
 [node name="Boundaries" parent="Tiles" instance=ExtResource( 5 )]
+collision_layer = 15
+collision_mask = 15
 tile_data = PoolIntArray( -589841, 1, 262149, -589840, 1, 5, -589839, 1, 5, -589838, 1, 5, -589837, 1, 5, -589836, 1, 5, -589835, 1, 5, -589834, 1, 5, -589833, 1, 5, -589832, 1, 5, -589831, 1, 5, -589830, 1, 5, -589829, 1, 5, -589828, 1, 5, -589827, 1, 5, -589826, 1, 5, -589825, 1, 5, -655360, 1, 5, -655359, 1, 5, -655358, 1, 5, -655357, 1, 5, -655356, 1, 5, -655355, 1, 5, -655354, 1, 5, -655353, 1, 5, -655352, 1, 5, -655351, 1, 5, -655350, 1, 5, -655349, 1, 5, -655348, 1, 5, -655347, 1, 5, -655346, 1, 5, -655345, 1, 5, -655344, 1, 262148, -524305, 1, 6, -589808, 1, 6, -458769, 1, 6, -524272, 1, 6, -393233, 1, 6, -458736, 1, 6, -327697, 1, 6, -393200, 1, 6, -262161, 1, 6, -327664, 1, 6, -196625, 1, 6, -262128, 1, 6, -131089, 1, 6, -196592, 1, 6, -65553, 1, 6, -131056, 1, 6, -17, 1, 6, -65520, 1, 6, 65519, 1, 6, 16, 1, 6, 131055, 1, 6, 65552, 1, 6, 196591, 1, 6, 131088, 1, 6, 262127, 1, 6, 196624, 1, 6, 327663, 1, 6, 262160, 1, 6, 393199, 1, 2, 327696, 1, 2 )
+
+[node name="Spikes" parent="Tiles" instance=ExtResource( 4 )]
+collision_layer = 15
+collision_mask = 2147483663
+tile_data = PoolIntArray( 458734, -1610612736, 0, 393233, -1073741824, 0, 524270, -1610612736, 0, 458769, -1073741824, 0, 589806, -1610612736, 0, 524305, -1073741824, 0, 655342, -1610612736, 0, 589841, -1073741824, 0, 720878, -1610612736, 0, 720879, 0, 0, 720880, 0, 0, 720881, 0, 0, 720882, 0, 0, 720883, 0, 0, 720884, 0, 0, 720885, 0, 0, 720886, 0, 0, 720887, 0, 0, 720888, 0, 0, 720889, 0, 0, 720890, 0, 0, 720891, 0, 0, 720892, 0, 0, 720893, 0, 0, 720894, 0, 0, 720895, 0, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0, 655376, 0, 0, 655377, -1073741824, 0 )
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -88,3 +99,5 @@ visible = false
 visible = false
 
 [node name="PauseMenu" parent="." instance=ExtResource( 9 )]
+
+[node name="Tween" type="Tween" parent="."]

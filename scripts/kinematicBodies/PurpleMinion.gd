@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
 #movement:
-const MAX_SPEED = 100
-const SPEED_INCREASE = 10
+const MAX_SPEED = 200
+const SPEED_INCREASE = 20
 const DEACCEL = 5
 #animation:
 var facing_right = false
@@ -47,7 +47,6 @@ func apply_deaccel():
 
 
 func take_damage():
-	get_tree().get_node("BossFight").get_node("Boss").get_node("DroneStateMachine").remaining_drones -= 1
 	_die()
 
 
@@ -89,6 +88,7 @@ func _apply_movement():
 
 
 func _die():
+	get_tree().get_root().get_node("BossFight/Enemies/Boss/DroneStateMachine").remaining_drones -= 1
 	var shake = get_tree().get_root().get_node("BossFight/Player/Camera2D/ScreenShake")
 	var explosion = EXPLOSION_SCENE.instance() as Area2D
 	explosion.position = position
@@ -114,5 +114,8 @@ func set_gravity(n):
 
 func set_deaccel(n):
 	deaccel = n
+
+func tp(pos):
+	position = pos
 
 

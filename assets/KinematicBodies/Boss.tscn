@@ -28,7 +28,7 @@ states/idle/position = Vector2( 604, 80 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=7]
 
 [sub_resource type="CircleShape2D" id=8]
-radius = 384.0
+radius = 424.075
 
 [node name="Boss" type="KinematicBody2D"]
 collision_layer = 0

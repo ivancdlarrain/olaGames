@@ -145,16 +145,17 @@ graph_offset = Vector2( -16, 31.2 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=19]
 
 [sub_resource type="CircleShape2D" id=20]
-radius = 240.0
+radius = 478.921
 
 [sub_resource type="CircleShape2D" id=21]
-radius = 48.0
+radius = 38.2427
 
 [node name="PurpleEyeDrone" type="KinematicBody2D" groups=[
 "alive",
 ]]
 light_mask = 4
 position = Vector2( 0, 1 )
+scale = Vector2( 1.4, 1.4 )
 collision_layer = 4
 collision_mask = 4
 script = ExtResource( 1 )
@@ -186,15 +187,15 @@ active = true
 parameters/playback = SubResource( 19 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource( 20 )
 
 [node name="DetectionRay" type="RayCast2D" parent="."]
 enabled = true
-collision_mask = 4
+collision_mask = 7
 
 [node name="ActivationArea" type="Area2D" parent="."]
 collision_layer = 4

@@ -19,8 +19,8 @@ const ORANGE_DAMAGE = 20
 const PURPLE_DAMAGE = 10
 
 
-const ORANGE_MAIN_SPEED = 500
-const ORANGE_RECOVERY_SPEED = 200
+const ORANGE_MAIN_SPEED = 1000
+const ORANGE_RECOVERY_SPEED = 250
 
 # Platforms that the boss will be able to control:
 export var platform_1 : NodePath
@@ -47,7 +47,7 @@ const PURPLE_EYE_DRONE = preload("res://assets/KinematicBodies/PurpleMinion.tscn
 
 
 func _ready():
-	pass
+	randomize()
 
 
 # Functions:
@@ -141,9 +141,9 @@ func orange_secondary_attack():
 
 
 func purple_main_attack():
-	print("MINIONS!")
-	for i in range(2):
-		summon_PurpleMinion(position - Vector2((40*i - 3) * 10, -120))
+	for i in range(3):
+		summon_PurpleMinion()
+		yield(get_tree().create_timer(1.5), "timeout")
 
 
 func purple_secondary_attack():
@@ -184,10 +184,7 @@ func summon_explosion(pos, layer, size):
 	shake._start(0.2, 15, 32)
 
 
-var minions = []
-func summon_PurpleMinion(pos):
+func summon_PurpleMinion():
 	var minion = PURPLE_EYE_DRONE.instance()
-	minions.append(minion)
-	minion.position = pos
 	get_parent().add_child(PURPLE_EYE_DRONE.instance())
 
