@@ -55,8 +55,9 @@ func display_dialogue():
 		queue_free()
 
 	index += 1
-	
 
+func set_filepath(path: String):
+	dialogue_filepath = path		
 
 func _on_Tween_tween_completed(object, key):
 	finished = true
