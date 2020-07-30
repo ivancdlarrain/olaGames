@@ -63,4 +63,4 @@ func _on_Tween_tween_completed(object, key):
 
 
 func _on_Tween_tween_step(object, key, elapsed, value):
-	pass # Replace with function body.
+	pass #Aquí poner la reproducción del sonido

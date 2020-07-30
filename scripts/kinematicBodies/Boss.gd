@@ -9,6 +9,8 @@ export var y_level = -400
 # Animation
 var facing_right = false
 
+
+
 # Detection
 var enemy_on_range = false
 

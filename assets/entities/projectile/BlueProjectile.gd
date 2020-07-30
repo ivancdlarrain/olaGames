@@ -6,6 +6,7 @@ var direction = Vector2()
 var velocity = Vector2()
 onready var particle = $Particles2D
 export var impact: PackedScene
+
 	
 		
 func _fire(direction: Vector2):

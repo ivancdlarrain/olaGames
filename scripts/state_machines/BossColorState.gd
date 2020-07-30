@@ -2,6 +2,7 @@ extends StateMachine
 
 var changing_color = false
 
+
 func _ready():
 	add_state("blue")
 	add_state("orange")

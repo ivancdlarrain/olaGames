@@ -1,6 +1,9 @@
 extends DroneStateMachine
 
 onready var color = get_parent().get_node("ColorState")
+onready var playback = get_parent().get_node("AnimationTree").get("parameters/playback")
+
+
 
 # Flags:
 var orange_collision = false
@@ -29,8 +32,20 @@ func _state_logic(delta):
 	match state:
 		states.idle:
 			parent.apply_deaccel()
+			
+			match color.state:
+				color.states.blue:
+					playback.travel("idle_blue")
+				
+				color.states.orange:
+					playback.travel("idle_orange")
+				
+				color.states.purple:
+					playback.travel("idle_purple")
+			
 		
 		states.chase:
+			playback.travel("orange_attack")
 			parent.horizontal_movement(ray_direction.x > 0)
 		
 		states.main:
@@ -39,6 +54,7 @@ func _state_logic(delta):
 					pass
 				
 				color.states.orange:
+					
 					parent.move_and_slide(parent.velocity)
 				
 				color.states.purple:
@@ -64,7 +80,6 @@ func _state_logic(delta):
 				color.states.orange:
 					if parent.get_position().y > parent.y_level:
 						parent.back_to_y_level()
-					
 					else:
 						recovery_finished = true
 						parent.velocity.y = 0
@@ -104,12 +119,14 @@ func _get_transition(delta):
 						return states.recovery
 				
 				color.states.purple:
+					
 					if remaining_drones == 0:
 						return states.recovery
 		
 		states.secondary:
 			match color.state:
 				color.states.blue:
+					playback.travel("blue_primary_loop")
 					pass
 				
 				color.states.orange:
@@ -117,6 +134,7 @@ func _get_transition(delta):
 						return states.recovery
 				
 				color.states.purple:
+					
 					pass
 		
 		states.recovery:
@@ -147,21 +165,32 @@ func _enter_state(new_state, old_state):
 			parent.main_attack()
 			match color.state:
 				color.states.blue:
-					pass
+					playback.travel("blue_primary_loop")
 				
 				color.states.orange:
 					pass
 				
 				color.states.purple:
+					playback.travel("purple_attack_loop")
 					remaining_drones = 3
 		
 		states.secondary:
 			parent.secondary_attack()
+			match color.state:
+				color.states.purple:
+					playback.travel("purple_attack_loop")
 		
 		states.recovery:
 			pass
 		
 		states.changing_color:
+			match color.state:
+				color.states.blue:
+					playback.travel("blue_to_orange")
+				color.states.orange:
+					playback.travel("orange_to_purple")
+				color.states.purple:
+					playback.travel("purple_to_blue")
 			color.changing_color = true
 
 
