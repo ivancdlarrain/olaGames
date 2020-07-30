@@ -160,7 +160,9 @@ func _enter_state(new_state, old_state):
 			pass
 		
 		states.chase:
-			pass
+			match color.state:
+				color.states.purple:
+					playback.travel("idle_purple")
 		
 		states.main:
 			parent.main_attack()

@@ -5,7 +5,7 @@ extends Control
 
 func _on_NewGame_pressed():
 	Save.delete_saves()
-	get_tree().change_scene("res://scenes/Tutorials/Tutorial 1.tscn")
+	get_tree().change_scene("res://scenes/menus/TutorialMenu.tscn")
 
 
 func _on_NewGame_button_down():
