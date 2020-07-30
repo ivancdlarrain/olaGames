@@ -1,11 +1,6 @@
 extends Node2D
 
 onready var tween = $Tween as Tween
-onready var platforms = [
-	$Tiles/Platform1/Front, $Tiles/Platform1/Back,
-	$Tiles/Platform2/Front, $Tiles/Platform2/Back,
-	$Tiles/Platform3/Front, $Tiles/Platform3/Back
-]
 
 func _ready():
 	pass

@@ -29,7 +29,12 @@ onready var color = get_node("ColorState")
 
 # Scenes:
 const PURPLE_EYE_DRONE = preload("res://assets/KinematicBodies/PurpleMinion.tscn")
-
+onready var level = get_tree().get_root().get_node("BossFight")
+onready var platforms = [
+	level.get_node("Tiles/Platform1/Front"), level.get_node("Tiles/Platform1/Back"),
+	level.get_node("Tiles/Platform2/Front"), level.get_node("Tiles/Platform2/Back"),
+	level.get_node("Tiles/Platform3/Front"), level.get_node("Tiles/Platform3/Back")
+]
 
 func _ready():
 	randomize()

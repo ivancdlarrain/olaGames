@@ -24,7 +24,7 @@ func _ready():
 
 
 func _state_logic(delta):
-#	print(states.keys()[state])
+	print(states.keys()[state])
 	._state_logic(delta)
 	match state:
 		states.idle:

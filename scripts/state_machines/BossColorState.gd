@@ -37,9 +37,8 @@ func _get_transition(_delta):
 func _enter_state(new_state, _old_state):
 	changing_color = false
 	enter_layer(new_state)
-	var level = get_tree().get_root().get_node("BossFight")
-	for platform in level.platforms:
-		level.change_platform_layer(platform, new_state)
+	for platform in parent.platforms:
+		parent.level.change_platform_layer(platform, new_state)
 
 
 func _exit_state(old_state, _new_state):
