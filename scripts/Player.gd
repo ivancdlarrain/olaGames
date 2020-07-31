@@ -138,6 +138,9 @@ func take_damage():
 
 
 func _die():
+	#Collisions:
+	for i in range(3):
+		get_node('ColorState').exit_layer(i)
 	# Controls will no longer work
 	get_node('MovementState').set_physics_process(false)
 	get_node('ColorState').set_physics_process(false)
