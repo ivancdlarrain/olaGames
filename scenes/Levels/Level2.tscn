@@ -156,6 +156,7 @@ world_scene = "res://scenes/Levels/Level3.tscn"
 visible = false
 
 [node name="DialogueBox" parent="HUDcanvas" instance=ExtResource( 7 )]
+dialogue_filepath = "res://data/dialogues/level2.json"
 
 [node name="PauseMenu" parent="." instance=ExtResource( 9 )]
 
@@ -163,3 +164,5 @@ visible = false
 stream = ExtResource( 14 )
 autoplay = true
 bus = "Musica"
+[connection signal="dialogue_end" from="HUDcanvas/DialogueBox" to="." method="_on_DialogueBox_dialogue_end"]
+[connection signal="dialogue_start" from="HUDcanvas/DialogueBox" to="." method="_on_DialogueBox_dialogue_start"]
