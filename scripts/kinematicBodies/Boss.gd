@@ -16,7 +16,7 @@ onready var trans_cd = $TransitionCD as Timer
 var enemy_on_range = false
 
 # Combat:
-var health = 1
+var health = 120
 const BLUE_DAMAGE = 30
 const ORANGE_DAMAGE = 20
 const PURPLE_DAMAGE = 10
@@ -89,6 +89,8 @@ func take_damage():
 var time = 5
 func _die():
 	# it should no longer move
+	$Tween2.interpolate_property(self, "modulate:a", 1, 0, 3, $Tween2.TRANS_LINEAR)
+	$Tween2.start()
 	get_node("DroneStateMachine").set_physics_process(false)
 	get_node('ColorState').set_physics_process(false)
 	for i in range(10):
@@ -96,7 +98,8 @@ func _die():
 		var exp_size = randi()%5+1
 		summon_explosion(position + rel_pos * 10, color.state, exp_size)
 		yield(get_tree().create_timer(0.3), "timeout")
-	modulate.a = 0
+	level.get_node("Player/MovementState").set_physics_process(false)
+	level.get_node("Player/ColorState").set_physics_process(false)
 	# Boss won't dissapear after dying 
 	$Tween.interpolate_property(level.get_node("HUDcanvas/ColorRect"), "modulate:a", 0, 1, time, $Tween.TRANS_LINEAR)
 	$Tween.start()
