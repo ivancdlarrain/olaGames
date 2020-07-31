@@ -1,7 +1,8 @@
 extends Node2D
 onready var box_dialogue = $HUDcanvas/DialogueBox
-onready var cutscene_dialogue = $HUDcanvas/Control
+onready var cutscene_dialogue = $HUDcanvas/CutsceneDialogue
 var on_cutscene = false
+
 
 func _ready():
 	yield(get_tree().create_timer(.001), "timeout")
@@ -44,7 +45,8 @@ func _on_DialogueBox_dialogue_end():
 
 
 func _on_TriggerArea_area_entered(area):
-	pass
+	if cutscene_dialogue:
+		cutscene_dialogue.start()
 
 
 func _on_Area2D_area_entered(area):
@@ -61,3 +63,18 @@ func _on_Area2D_area_entered(area):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	on_cutscene = false
 	$"Player/MovementState".set_physics_process(true)
+
+
+func _on_Cutscene_dialogue_start():
+	$HUDcanvas/HUD.visible = false
+	$Player.playback.travel("idle")
+	$"Player/MovementState".set_physics_process(false)
+	$"Player/ColorState".set_physics_process(false)
+
+
+func _on_Cutscene_dialogue_end():
+	#	$HUDcanvas/HUD.visible = true
+	$"Player/MovementState".set_physics_process(true)
+	$Player/AnimationTree.active = true
+	
+#	$"Player/ColorState".set_physics_process(true)

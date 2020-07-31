@@ -237,6 +237,10 @@ visible = false
 [node name="DialogueBox" parent="HUDcanvas" instance=ExtResource( 7 )]
 dialogue_filepath = "res://data/dialogues/level3.json"
 
+[node name="CutsceneDialogue" parent="HUDcanvas" instance=ExtResource( 7 )]
+visible = false
+dialogue_filepath = "res://data/dialogues/level3cutscene.json"
+
 [node name="PauseMenu" parent="." instance=ExtResource( 9 )]
 
 [node name="TriggerArea" type="Area2D" parent="."]
@@ -283,6 +287,8 @@ __meta__ = {
 }
 [connection signal="dialogue_end" from="HUDcanvas/DialogueBox" to="." method="_on_DialogueBox_dialogue_end"]
 [connection signal="dialogue_start" from="HUDcanvas/DialogueBox" to="." method="_on_DialogueBox_dialogue_start"]
+[connection signal="dialogue_end" from="HUDcanvas/CutsceneDialogue" to="." method="_on_Cutscene_dialogue_end"]
+[connection signal="dialogue_start" from="HUDcanvas/CutsceneDialogue" to="." method="_on_Cutscene_dialogue_start"]
 [connection signal="area_entered" from="TriggerArea" to="." method="_on_TriggerArea_area_entered"]
 [connection signal="area_entered" from="Cutscene/Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="animation_finished" from="Cutscene/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

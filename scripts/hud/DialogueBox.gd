@@ -15,20 +15,23 @@ var finished = false
 
 func _ready():
 	dialogue_label.percent_visible = 0
+	visible = false
 
 func start():
 	load_file()
 	get_focus_owner()
+	visible = true
 
 func _physics_process(delta):
 	$finisharrow.visible = finished
-	if Input.is_action_just_pressed("ui_accept"):
-		if finished:
-			display_dialogue()
-		else:
-			$Tween.stop(dialogue_label)
-			dialogue_label.percent_visible = 1
-			finished = true
+	if visible:
+		if Input.is_action_just_pressed("ui_accept"):
+			if finished:
+				display_dialogue()
+			else:
+				$Tween.stop(dialogue_label)
+				dialogue_label.percent_visible = 1
+				finished = true
 
 
 func load_file():
