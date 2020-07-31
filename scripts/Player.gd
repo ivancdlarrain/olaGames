@@ -148,8 +148,10 @@ func _die():
 	playback.travel('death')
 
 func _actually_die():
+	$Retry/died.visible = true
+	$Retry/died2.visible = true
+	$Retry/Button.visible = true
 	Respawnstate.respawned = true
-	get_tree().reload_current_scene()
 
 
 func jump():
@@ -178,3 +180,7 @@ func save():
 func _on_Guts_body_entered(body):
 	if body != self:
 		_die()
+
+
+func _on_Button_pressed():
+	get_tree().reload_current_scene()
