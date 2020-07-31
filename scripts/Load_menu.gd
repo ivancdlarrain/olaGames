@@ -5,16 +5,19 @@ extends Control
 
 func _on_Slot_1_pressed():
 	$Sfx.play_click_sfx()
+	MusicController.stop_music()
 	Save.load_game(0)
 
 
 func _on_Slot_2_pressed():
 	$Sfx.play_click_sfx()
+	MusicController.stop_music()
 	Save.load_game(1)
 
 
 func _on_Slot_3_pressed():
 	$Sfx.play_click_sfx()
+	MusicController.stop_music()
 	Save.load_game(2)
 
 

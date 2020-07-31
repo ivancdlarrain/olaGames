@@ -67,4 +67,4 @@ func _on_Tween_tween_completed(object, key):
 
 
 func _on_Tween_tween_step(object, key, elapsed, value):
-	pass #Aquí poner la reproducción del sonido
+	$AudioStreamPlayer.play_dialogue_1()

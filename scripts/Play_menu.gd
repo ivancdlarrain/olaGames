@@ -5,7 +5,7 @@ extends Control
 
 func _on_NewGame_pressed():
 	Save.delete_saves()
-	MusicController.stop()
+	MusicController.stop_music()
 	$Sfx.play_play_sound()
 	get_tree().change_scene("res://scenes/menus/TutorialMenu.tscn")
 
