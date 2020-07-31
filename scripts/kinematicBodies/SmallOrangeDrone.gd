@@ -13,6 +13,7 @@ func _ready():
 
 
 func _supra_jump(direction):
+	$Sfx.play_jump_sfx()
 	velocity = direction * 600
 	velocity = move_and_slide(velocity, Vector2.UP)
 

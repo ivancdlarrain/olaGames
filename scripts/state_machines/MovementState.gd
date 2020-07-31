@@ -2,6 +2,7 @@ extends StateMachine
 
 signal use_ground_collision
 onready var color = parent.get_node('ColorState')
+onready var sfx = parent.get_node("Sfx")
 
 func _ready():
 	add_state('idle')
@@ -66,6 +67,7 @@ func _state_logic(delta):
 
 func common_input_rest(event):
 	if event.is_action_released('WASD_up'):
+		sfx.play_jump_sfx()
 		if states.jump == state:
 			parent.velocity.y = parent.velocity.y * 0.5
 

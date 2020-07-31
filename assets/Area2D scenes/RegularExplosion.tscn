@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Area2D/RegularExplosion.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/misc/enemy-explosion/Explosion0.png" type="Texture" id=2]
+[ext_resource path="res://assets/SFX/Explosion.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 28.3718
@@ -36,5 +37,10 @@ frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/default = SubResource( 2 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+bus = "Sfx"
 [connection signal="body_entered" from="." to="." method="_on_RegularExplosion_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

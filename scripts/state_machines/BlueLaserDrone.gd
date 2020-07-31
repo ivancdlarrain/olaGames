@@ -1,5 +1,6 @@
 extends DroneStateMachine
 
+onready var sfx = parent.get_node("Sfx")
 
 func _ready():
 	add_state("idle")
@@ -41,6 +42,7 @@ func _enter_state(new_state, old_state):
 			parent.playback.travel("idle")
 		states.patrol:
 			#Play patrol anim and then start patrol
+			sfx.play_activate_sfx()
 			parent.playback.travel("move")
 		states.fire:
 			parent.playback.travel("move")

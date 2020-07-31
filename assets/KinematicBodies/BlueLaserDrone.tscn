@@ -1,8 +1,10 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/kinematicBodies/BlueLaserDrone.gd" type="Script" id=1]
 [ext_resource path="res://scripts/state_machines/BlueLaserDrone.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/hostile mobs/BlueLaserDrone_Final.png" type="Texture" id=3]
+[ext_resource path="res://assets/SFX/Dron idle.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/KinematicBodies/Sfx_blue_drone.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "activate"
@@ -155,3 +157,12 @@ shape = SubResource( 16 )
 
 [node name="FireCD" type="Timer" parent="."]
 one_shot = true
+
+[node name="Idle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+max_distance = 700.0
+bus = "Sfx"
+
+[node name="Sfx" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource( 5 )

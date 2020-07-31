@@ -7,6 +7,7 @@ func _ready():
 	get_node('Player').get_node("ColorState").set_physics_process(false)
 
 
+
 func _physics_process(_delta):
 	if $Player.get_position().y > 1000:
 		get_tree().reload_current_scene()
