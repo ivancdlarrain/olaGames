@@ -13,7 +13,7 @@ func _ready():
 
 func _physics_process(_delta):
 	if $Player.get_position().y > 1000:
-		get_tree().reload_current_scene()
+		$Player._die()
 
 
 func _on_DialogueBox_dialogue_start():
