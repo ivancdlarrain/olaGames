@@ -87,6 +87,14 @@ func take_damage():
 		_die()
 	# Health bar animation should be here
 
+func damage(dmg):
+	health -= dmg
+	emit_signal("take_damage")
+	if health <= 0:
+		health = 0
+		_die()
+
+
 var time = 5
 func _die():
 	# it should no longer move

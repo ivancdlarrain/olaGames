@@ -76,7 +76,7 @@ font_data = ExtResource( 15 )
 script = ExtResource( 10 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1374.26, -1514.41 )
+position = Vector2( -24, -40 )
 
 [node name="Camera2D" parent="Player" instance=ExtResource( 2 )]
 current = true

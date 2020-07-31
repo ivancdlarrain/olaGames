@@ -246,6 +246,7 @@ func _exit_state(old_state, new_state):
 				color.states.orange:
 					orange_collision = false
 					parent.summon_explosion(parent.position, 1, 2)
+					parent.damage(5)
 				
 				color.states.purple:
 					parent.finished_purple_secundary = false
