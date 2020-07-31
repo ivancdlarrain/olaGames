@@ -40,7 +40,18 @@ func _enter_state(new_state, _old_state):
 #	enter_layer(new_state)
 	for platform in parent.platforms:
 		parent.level.change_platform_layer(platform, new_state)
-
+	var sfx = get_parent().get_node("Sfx")
+	var color_loop = get_parent().get_node("Music_loop")
+	match new_state:
+		states.blue:
+			color_loop.play_blue_loop()
+			sfx.play_change_to_blue()
+		states.orange:
+			color_loop.play_orange_loop()
+			sfx.play_change_to_orange()
+		states.purple:
+			color_loop.play_purple_loop()
+			sfx.play_change_to_purple()
 			
 		
 
