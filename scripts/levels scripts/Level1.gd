@@ -10,6 +10,7 @@ func _ready():
 		box_dialogue.start()
 
 
+
 func _physics_process(_delta):
 	if $Player.get_position().y > 1000:
 		get_tree().reload_current_scene()

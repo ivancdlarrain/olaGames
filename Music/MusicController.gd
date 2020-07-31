@@ -6,7 +6,7 @@ onready var volume_fade = get_node("Tween")
 var menu_music = load("res://assets/OST/Menu Chameneon.ogg")
 var level_music = load("res://assets/OST/Fabrica Chameneon.ogg")
 func _ready():
-	pass # Replace with function body.
+	self.bus = "Musica"
 
 func play_menu_music():
 	self.stream = menu_music

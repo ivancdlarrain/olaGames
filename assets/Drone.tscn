@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scripts/state_machines/SmallOrangeDrone.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/hostile mobs/SmallOrangeDrone.png" type="Texture" id=2]
 [ext_resource path="res://scripts/kinematicBodies/SmallOrangeDrone.gd" type="Script" id=3]
+[ext_resource path="res://assets/frog_sfx.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 13.054 )
@@ -153,7 +154,7 @@ light_mask = 2
 texture = ExtResource( 2 )
 vframes = 5
 hframes = 3
-frame = 2
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/aggro = SubResource( 2 )
@@ -200,6 +201,10 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DestructionArea"]
 shape = SubResource( 21 )
+
+[node name="Sfx" type="AudioStreamPlayer2D" parent="."]
+bus = "Sfx"
+script = ExtResource( 4 )
 [connection signal="body_entered" from="ActivationArea" to="." method="_on_ActivationArea_body_entered"]
 [connection signal="body_exited" from="ActivationArea" to="." method="_on_ActivationArea_body_exited"]
 [connection signal="timeout" from="ReadyTimer" to="." method="_on_ReadyTimer_timeout"]
