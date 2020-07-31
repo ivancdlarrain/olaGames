@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/ruletiles/Spikes.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Area2D scenes/Portal.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/sprites/environment/background/City background blue version.png" type="Texture" id=14]
 [ext_resource path="res://scenes/menus/Pause_menu.tscn" type="PackedScene" id=15]
 [ext_resource path="res://assets/ruletiles/Trampolin_front.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/OST/Nivel 1.ogg" type="AudioStream" id=17]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 11 )
@@ -164,5 +165,8 @@ margin_left = -40.0
 margin_right = -40.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+autoplay = true
+bus = "Musica"
 [connection signal="dialogue_end" from="HUDcanvas/DialogueBox" to="." method="_on_DialogueBox_dialogue_end"]
 [connection signal="dialogue_start" from="HUDcanvas/DialogueBox" to="." method="_on_DialogueBox_dialogue_start"]

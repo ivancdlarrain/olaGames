@@ -60,4 +60,5 @@ func _on_QuitButton_button_down():
 
 
 func _on_Credits_pressed():
+	MusicController.stop_music()
 	get_tree().change_scene("res://scenes/Credits.tscn")
