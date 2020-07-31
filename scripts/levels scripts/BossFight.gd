@@ -59,5 +59,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_focus_next"):
 		print('TAB')
 		$Enemies/Boss.fire()
+	
+	$HUDcanvas/ProgressBar.value = $Enemies/Boss.health
 
 
