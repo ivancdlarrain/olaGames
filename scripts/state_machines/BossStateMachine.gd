@@ -4,6 +4,7 @@ onready var color = get_parent().get_node("ColorState")
 onready var playback = get_parent().get_node("AnimationTree").get("parameters/playback")
 
 onready var trans_cd = get_parent().get_node("TransitionCD")
+onready var blue_recovery_timer = get_parent().get_node("BlueRecovery")
 
 
 
@@ -53,7 +54,7 @@ func _state_logic(delta):
 		states.main:
 			match color.state:
 				color.states.blue:
-					pass
+					parent.horizontal_movement(ray_direction.x > 0)
 				
 				color.states.orange:
 					
@@ -66,7 +67,7 @@ func _state_logic(delta):
 		states.secondary:
 			match color.state:
 				color.states.blue:
-					pass
+					parent.horizontal_movement(ray_direction.x > 0)
 				
 				color.states.orange:
 					parent.move_and_slide(parent.velocity)
@@ -77,7 +78,9 @@ func _state_logic(delta):
 		states.recovery:
 			match color.state:
 				color.states.blue:
-					pass
+					parent.horizontal_movement(ray_direction.x > 0)
+					if blue_recovery_timer.is_stopped():
+						recovery_finished = true
 				
 				color.states.orange:
 					if parent.get_position().y > parent.y_level:
@@ -114,7 +117,8 @@ func _get_transition(delta):
 		states.main:
 			match color.state:
 				color.states.blue:
-					pass
+					if parent.finished_blue_main:
+						return states.recovery
 				
 				color.states.orange:
 					if orange_collision:
@@ -127,6 +131,9 @@ func _get_transition(delta):
 		
 		states.secondary:
 			match color.state:
+				color.states.blue:
+					if parent.finished_blue_secondary:
+						return states.recovery
 				
 				color.states.orange:
 					if orange_collision:
@@ -190,6 +197,8 @@ func _enter_state(new_state, old_state):
 		
 		states.recovery:
 			match color.state:
+				color.states.blue:
+					blue_recovery_timer.start()
 				color.states.orange:
 					playback.travel("idle_orange")
 					
@@ -220,7 +229,7 @@ func _exit_state(old_state, new_state):
 			parent.take_damage()
 			match color.state:
 				color.states.blue:
-					pass
+					parent.finished_blue_main = false
 				
 				color.states.orange:
 					orange_collision = false
@@ -232,7 +241,7 @@ func _exit_state(old_state, new_state):
 		states.secondary:
 			match color.state:
 				color.states.blue:
-					pass
+					parent.finished_blue_secondary = false
 				
 				color.states.orange:
 					orange_collision = false
@@ -256,10 +265,10 @@ func _on_DestructionArea_body_entered(_body):
 
 
 func _on_OrangeRange_body_entered(body):
-	if body in get_tree().get_nodes_in_group("drone_target") and color.state in [color.states.orange, color.states.purple]:
+	if body in get_tree().get_nodes_in_group("drone_target"):
 		on_range = true
 
 
 func _on_OrangeRange_body_exited(body):
-	if body in get_tree().get_nodes_in_group("drone_target") and color.state in [color.states.orange, color.states.purple]:
+	if body in get_tree().get_nodes_in_group("drone_target"):
 		on_range = false

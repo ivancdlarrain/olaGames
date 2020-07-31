@@ -7,7 +7,7 @@ func _ready():
 	add_state("blue")
 	add_state("orange")
 	add_state("purple")
-	call_deferred('set_state', states.purple)
+	call_deferred('set_state', states.blue)
 
 
 #func enter_layer(layer):

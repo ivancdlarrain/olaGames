@@ -118,7 +118,7 @@ func back_to_y_level():
 
 var finished_blue_main = false
 func blue_main_attack():
-	for i in range(40):
+	for i in range(60):
 		fire()
 		yield(get_tree().create_timer(0.05), "timeout")
 	finished_blue_main = true
@@ -127,9 +127,9 @@ func blue_main_attack():
 
 var finished_blue_secondary = false
 func blue_secondary_attack():
-	for i in range(2):
+	for i in range(10):
 		fire()
-		yield(get_tree().create_timer(0.5), "timeout")
+		yield(get_tree().create_timer(0.125), "timeout")
 	finished_blue_secondary = true
 
 
