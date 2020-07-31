@@ -138,6 +138,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=12]
 resource_name = "idle_purple"
 length = 0.1
+loop = true
 step = 0.12
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -423,7 +424,7 @@ states/purple_to_blue/node = SubResource( 36 )
 states/purple_to_blue/position = Vector2( 1384.3, 75 )
 transitions = [ "idle_orange", "orange_attack_begin", SubResource( 37 ), "orange_attack", "orange_attack_end", SubResource( 38 ), "orange_attack_begin", "orange_attack", SubResource( 39 ), "orange_attack_end", "idle_orange", SubResource( 40 ), "idle_orange", "orange_to_purple", SubResource( 41 ), "orange_to_purple", "idle_purple", SubResource( 42 ), "purple_attack_begin", "purple_attack_loop", SubResource( 43 ), "purple_attack_loop", "purple_attack_end", SubResource( 44 ), "idle_purple", "purple_attack_begin", SubResource( 45 ), "purple_attack_end", "idle_purple", SubResource( 46 ), "idle_purple", "purple_to_blue", SubResource( 47 ), "purple_to_blue", "idle_blue", SubResource( 48 ), "idle_blue", "blue_primary_begin", SubResource( 49 ), "blue_primary_begin", "blue_primary_loop", SubResource( 50 ), "blue_primary_loop", "blue_primary_end", SubResource( 51 ), "blue_primary_end", "idle_blue", SubResource( 52 ), "idle_blue", "blue_to_orange", SubResource( 53 ), "blue_to_orange", "idle_orange", SubResource( 54 ), "idle_blue", "blue_secondary", SubResource( 55 ), "blue_secondary", "idle_blue", SubResource( 56 ) ]
 start_node = "idle_orange"
-graph_offset = Vector2( -425.313, 67.3422 )
+graph_offset = Vector2( 304.201, 23.5982 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=58]
 
@@ -446,7 +447,7 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 4 )
 vframes = 12
 hframes = 12
-frame = 33
+frame = 68
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

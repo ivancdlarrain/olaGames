@@ -157,7 +157,9 @@ func _get_transition(delta):
 func _enter_state(new_state, old_state):
 	match new_state:
 		states.idle:
-			pass
+			match color.state:
+				color.states.purple:
+					playback.travel("idle_purple")
 		
 		states.chase:
 			match color.state:
@@ -187,6 +189,7 @@ func _enter_state(new_state, old_state):
 			match color.state:
 				color.states.orange:
 					playback.travel("idle_orange")
+					
 		
 		states.changing_color:
 			match color.state:
