@@ -16,7 +16,7 @@ onready var trans_cd = $TransitionCD as Timer
 var enemy_on_range = false
 
 # Combat:
-var health = 120
+var health = 1
 const BLUE_DAMAGE = 30
 const ORANGE_DAMAGE = 20
 const PURPLE_DAMAGE = 10
@@ -86,7 +86,7 @@ func take_damage():
 		_die()
 	# Health bar animation should be here
 
-
+var time = 5
 func _die():
 	# it should no longer move
 	get_node("DroneStateMachine").set_physics_process(false)
@@ -98,6 +98,10 @@ func _die():
 		yield(get_tree().create_timer(0.3), "timeout")
 	modulate.a = 0
 	# Boss won't dissapear after dying 
+	$Tween.interpolate_property(level.get_node("HUDcanvas/ColorRect"), "modulate:a", 0, 1, time, $Tween.TRANS_LINEAR)
+	$Tween.start()
+	yield(get_tree().create_timer(time), "timeout")
+	get_tree().change_scene("res://scenes/Credits.tscn")
 	
 
 
