@@ -12,4 +12,4 @@ dest_files=[ "res://.import/Nivel 3 (loop en 14.608s).ogg-87ab058e8c6d65428aaeab
 [params]
 
 loop=true
-loop_offset=0
+loop_offset=14.608

@@ -14,5 +14,7 @@ func play_menu_music():
 func play_level_music():
 	self.stream = level_music
 	self.play()
-
+func stop_music():
+	self.stream = null
+	self.stop()
 	

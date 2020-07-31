@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://fonts/ARCADECLASSIC.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/menus/Credits.gd" type="Script" id=2]
+[ext_resource path="res://assets/OST/Creditos.ogg" type="AudioStream" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -148,4 +149,8 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/creditsroll = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]

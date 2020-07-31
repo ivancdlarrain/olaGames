@@ -51,7 +51,7 @@ func _on_TriggerArea_area_entered(area):
 
 func _on_Area2D_area_entered(area):
 	print("entered cutscene")
-	
+	$AudioStreamPlayer.play_cutscene_music()
 	$Cutscene/CutsceneCamera.position = $Player/Camera2D.position + $Player.get_position()
 	$Cutscene/CutsceneCamera.current = true
 	print($Player.get_position())
