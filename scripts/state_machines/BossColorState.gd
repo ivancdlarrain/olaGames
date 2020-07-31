@@ -7,7 +7,7 @@ func _ready():
 	add_state("blue")
 	add_state("orange")
 	add_state("purple")
-	call_deferred('set_state', states.orange)
+	call_deferred('set_state', states.purple)
 
 
 #func enter_layer(layer):
@@ -40,6 +40,9 @@ func _enter_state(new_state, _old_state):
 #	enter_layer(new_state)
 	for platform in parent.platforms:
 		parent.level.change_platform_layer(platform, new_state)
+
+			
+		
 
 
 func _exit_state(old_state, _new_state):

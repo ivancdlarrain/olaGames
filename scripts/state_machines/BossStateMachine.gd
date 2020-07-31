@@ -45,7 +45,7 @@ func _state_logic(delta):
 			
 		
 		states.chase:
-			playback.travel("orange_attack")
+			
 			parent.horizontal_movement(ray_direction.x > 0)
 		
 		states.main:
@@ -125,9 +125,6 @@ func _get_transition(delta):
 		
 		states.secondary:
 			match color.state:
-				color.states.blue:
-					playback.travel("blue_primary_loop")
-					pass
 				
 				color.states.orange:
 					if orange_collision:
@@ -165,6 +162,8 @@ func _enter_state(new_state, old_state):
 			match color.state:
 				color.states.purple:
 					playback.travel("idle_purple")
+				color.states.orange:
+					playback.travel("orange_attack")
 		
 		states.main:
 			parent.main_attack()
@@ -184,6 +183,8 @@ func _enter_state(new_state, old_state):
 			match color.state:
 				color.states.purple:
 					playback.travel("purple_attack_loop")
+				color.states.blue:
+					playback.travel("blue_secondary")
 		
 		states.recovery:
 			match color.state:
