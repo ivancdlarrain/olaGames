@@ -23,7 +23,7 @@ func _physics_process(_delta):
 		_hold_key(D)
 	if Input.is_action_just_pressed("special"):
 		_hold_key(space)
-		_hold_key(space2)
+	
 	
 	#Releasing key
 	if Input.is_action_just_released('WASD_up'):
@@ -34,7 +34,7 @@ func _physics_process(_delta):
 		_release_key(D)
 	if Input.is_action_just_released("special"):
 		_release_key(space)
-		_release_key(space2)
+		
 	
 	
 	

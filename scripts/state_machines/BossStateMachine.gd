@@ -3,6 +3,8 @@ extends DroneStateMachine
 onready var color = get_parent().get_node("ColorState")
 onready var playback = get_parent().get_node("AnimationTree").get("parameters/playback")
 
+onready var trans_cd = get_parent().get_node("TransitionCD")
+
 
 
 # Flags:
@@ -45,7 +47,7 @@ func _state_logic(delta):
 			
 		
 		states.chase:
-			playback.travel("orange_attack")
+			
 			parent.horizontal_movement(ray_direction.x > 0)
 		
 		states.main:
@@ -70,7 +72,7 @@ func _state_logic(delta):
 					parent.move_and_slide(parent.velocity)
 				
 				color.states.purple:
-					pass
+					parent.apply_deaccel()
 		
 		states.recovery:
 			match color.state:
@@ -95,7 +97,7 @@ func _state_logic(delta):
 func _get_transition(delta):
 	match state:
 		states.idle:
-			if found:
+			if found and trans_cd.is_stopped():
 				return states.chase
 		
 		states.chase:
@@ -125,17 +127,15 @@ func _get_transition(delta):
 		
 		states.secondary:
 			match color.state:
-				color.states.blue:
-					playback.travel("blue_primary_loop")
-					pass
 				
 				color.states.orange:
 					if orange_collision:
 						return states.recovery
 				
 				color.states.purple:
+					if parent.finished_purple_secundary:
+						return states.recovery
 					
-					pass
 		
 		states.recovery:
 			if recovery_finished:
@@ -156,10 +156,16 @@ func _get_transition(delta):
 func _enter_state(new_state, old_state):
 	match new_state:
 		states.idle:
-			pass
+			match color.state:
+				color.states.purple:
+					playback.travel("idle_purple")
 		
 		states.chase:
-			pass
+			match color.state:
+				color.states.purple:
+					playback.travel("idle_purple")
+				color.states.orange:
+					playback.travel("orange_attack")
 		
 		states.main:
 			parent.main_attack()
@@ -179,18 +185,26 @@ func _enter_state(new_state, old_state):
 			match color.state:
 				color.states.purple:
 					playback.travel("purple_attack_loop")
+				color.states.blue:
+					playback.travel("blue_secondary")
 		
 		states.recovery:
-			pass
+			match color.state:
+				color.states.orange:
+					playback.travel("idle_orange")
+					
 		
 		states.changing_color:
 			match color.state:
 				color.states.blue:
 					playback.travel("blue_to_orange")
+					trans_cd.start()
 				color.states.orange:
 					playback.travel("orange_to_purple")
+					trans_cd.start()
 				color.states.purple:
 					playback.travel("purple_to_blue")
+					trans_cd.start()
 			color.changing_color = true
 
 
@@ -225,7 +239,7 @@ func _exit_state(old_state, new_state):
 					parent.summon_explosion(parent.position, 1, 2)
 				
 				color.states.purple:
-					pass
+					parent.finished_purple_secundary = false
 		
 		states.recovery:
 			recovery_finished = false

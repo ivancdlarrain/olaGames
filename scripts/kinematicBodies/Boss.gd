@@ -8,6 +8,7 @@ export var y_level = -400
 
 # Animation
 var facing_right = false
+onready var trans_cd = $TransitionCD as Timer
 
 
 
@@ -30,6 +31,7 @@ onready var combat = get_node("DroneStateMachine")
 onready var color = get_node("ColorState")
 
 # Scenes:
+export var projectile: PackedScene
 const PURPLE_EYE_DRONE = preload("res://assets/KinematicBodies/PurpleMinion.tscn")
 onready var level = get_tree().get_root().get_node("BossFight")
 onready var platforms = [
@@ -114,12 +116,21 @@ func back_to_y_level():
 	velocity = move_and_slide(velocity)
 
 
+var finished_blue_main = false
 func blue_main_attack():
-	pass
+	for i in range(40):
+		fire()
+		yield(get_tree().create_timer(0.05), "timeout")
+	finished_blue_main = true
+	
 
 
+var finished_blue_secondary = false
 func blue_secondary_attack():
-	pass
+	for i in range(2):
+		fire()
+		yield(get_tree().create_timer(0.5), "timeout")
+	finished_blue_secondary = true
 
 
 func orange_main_attack():
@@ -138,8 +149,13 @@ func purple_main_attack():
 		yield(get_tree().create_timer(1.5), "timeout")
 
 
+var finished_purple_secundary = false
 func purple_secondary_attack():
-	pass
+	var x = randi()%3
+	var fx = Vector2(2*x, 2*x + 1) # Contains platform index
+	level.dissapear_platform(platforms[fx.x], platforms[fx.y])
+	yield(get_tree().create_timer(1.5), "timeout")
+	finished_purple_secundary = true
 
 
 func main_attack():
@@ -179,5 +195,12 @@ func summon_explosion(pos, layer, size):
 func summon_PurpleMinion():
 	var minion = PURPLE_EYE_DRONE.instance()
 	get_parent().add_child(PURPLE_EYE_DRONE.instance())
+
+
+func fire():
+	var temp = projectile.instance()
+	temp.position = position
+	get_owner().add_child(temp)
+	temp._fire(combat.ray_direction)
 
 

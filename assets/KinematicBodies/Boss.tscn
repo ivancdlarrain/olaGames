@@ -5,13 +5,13 @@
 [ext_resource path="res://scripts/kinematicBodies/Boss.gd" type="Script" id=3]
 [ext_resource path="res://assets/entities/bossfight/FinalBossSpriteSheet.png" type="Texture" id=4]
 
-[sub_resource type="CircleShape2D" id=60]
+[sub_resource type="CircleShape2D" id=1]
 radius = 35.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 552.058
+radius = 900.0
 
-[sub_resource type="CircleShape2D" id=61]
+[sub_resource type="CircleShape2D" id=3]
 radius = 40.0
 
 [sub_resource type="Animation" id=4]
@@ -138,6 +138,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=12]
 resource_name = "idle_purple"
 length = 0.1
+loop = true
 step = 0.12
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -423,7 +424,7 @@ states/purple_to_blue/node = SubResource( 36 )
 states/purple_to_blue/position = Vector2( 1384.3, 75 )
 transitions = [ "idle_orange", "orange_attack_begin", SubResource( 37 ), "orange_attack", "orange_attack_end", SubResource( 38 ), "orange_attack_begin", "orange_attack", SubResource( 39 ), "orange_attack_end", "idle_orange", SubResource( 40 ), "idle_orange", "orange_to_purple", SubResource( 41 ), "orange_to_purple", "idle_purple", SubResource( 42 ), "purple_attack_begin", "purple_attack_loop", SubResource( 43 ), "purple_attack_loop", "purple_attack_end", SubResource( 44 ), "idle_purple", "purple_attack_begin", SubResource( 45 ), "purple_attack_end", "idle_purple", SubResource( 46 ), "idle_purple", "purple_to_blue", SubResource( 47 ), "purple_to_blue", "idle_blue", SubResource( 48 ), "idle_blue", "blue_primary_begin", SubResource( 49 ), "blue_primary_begin", "blue_primary_loop", SubResource( 50 ), "blue_primary_loop", "blue_primary_end", SubResource( 51 ), "blue_primary_end", "idle_blue", SubResource( 52 ), "idle_blue", "blue_to_orange", SubResource( 53 ), "blue_to_orange", "idle_orange", SubResource( 54 ), "idle_blue", "blue_secondary", SubResource( 55 ), "blue_secondary", "idle_blue", SubResource( 56 ) ]
 start_node = "idle_orange"
-graph_offset = Vector2( -425.313, 67.3422 )
+graph_offset = Vector2( 1080.44, -78.0978 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=58]
 
@@ -446,17 +447,17 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 4 )
 vframes = 12
 hframes = 12
-frame = 107
+frame = 118
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 60 )
+shape = SubResource( 1 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+visible = false
 shape = SubResource( 2 )
 
 [node name="DetectionRay" type="RayCast2D" parent="."]
@@ -472,7 +473,8 @@ collision_layer = 2
 collision_mask = 2147483650
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DestructionArea"]
-shape = SubResource( 61 )
+visible = false
+shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/blue_primary_begin = SubResource( 4 )
@@ -500,11 +502,16 @@ active = true
 parameters/playback = SubResource( 58 )
 
 [node name="OrangeRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="OrangeRange"]
 shape = SubResource( 59 )
+
+[node name="TransitionCD" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
 [connection signal="body_entered" from="DestructionArea" to="DroneStateMachine" method="_on_DestructionArea_body_entered"]
 [connection signal="body_entered" from="OrangeRange" to="DroneStateMachine" method="_on_OrangeRange_body_entered"]
 [connection signal="body_exited" from="OrangeRange" to="DroneStateMachine" method="_on_OrangeRange_body_exited"]

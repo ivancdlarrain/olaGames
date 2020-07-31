@@ -34,13 +34,6 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 hframes = 2
 
-[node name="space2" type="Sprite" parent="Keys"]
-light_mask = 0
-position = Vector2( 2884.83, 47.2906 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 7 )
-hframes = 2
-
 [node name="left" type="Sprite" parent="Keys"]
 light_mask = 0
 position = Vector2( 247.665, 315.753 )
@@ -84,16 +77,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Glide" type="RichTextLabel" parent="Text"]
+[node name="Gravity" type="RichTextLabel" parent="Text"]
 light_mask = 0
-margin_left = 2735.3
-margin_top = 10.5053
-margin_right = 2962.3
-margin_bottom = 175.505
+margin_left = 2787.07
+margin_top = 162.213
+margin_right = 3014.07
+margin_bottom = 327.213
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
-bbcode_text = "when [color=#d900ff] purple [/color] you can keep           pressed to glide"
-text = "when  purple  you can keep           pressed to glide"
+bbcode_text = "when [color=#d900ff] purple [/color] gravity doesn't affect you as much.
+you can jump higher and stay in the air for longer"
+text = "when  purple  gravity doesn't affect you as much.
+you can jump higher and stay in the air for longer"
 __meta__ = {
 "_edit_use_anchors_": false
 }

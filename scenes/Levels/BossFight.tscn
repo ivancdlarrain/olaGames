@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/KinematicBodies/Boss.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/camera/playerCam.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/events/Dialogue/DialogueBox.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scripts/levels scripts/BossFight.gd" type="Script" id=8]
 [ext_resource path="res://scenes/menus/Pause_menu.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/entities/projectile/BlueProjectile.tscn" type="PackedScene" id=10]
 
 [node name="BossFight" type="Node2D"]
 script = ExtResource( 8 )
@@ -47,7 +48,6 @@ tile_data = PoolIntArray( 458736, 2, 1, 458737, 2, 5, 458738, 2, 5, 458739, 2, 5
 [node name="Platform2" type="Node" parent="Tiles"]
 
 [node name="Front" parent="Tiles/Platform2" instance=ExtResource( 5 )]
-collision_layer = 7
 collision_mask = 0
 tile_data = PoolIntArray( 458748, 1, 65536, 458749, 1, 65540, 458750, 1, 65540, 458751, 1, 65540, 393216, 1, 65540, 393217, 1, 65540, 393218, 1, 65540, 393219, 1, 65539, 524284, 1, 65541, 524285, 1, 262146, 524286, 1, 262146, 524287, 1, 262146, 458752, 1, 262146, 458753, 1, 262146, 458754, 1, 262146, 458755, 1, 131072, 589820, 1, 65537, 589821, 1, 65542, 589822, 1, 65542, 589823, 1, 65542, 524288, 1, 65542, 524289, 1, 65542, 524290, 1, 65542, 524291, 1, 65538 )
 
@@ -59,7 +59,6 @@ tile_data = PoolIntArray( 458748, 2, 1, 458749, 2, 5, 458750, 2, 5, 458751, 2, 5
 [node name="Platform3" type="Node" parent="Tiles"]
 
 [node name="Front" parent="Tiles/Platform3" instance=ExtResource( 5 )]
-collision_layer = 7
 collision_mask = 2147483648
 tile_data = PoolIntArray( 393224, 1, 65536, 393225, 1, 65540, 393226, 1, 65540, 393227, 1, 65540, 393228, 1, 65540, 393229, 1, 65540, 393230, 1, 65540, 393231, 1, 65539, 458760, 1, 65541, 458761, 1, 262146, 458762, 1, 262146, 458763, 1, 262146, 458764, 1, 262146, 458765, 1, 262146, 458766, 1, 262146, 458767, 1, 131072, 524296, 1, 65537, 524297, 1, 65542, 524298, 1, 65542, 524299, 1, 65542, 524300, 1, 65542, 524301, 1, 65542, 524302, 1, 65542, 524303, 1, 65538 )
 
@@ -83,6 +82,7 @@ tile_data = PoolIntArray( 458734, -1610612736, 0, 393233, -1073741824, 0, 524270
 [node name="Boss" parent="Enemies" instance=ExtResource( 1 )]
 position = Vector2( 0, -240 )
 y_level = -240
+projectile = ExtResource( 10 )
 
 [node name="HUDcanvas" type="CanvasLayer" parent="."]
 
