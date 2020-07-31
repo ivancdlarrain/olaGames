@@ -447,7 +447,7 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 4 )
 vframes = 12
 hframes = 12
-frame = 120
+frame = 118
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -508,6 +508,10 @@ collision_mask = 7
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="OrangeRange"]
 shape = SubResource( 59 )
+
+[node name="TransitionCD" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
 [connection signal="body_entered" from="DestructionArea" to="DroneStateMachine" method="_on_DestructionArea_body_entered"]
 [connection signal="body_entered" from="OrangeRange" to="DroneStateMachine" method="_on_OrangeRange_body_entered"]
 [connection signal="body_exited" from="OrangeRange" to="DroneStateMachine" method="_on_OrangeRange_body_exited"]

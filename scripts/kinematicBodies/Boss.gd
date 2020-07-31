@@ -8,6 +8,7 @@ export var y_level = -400
 
 # Animation
 var facing_right = false
+onready var trans_cd = $TransitionCD as Timer
 
 
 

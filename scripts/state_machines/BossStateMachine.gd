@@ -3,6 +3,8 @@ extends DroneStateMachine
 onready var color = get_parent().get_node("ColorState")
 onready var playback = get_parent().get_node("AnimationTree").get("parameters/playback")
 
+onready var trans_cd = get_parent().get_node("TransitionCD")
+
 
 
 # Flags:
@@ -95,7 +97,7 @@ func _state_logic(delta):
 func _get_transition(delta):
 	match state:
 		states.idle:
-			if found:
+			if found and trans_cd.is_stopped():
 				return states.chase
 		
 		states.chase:
@@ -196,10 +198,13 @@ func _enter_state(new_state, old_state):
 			match color.state:
 				color.states.blue:
 					playback.travel("blue_to_orange")
+					trans_cd.start()
 				color.states.orange:
 					playback.travel("orange_to_purple")
+					trans_cd.start()
 				color.states.purple:
 					playback.travel("purple_to_blue")
+					trans_cd.start()
 			color.changing_color = true
 
 
