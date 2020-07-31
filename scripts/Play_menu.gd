@@ -7,7 +7,7 @@ func _on_NewGame_pressed():
 	Save.delete_saves()
 	MusicController.stop()
 	$Sfx.play_play_sound()
-	get_tree().change_scene("res://scenes/Tutorials/Tutorial 1.tscn")
+	get_tree().change_scene("res://scenes/menus/TutorialMenu.tscn")
 
 
 func _on_NewGame_button_down():

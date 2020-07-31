@@ -1,0 +1,9 @@
+{
+    "0": { "name":"Player", "text": "What is this place? Why does everything look so different?"},
+	"1": { "name":"Mysterious voice", "text": "This is another world. A world just like yours. "},
+	"2": { "name":"Mysterious voice", "text": "This place exists at the same point in spacetime as your world does"},
+	"3": { "name": "Mysterious voice", "text": "Yet your people are unable to see it. Except for you. "}
+	"4": { "name": "Mysterious voice", "text": "You are somehow able to travel between these worlds. Anyone else would have died by now. "}
+	"5": { "name": "Mysterious voice", "text": "Keep going. Find my portal "}
+}
+
