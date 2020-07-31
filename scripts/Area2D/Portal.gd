@@ -7,5 +7,6 @@ func _ready():
 	
 func _on_Portal_body_entered(_body):
 # warning-ignore:return_value_discarded
+	$AudioStreamPlayer.play_sfx()
 	Respawnstate.respawned = false
 	get_tree().change_scene(world_scene)
