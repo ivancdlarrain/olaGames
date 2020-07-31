@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/tilemaps/3DTile1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/Area2D scenes/Portal.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/menus/Pause_menu.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/OST/Tutorial 1.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/sprites/environment/background/City background neutral-1.png.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 26
@@ -19,7 +20,17 @@ font_data = ExtResource( 3 )
 script = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 96, 240 )
+position = Vector2( 536.789, 279.643 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Player"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Player/ParallaxBackground"]
+
+[node name="Sprite" type="Sprite" parent="Player/ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0.596078, 0.596078, 0.596078, 1 )
+position = Vector2( 304.115, 109.806 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 11 )
 
 [node name="Portal" parent="." instance=ExtResource( 8 )]
 position = Vector2( 864, 264 )

@@ -46,7 +46,14 @@ func change_platform_layer(platform, layer):
 	platform.set_collision_layer_bit(layer, true)
 	yield(get_tree().create_timer(1), "timeout")
 	platform.set_collision_layer_bit(old_layer, false)
-	
+
+
+func change_background_color(layer):
+	var background = $Player/ParallaxBackground/ParallaxLayer/Sprite
+	var current_color = background.modulate
+	var colors = [Color(0, 0.972549, 1), Color(1, 0.529412, 0), Color(0.85098, 0, 1)]
+	tween.interpolate_property(background, "modulate", current_color, colors[layer], 1, tween.TRANS_LINEAR)
+
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_focus_next"):

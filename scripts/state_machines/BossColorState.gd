@@ -38,6 +38,7 @@ func _get_transition(_delta):
 func _enter_state(new_state, _old_state):
 	changing_color = false
 #	enter_layer(new_state)
+	parent.level.change_background_color(new_state)
 	for platform in parent.platforms:
 		parent.level.change_platform_layer(platform, new_state)
 	var sfx = get_parent().get_node("Sfx")
