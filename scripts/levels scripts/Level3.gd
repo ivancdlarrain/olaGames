@@ -46,7 +46,7 @@ func _on_DialogueBox_dialogue_end():
 
 
 func _on_TriggerArea_area_entered(area):
-	if cutscene_dialogue:
+	if cutscene_dialogue and !Respawnstate.respawned:
 		cutscene_dialogue.start()
 
 
