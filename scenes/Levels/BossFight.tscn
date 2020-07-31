@@ -35,12 +35,13 @@ limit_bottom = 288
 [node name="Platform1" type="Node" parent="Tiles"]
 
 [node name="Front" parent="Tiles/Platform1" instance=ExtResource( 5 )]
-modulate = Color( 0, 0.905882, 1, 1 )
+modulate = Color( 1, 0.529412, 0, 1 )
+collision_layer = 2
 collision_mask = 0
 tile_data = PoolIntArray( 458736, 1, 65536, 458737, 1, 65540, 458738, 1, 65540, 458739, 1, 65540, 458740, 1, 65540, 458741, 1, 65540, 458742, 1, 65540, 458743, 1, 65539, 524272, 1, 65541, 524273, 1, 262146, 524274, 1, 262146, 524275, 1, 262146, 524276, 1, 262146, 524277, 1, 262146, 524278, 1, 262146, 524279, 1, 131072, 589808, 1, 65537, 589809, 1, 65542, 589810, 1, 65542, 589811, 1, 65542, 589812, 1, 65542, 589813, 1, 65542, 589814, 1, 65542, 589815, 1, 65538 )
 
 [node name="Back" parent="Tiles/Platform1" instance=ExtResource( 5 )]
-modulate = Color( 0, 1, 0.976471, 1 )
+modulate = Color( 1, 0.529412, 0, 1 )
 collision_layer = 0
 collision_mask = 0
 tile_data = PoolIntArray( 458736, 2, 1, 458737, 2, 5, 458738, 2, 5, 458739, 2, 5, 458740, 2, 5, 458741, 2, 5, 458742, 2, 5, 458743, 2, 262148, 524279, 2, 6, 589815, 2, 2 )
@@ -48,10 +49,13 @@ tile_data = PoolIntArray( 458736, 2, 1, 458737, 2, 5, 458738, 2, 5, 458739, 2, 5
 [node name="Platform2" type="Node" parent="Tiles"]
 
 [node name="Front" parent="Tiles/Platform2" instance=ExtResource( 5 )]
+modulate = Color( 1, 0.529412, 0, 1 )
+collision_layer = 2
 collision_mask = 0
 tile_data = PoolIntArray( 458748, 1, 65536, 458749, 1, 65540, 458750, 1, 65540, 458751, 1, 65540, 393216, 1, 65540, 393217, 1, 65540, 393218, 1, 65540, 393219, 1, 65539, 524284, 1, 65541, 524285, 1, 262146, 524286, 1, 262146, 524287, 1, 262146, 458752, 1, 262146, 458753, 1, 262146, 458754, 1, 262146, 458755, 1, 131072, 589820, 1, 65537, 589821, 1, 65542, 589822, 1, 65542, 589823, 1, 65542, 524288, 1, 65542, 524289, 1, 65542, 524290, 1, 65542, 524291, 1, 65538 )
 
 [node name="Back" parent="Tiles/Platform2" instance=ExtResource( 5 )]
+modulate = Color( 1, 0.529412, 0, 1 )
 collision_layer = 0
 collision_mask = 0
 tile_data = PoolIntArray( 458748, 2, 1, 458749, 2, 5, 458750, 2, 5, 458751, 2, 5, 393216, 2, 5, 393217, 2, 5, 393218, 2, 5, 393219, 2, 262148, 458755, 2, 6, 524291, 2, 2 )
@@ -59,10 +63,13 @@ tile_data = PoolIntArray( 458748, 2, 1, 458749, 2, 5, 458750, 2, 5, 458751, 2, 5
 [node name="Platform3" type="Node" parent="Tiles"]
 
 [node name="Front" parent="Tiles/Platform3" instance=ExtResource( 5 )]
+modulate = Color( 1, 0.529412, 0, 1 )
+collision_layer = 2
 collision_mask = 2147483648
 tile_data = PoolIntArray( 393224, 1, 65536, 393225, 1, 65540, 393226, 1, 65540, 393227, 1, 65540, 393228, 1, 65540, 393229, 1, 65540, 393230, 1, 65540, 393231, 1, 65539, 458760, 1, 65541, 458761, 1, 262146, 458762, 1, 262146, 458763, 1, 262146, 458764, 1, 262146, 458765, 1, 262146, 458766, 1, 262146, 458767, 1, 131072, 524296, 1, 65537, 524297, 1, 65542, 524298, 1, 65542, 524299, 1, 65542, 524300, 1, 65542, 524301, 1, 65542, 524302, 1, 65542, 524303, 1, 65538 )
 
 [node name="Back" parent="Tiles/Platform3" instance=ExtResource( 5 )]
+modulate = Color( 1, 0.529412, 0, 1 )
 collision_layer = 0
 collision_mask = 0
 tile_data = PoolIntArray( 393224, 2, 1, 393225, 2, 5, 393226, 2, 5, 393227, 2, 5, 393228, 2, 5, 393229, 2, 5, 393230, 2, 5, 393231, 2, 262148, 458767, 2, 6, 524303, 2, 2 )

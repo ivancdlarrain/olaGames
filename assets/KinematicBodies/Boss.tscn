@@ -516,6 +516,8 @@ one_shot = true
 [node name="BlueRecovery" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="body_entered" from="DestructionArea" to="DroneStateMachine" method="_on_DestructionArea_body_entered"]
 [connection signal="body_entered" from="OrangeRange" to="DroneStateMachine" method="_on_OrangeRange_body_entered"]
 [connection signal="body_exited" from="OrangeRange" to="DroneStateMachine" method="_on_OrangeRange_body_exited"]

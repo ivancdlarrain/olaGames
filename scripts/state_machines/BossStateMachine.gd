@@ -204,6 +204,7 @@ func _enter_state(new_state, old_state):
 					
 		
 		states.changing_color:
+			parent.take_damage()
 			match color.state:
 				color.states.blue:
 					playback.travel("blue_to_orange")
@@ -226,7 +227,6 @@ func _exit_state(old_state, new_state):
 			pass
 		
 		states.main:
-			parent.take_damage()
 			match color.state:
 				color.states.blue:
 					parent.finished_blue_main = false

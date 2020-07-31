@@ -16,10 +16,11 @@ onready var trans_cd = $TransitionCD as Timer
 var enemy_on_range = false
 
 # Combat:
-var health = 200
+var health = 120
 const BLUE_DAMAGE = 30
 const ORANGE_DAMAGE = 20
 const PURPLE_DAMAGE = 10
+const DAMAGE = [BLUE_DAMAGE, ORANGE_DAMAGE, PURPLE_DAMAGE]
 
 
 const ORANGE_MAIN_SPEED = 1000
@@ -78,23 +79,26 @@ func apply_deaccel():
 #   Attack:
 
 func take_damage():
-	print('Ouch')
-	match color.state:
-		color.states.blue:
-			health -= BLUE_DAMAGE
-		color.states.orange:
-			health -= ORANGE_DAMAGE
-		color.states.purple:
-			health -= PURPLE_DAMAGE
-	if health < 0:
+	summon_explosion(position, color.state, 5)
+	health -= DAMAGE[color.state]
+	if health <= 0:
 		health = 0
 		_die()
 	# Health bar animation should be here
 
 
 func _die():
-	# Special boss animation/multiple explosions
-	pass
+	# it should no longer move
+	get_node("DroneStateMachine").set_physics_process(false)
+	get_node('ColorState').set_physics_process(false)
+	for i in range(10):
+		var rel_pos = Vector2(randi()%3-1, randi()%3-1)
+		var exp_size = randi()%5+1
+		summon_explosion(position + rel_pos * 10, color.state, exp_size)
+		yield(get_tree().create_timer(0.3), "timeout")
+	modulate.a = 0
+	# Boss won't dissapear after dying 
+	
 
 
 func player_on_range():

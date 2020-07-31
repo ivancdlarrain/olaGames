@@ -3,7 +3,10 @@ extends Node2D
 onready var tween = $Tween as Tween
 
 func _ready():
-	pass
+	yield(get_tree().create_timer(0.001), "timeout")
+	get_node('Player').get_node("ColorState").set_state(1)
+	get_node('Player').get_node('Sprite').modulate = Color(1, 0.529412, 0)
+	get_node('Player').get_node("Light2D").color = Color(1, 0.529412, 0)
 
 
 func dissapear_platform(front, back):
