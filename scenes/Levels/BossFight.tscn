@@ -14,23 +14,23 @@
 [ext_resource path="res://assets/sprites/environment/background/City background neutral-1.png.png" type="Texture" id=12]
 [ext_resource path="res://fonts/ARCADECLASSIC.TTF" type="DynamicFontData" id=13]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 13 )
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.890196, 0.196078, 0.0745098, 1 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.133333, 0.133333, 0.133333, 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 13 )
 
 [node name="BossFight" type="Node2D"]
 script = ExtResource( 8 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 440, 152 )
+position = Vector2( -472, 152 )
 
 [node name="Camera2D" parent="Player" instance=ExtResource( 2 )]
 current = true
@@ -104,8 +104,8 @@ tile_data = PoolIntArray( 458734, -1610612736, 0, 393233, -1073741824, 0, 524270
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Boss" parent="Enemies" instance=ExtResource( 1 )]
-position = Vector2( 0, -240 )
-y_level = -240
+position = Vector2( 0, -160 )
+y_level = -160
 projectile = ExtResource( 10 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 9 )]
@@ -129,11 +129,11 @@ scale = Vector2( 2, 2 )
 visible = false
 
 [node name="Label" type="Label" parent="HUDcanvas"]
-margin_left = 472.0
-margin_top = 488.0
-margin_right = 555.0
-margin_bottom = 505.0
-custom_fonts/font = SubResource( 4 )
+margin_left = 488.0
+margin_top = 8.0
+margin_right = 571.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 1 )
 text = "final boss"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -141,12 +141,12 @@ __meta__ = {
 
 [node name="ProgressBar" type="ProgressBar" parent="HUDcanvas"]
 margin_left = 264.0
-margin_top = 512.0
+margin_top = 32.0
 margin_right = 764.0
-margin_bottom = 532.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
-custom_fonts/font = SubResource( 3 )
+margin_bottom = 52.0
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 max_value = 120.0
 step = 1.0
 value = 120.0
