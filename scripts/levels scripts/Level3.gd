@@ -63,6 +63,7 @@ func _on_Area2D_area_entered(area):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	on_cutscene = false
 	$"Player/MovementState".set_physics_process(true)
+	get_tree().change_scene("res://scenes/demo1.tscn")
 
 
 func _on_Cutscene_dialogue_start():

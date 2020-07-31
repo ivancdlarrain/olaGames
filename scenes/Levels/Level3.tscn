@@ -27,7 +27,7 @@ extents = Vector2( 68.8567, 10 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "cutscene"
-length = 15.0
+length = 14.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("CutsceneCamera/Title:modulate")
 tracks/0/interp = 1
@@ -47,7 +47,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 5, 8, 13.9 ),
+"times": PoolRealArray( 0, 5, 8, 14.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1596.23, -1311.03 ), Vector2( 2873.24, -1311.5 ), Vector2( 3371.24, -1311.5 ), Vector2( 4647.13, -1311.5 ) ]
@@ -268,9 +268,10 @@ shape = SubResource( 2 )
 anims/cutscene = SubResource( 3 )
 
 [node name="CutsceneCamera" type="Camera2D" parent="Cutscene"]
-position = Vector2( 3911.87, -1311.5 )
+position = Vector2( 1596.23, -1311.03 )
 
 [node name="Title" type="Sprite" parent="Cutscene/CutsceneCamera"]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( -0.63562, 2.03699 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 16 )
