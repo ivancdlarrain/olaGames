@@ -324,6 +324,7 @@ position = Vector2( -0.143432, 3.41855 )
 script = ExtResource( 7 )
 
 [node name="Retry" type="CanvasLayer" parent="."]
+layer = 3
 
 [node name="died" type="Label" parent="Retry"]
 visible = false
