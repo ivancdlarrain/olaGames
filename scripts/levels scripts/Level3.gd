@@ -4,7 +4,28 @@ onready var cutscene_dialogue = $HUDcanvas/CutsceneDialogue
 var on_cutscene = false
 var cutscene_triggered = false
 
+var dialogue1 = {
+	"0": { "name":"Mysterious voice", "text": "The line between worlds is breaking. That's why you're here"},
+	"1": { "name":"Mysterious voice", "text": "Somehow you're the key to fixing this. Why? I don't know yet."},
+	"2": { "name": "Player", "text": "I don't understand. Why me? "},
+	"3": { "name": "Mysterious voice", "text": "We'll have to find out. Follow my portal."}
+}
+
+var dialogue2 = {
+	"0": { "name":"Mysterious voice", "text": "The portal is below. If you jump down, there is no going back. "},
+	"1": { "name":"Mysterious voice", "text": "The worlds are even more disrupted at the other side"},
+	"2": { "name": "Mysterious voice", "text": "Are you ready for this?"},
+	"3": { "name": "Player", "text": "I feel like I don't have a choice anymore. Can I even go back to my world?"},
+	"4": { "name": "Mysterious voice", "text": "I'm afraid not."},
+	"5": { "name": "Player", "text": "..."},
+	"6": { "name": "Player", "text": "I guess I'll have to."},
+	"7": { "name": "Mysterious voice", "text": "Then jump."}
+	
+}
+
 func _ready():
+	box_dialogue.dialogue_dict = dialogue1
+	cutscene_dialogue.dialogue_dict = dialogue2
 	yield(get_tree().create_timer(.001), "timeout")
 	get_node('Player').get_node("ColorState").set_state(2)
 	get_node('Player').get_node('Sprite').modulate = Color(0.85098, 0, 1)

@@ -18,7 +18,8 @@ func _ready():
 	visible = false
 
 func start():
-	load_file()
+	emit_signal("dialogue_start")
+	display_dialogue()
 	get_focus_owner()
 	visible = true
 
