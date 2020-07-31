@@ -48,6 +48,6 @@ func change_platform_layer(platform, layer):
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_focus_next"):
 		print('TAB')
-		change_platform_layer($Tiles/Platform1/Front, 1)
+		$Enemies/Boss.fire()
 
 

@@ -10,14 +10,14 @@ func _ready():
 	call_deferred('set_state', states.orange)
 
 
-func enter_layer(layer):
-	parent.set_collision_layer_bit(layer, true)
-	parent.set_collision_mask_bit(layer, true)
-
-
-func exit_layer(layer):
-	parent.set_collision_layer_bit(layer, false)
-	parent.set_collision_mask_bit(layer, false)
+#func enter_layer(layer):
+#	parent.set_collision_layer_bit(layer, true)
+#	parent.set_collision_mask_bit(layer, true)
+#
+#
+#func exit_layer(layer):
+#	parent.set_collision_layer_bit(layer, false)
+#	parent.set_collision_mask_bit(layer, false)
 
 
 func _get_transition(_delta):
@@ -37,11 +37,12 @@ func _get_transition(_delta):
 
 func _enter_state(new_state, _old_state):
 	changing_color = false
-	enter_layer(new_state)
+#	enter_layer(new_state)
 	for platform in parent.platforms:
 		parent.level.change_platform_layer(platform, new_state)
 
 
 func _exit_state(old_state, _new_state):
-	exit_layer(old_state)
+#	exit_layer(old_state)
+	pass
 
