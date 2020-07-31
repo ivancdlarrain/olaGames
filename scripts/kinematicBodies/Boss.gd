@@ -110,10 +110,11 @@ func _die():
 	level.get_node("Player/MovementState").set_physics_process(false)
 	level.get_node("Player/ColorState").set_physics_process(false)
 	# Boss won't dissapear after dying 
-	$Tween.interpolate_property(level.get_node("HUDcanvas/ColorRect"), "modulate:a", 0, 1, time, $Tween.TRANS_LINEAR)
-	$Tween.start()
-	yield(get_tree().create_timer(time), "timeout")
-	get_tree().change_scene("res://scenes/Credits.tscn")
+	if level.get_node("Player").get_collision_layer_bit(3):
+		$Tween.interpolate_property(level.get_node("HUDcanvas/ColorRect"), "modulate:a", 0, 1, time, $Tween.TRANS_LINEAR)
+		$Tween.start()
+		yield(get_tree().create_timer(time), "timeout")
+		get_tree().change_scene("res://scenes/Credits.tscn")
 	
 
 
