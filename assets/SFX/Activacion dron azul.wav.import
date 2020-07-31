@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Activacion dron azul.wav-44bb2f5bd0c6aa17f5dc4276b6cbace0.sample"
+
+[deps]
+
+source_file="res://assets/SFX/Activacion dron azul.wav"
+dest_files=[ "res://.import/Activacion dron azul.wav-44bb2f5bd0c6aa17f5dc4276b6cbace0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Nivel 3 (loop en 14.608s).ogg-87ab058e8c6d65428aaeabdaae7dcfac.oggstr"
+
+[deps]
+
+source_file="res://assets/OST/Nivel 3 (loop en 14.608s).ogg"
+dest_files=[ "res://.import/Nivel 3 (loop en 14.608s).ogg-87ab058e8c6d65428aaeabdaae7dcfac.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

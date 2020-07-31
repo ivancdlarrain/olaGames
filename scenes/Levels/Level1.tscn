@@ -162,5 +162,7 @@ scale = Vector2( 2, 2 )
 [node name="DialogueBox" parent="HUDcanvas" instance=ExtResource( 12 )]
 margin_left = -40.0
 margin_right = -40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 [connection signal="dialogue_end" from="HUDcanvas/DialogueBox" to="." method="_on_DialogueBox_dialogue_end"]
 [connection signal="dialogue_start" from="HUDcanvas/DialogueBox" to="." method="_on_DialogueBox_dialogue_start"]

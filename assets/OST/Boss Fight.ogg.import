@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Boss Fight.ogg-2720aa977a65f9beb079c4ad5c3b4f9b.oggstr"
+
+[deps]
+
+source_file="res://assets/OST/Boss Fight.ogg"
+dest_files=[ "res://.import/Boss Fight.ogg-2720aa977a65f9beb079c4ad5c3b4f9b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

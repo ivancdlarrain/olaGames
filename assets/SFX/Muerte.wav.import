@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Muerte.wav-55caba8ed6d709d58e1143cf2e05746c.sample"
+
+[deps]
+
+source_file="res://assets/SFX/Muerte.wav"
+dest_files=[ "res://.import/Muerte.wav-55caba8ed6d709d58e1143cf2e05746c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

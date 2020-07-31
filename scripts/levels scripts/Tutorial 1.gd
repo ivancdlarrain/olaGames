@@ -10,7 +10,8 @@ onready var purple = $purple
 onready var space = $space
 
 func _ready():
-	MusicController.play_level_music()
+	#MusicController.play_level_music()
+	pass
 
 
 func _hold_key(key):
