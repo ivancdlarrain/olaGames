@@ -98,7 +98,8 @@ projectile = ExtResource( 10 )
 [node name="HUDcanvas" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="HUDcanvas" instance=ExtResource( 6 )]
-visible = false
+position = Vector2( 776, 512 )
+scale = Vector2( 2, 2 )
 
 [node name="DialogueBox" parent="HUDcanvas" instance=ExtResource( 7 )]
 visible = false
