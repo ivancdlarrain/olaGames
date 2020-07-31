@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Dialogo 2.wav-916cd059f71e33742a6dcf37d4ec3766.sample"
+path="res://.import/Dialogo.wav-5886c7bb29cafacba5c34d7b39ed0580.sample"
 
 [deps]
 
-source_file="res://assets/SFX/Dialogo 2.wav"
-dest_files=[ "res://.import/Dialogo 2.wav-916cd059f71e33742a6dcf37d4ec3766.sample" ]
+source_file="res://assets/SFX/Dialogo.wav"
+dest_files=[ "res://.import/Dialogo.wav-5886c7bb29cafacba5c34d7b39ed0580.sample" ]
 
 [params]
 
