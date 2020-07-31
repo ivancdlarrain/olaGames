@@ -60,6 +60,11 @@ func _physics_process(delta):
 		print('TAB')
 		$Enemies/Boss.fire()
 	
-	$HUDcanvas/ProgressBar.value = $Enemies/Boss.health
+	
 
 
+
+
+func _on_Boss_take_damage():
+	$HealthBar.interpolate_property($HUDcanvas/ProgressBar, "value", $HUDcanvas/ProgressBar.value, $Enemies/Boss.health, 1, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
+	$HealthBar.start()

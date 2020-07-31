@@ -1,5 +1,5 @@
 extends Drone
-
+signal take_damage
 # Movement
 const MAX_SPEED = 200
 const SPEED_INCREASE = 10
@@ -81,6 +81,7 @@ func apply_deaccel():
 func take_damage():
 	summon_explosion(position, color.state, 5)
 	health -= DAMAGE[color.state]
+	emit_signal("take_damage")
 	if health <= 0:
 		health = 0
 		_die()
