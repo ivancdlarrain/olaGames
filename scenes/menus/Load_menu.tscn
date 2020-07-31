@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/textures/menubuttons/2 - slot2frames.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Load_menu.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/textures/menubuttons/2 - backframes.png" type="Texture" id=12]
 [ext_resource path="res://assets/textures/menubuttons/1 - slot2frames.png" type="Texture" id=13]
 [ext_resource path="res://assets/textures/menubuttons/3 - slot3frames.png" type="Texture" id=14]
+[ext_resource path="res://scenes/menus/Sfx_load_menu.gd" type="Script" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -104,6 +105,12 @@ margin_bottom = 529.0
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 7 )
 texture_hover = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sfx" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 15 )
 [connection signal="pressed" from="CanvasLayer/Slot 1" to="." method="_on_Slot_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/Slot 2" to="." method="_on_Slot_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Slot 3" to="." method="_on_Slot_3_pressed"]

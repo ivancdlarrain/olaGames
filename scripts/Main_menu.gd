@@ -25,6 +25,7 @@ func _on_TitleTimer_timeout():
 # Just buttons connections
 func _on_TextureButton_mouse_entered():
 	$CanvasLayer/Panel/PlayButton/Play.frame = 1
+	$Sfx.play_over_button_sfx()
 
 
 func _on_TextureButton_mouse_exited():
@@ -37,6 +38,7 @@ func _on_TextureButton_pressed():
 
 func _on_QuitButton_mouse_entered():
 	$CanvasLayer/Panel/QuitButton/Quit.frame = 1
+	$Sfx.play_over_button_sfx()
 
 
 func _on_QuitButton_mouse_exited():
@@ -45,6 +47,7 @@ func _on_QuitButton_mouse_exited():
 
 func _on_PlayButton_button_down():
 	$CanvasLayer/Panel/PlayButton/Play.frame = 2
+	$Sfx.play_click_sfx()
 
 
 func _on_PlayButton_pressed():
@@ -53,6 +56,7 @@ func _on_PlayButton_pressed():
 
 func _on_QuitButton_button_down():
 	$CanvasLayer/Panel/QuitButton/Quit.frame = 2
+	$Sfx.play_click_sfx()
 
 
 func _on_Credits_pressed():

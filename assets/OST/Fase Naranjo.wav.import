@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Fase Naranjo.wav-34904b048287a98122b8991945bece7a.sample"
+
+[deps]
+
+source_file="res://assets/OST/Fase Naranjo.wav"
+dest_files=[ "res://.import/Fase Naranjo.wav-34904b048287a98122b8991945bece7a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

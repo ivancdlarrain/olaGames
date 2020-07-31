@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Segundo Salto (naranjo).wav-2cb79b6d3d5f1d2dbfac0716e96bd295.sample"
+
+[deps]
+
+source_file="res://assets/SFX/Segundo Salto (naranjo).wav"
+dest_files=[ "res://.import/Segundo Salto (naranjo).wav-2cb79b6d3d5f1d2dbfac0716e96bd295.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

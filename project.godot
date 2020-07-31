@@ -46,6 +46,7 @@ config/icon="res://icon.png"
 
 Save="*res://scripts/save.gd"
 MusicController="*res://Music/MusicController.gd"
+PlayerSfx="*res://Music/PlayerSfx.gd"
 
 [display]
 

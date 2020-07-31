@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scripts/Pause.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/menubuttons/2 - slot1frames.png" type="Texture" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://assets/textures/menubuttons/2 - backframes.png" type="Texture" id=24]
 [ext_resource path="res://assets/textures/menubuttons/1 - slot2frames.png" type="Texture" id=25]
 [ext_resource path="res://assets/textures/menubuttons/3 - slot3frames.png" type="Texture" id=26]
+[ext_resource path="res://scenes/menus/Sfx_pause_menu.gd" type="Script" id=27]
 
 [sub_resource type="DynamicFont" id=1]
 size = 63
@@ -198,6 +199,9 @@ texture_hover = ExtResource( 24 )
 margin_top = 408.0
 margin_right = 534.0
 margin_bottom = 408.0
+
+[node name="Sfx" type="AudioStreamPlayer" parent="Pause"]
+script = ExtResource( 27 )
 [connection signal="pressed" from="Pause/CanvasLayer/VBoxContainer/Resume" to="Pause" method="_on_Resume_pressed"]
 [connection signal="pressed" from="Pause/CanvasLayer/VBoxContainer/Save" to="Pause" method="_on_Save_pressed"]
 [connection signal="pressed" from="Pause/CanvasLayer/VBoxContainer/Load" to="Pause" method="_on_Load_pressed"]
