@@ -134,7 +134,7 @@ func _tile_detection():
 
 
 func take_damage():
-	PlayerSfx.play_take_damage_sfx()
+#	PlayerSfx.play_take_damage_sfx()
 	_die()
 
 
