@@ -2,7 +2,7 @@ extends Node2D
 onready var box_dialogue = $HUDcanvas/DialogueBox
 onready var cutscene_dialogue = $HUDcanvas/CutsceneDialogue
 var on_cutscene = false
-
+var cutscene_triggered = false
 
 func _ready():
 	yield(get_tree().create_timer(.001), "timeout")
@@ -50,13 +50,14 @@ func _on_TriggerArea_area_entered(area):
 
 
 func _on_Area2D_area_entered(area):
-	print("entered cutscene")
-	$AudioStreamPlayer.play_cutscene_music()
-	$Cutscene/CutsceneCamera.position = $Player/Camera2D.position + $Player.get_position()
-	$Cutscene/CutsceneCamera.current = true
-	print($Player.get_position())
-	$Cutscene/AnimationPlayer.play("cutscene")
-	on_cutscene = true
+	if !cutscene_triggered:
+		cutscene_triggered = true
+		$AudioStreamPlayer.play_cutscene_music()
+		$Cutscene/CutsceneCamera.position = $Player/Camera2D.position + $Player.get_position()
+		$Cutscene/CutsceneCamera.current = true
+		print($Player.get_position())
+		$Cutscene/AnimationPlayer.play("cutscene")
+		on_cutscene = true
 	
 
 
