@@ -67,7 +67,6 @@ func _state_logic(delta):
 
 func common_input_rest(event):
 	if event.is_action_released('WASD_up'):
-		sfx.play_jump_sfx()
 		if states.jump == state:
 			parent.velocity.y = parent.velocity.y * 0.5
 
@@ -195,12 +194,14 @@ func _enter_state(new_state, _old_state):
 			emit_signal("use_ground_collision", true)
 			parent.playback.travel("run")
 		states.jump:
+			sfx.play_purple_jump_sfx()
 			emit_signal("use_ground_collision", false)
 			parent.playback.travel("jump")
 		states.fall:
 			emit_signal("use_ground_collision", false)
 			parent.playback.travel("fall")
 		states.dash:
+			sfx.play_dash_sfx()
 			emit_signal("use_ground_collision", true)
 			parent.dashParticles.emitting = true
 			parent.playback.travel("run")
