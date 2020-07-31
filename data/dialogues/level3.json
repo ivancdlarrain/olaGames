@@ -1,4 +1,7 @@
 {
-    "0": { "name":"Mysterious voice", "text": "Starting scene dialogue"},
+    "0": { "name":"Mysterious voice", "text": "The line between worlds is breaking. That's why you're here"},
+	"1": { "name":"Mysterious voice", "text": "Somehow you're the key to fixing this. Why? I don't know yet."},
+	"2": { "name": "Player", "text": "I don't understand. Why me? "},
+	"3": { "name": "Mysterious voice", "text": "We'll have to find out. Follow my portal."}
 }
 
