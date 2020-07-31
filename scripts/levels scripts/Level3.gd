@@ -10,7 +10,8 @@ func _ready():
 	get_node('Player').get_node('Sprite').modulate = Color(0.85098, 0, 1)
 	get_node('Player').get_node("Light2D").color = Color(0.85098, 0, 1)
 	get_node('Player').get_node("ColorState").set_physics_process(false)
-	box_dialogue.start()
+	if !Respawnstate.respawned:
+		box_dialogue.start()
 	
 
 
@@ -45,7 +46,7 @@ func _on_DialogueBox_dialogue_end():
 
 
 func _on_TriggerArea_area_entered(area):
-	if cutscene_dialogue:
+	if cutscene_dialogue and !Respawnstate.respawned:
 		cutscene_dialogue.start()
 
 

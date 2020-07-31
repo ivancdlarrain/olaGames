@@ -148,6 +148,7 @@ func _die():
 	playback.travel('death')
 
 func _actually_die():
+	Respawnstate.respawned = true
 	get_tree().reload_current_scene()
 
 

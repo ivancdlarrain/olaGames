@@ -3,8 +3,11 @@ extends Node2D
 onready var box_dialogue = $HUDcanvas/DialogueBox
 
 func _ready():
-	box_dialogue.start()
+	
 	get_node('Player').get_node("ColorState").set_physics_process(false)
+	
+	if !Respawnstate.respawned:
+		box_dialogue.start()
 
 
 func _physics_process(_delta):
