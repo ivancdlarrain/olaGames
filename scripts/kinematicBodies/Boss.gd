@@ -214,4 +214,5 @@ func fire():
 	get_owner().add_child(temp)
 	temp._fire(combat.ray_direction)
 
+	
 
